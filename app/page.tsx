@@ -55,7 +55,6 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-8 md:gap-12 shrink-0">
                   <span className="text-sm text-fg-tertiary">{p.category}</span>
-                  <span className="text-sm text-fg-tertiary font-mono">{p.year}</span>
                 </div>
               </Link>
             ))}
