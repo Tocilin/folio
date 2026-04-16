@@ -60,18 +60,11 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
               <p className="text-sm text-fg-secondary font-mono">{project.year}</p>
             </div>
           </div>
-          {project.heroImage ? (
-            <img
-              src={project.heroImage}
-              alt={project.name}
-              className="w-full aspect-video rounded-lg object-cover"
-            />
-          ) : (
-            <div
-              className="w-full aspect-video rounded-lg"
-              style={{ background: `linear-gradient(135deg, ${project.hero.from}, ${project.hero.via}, ${project.hero.to})` }}
-            />
-          )}
+          <img
+            src={project.heroImage ?? "/images/placeholder.png"}
+            alt={project.name}
+            className="w-full aspect-video rounded-lg object-cover"
+          />
         </section>
 
         {/* Content sections */}
