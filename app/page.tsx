@@ -2,6 +2,7 @@ import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
+import { AvailableTag } from "@/app/components/AvailableTag";
 
 export default function Home() {
   return (
@@ -32,7 +33,7 @@ export default function Home() {
                 <Button variant="secondary" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</Button>
               </div>
             </div>
-            <span className="text-sm text-fg-tertiary shrink-0">Available for work</span>
+            <AvailableTag />
           </div>
         </section>
 
