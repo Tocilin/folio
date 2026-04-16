@@ -25,7 +25,7 @@ export default function RootLayout({
           } catch(e) {}
         ` }} />
       </head>
-      <body className={`${inter.variable} font-sans bg-surface-base text-fg-primary antialiased transition-colors duration-200`}>
+      <body suppressHydrationWarning className={`${inter.variable} font-sans bg-surface-base text-fg-primary antialiased transition-colors duration-200`}>
         {children}
       </body>
     </html>
