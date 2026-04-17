@@ -68,7 +68,7 @@ export default function Home() {
           <p className="text-fg-secondary text-lg leading-relaxed">
             Independent designer and developer focused on brand, product,
             and interactive work. Five years building for startups and agencies
-            across Europe and the US. I care about the small things —
+            across Europe and the US. I care deeply about the details:
             type, spacing, and the moments in between.
           </p>
         </section>
