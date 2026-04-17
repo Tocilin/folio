@@ -29,7 +29,7 @@ export default function Home() {
                 considered, and built to last.
               </p>
               <div className="flex items-center gap-3">
-                <Button variant="primary" href="#">Resume</Button>
+                <Button variant="primary" href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
                 <Button variant="secondary" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</Button>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function Home() {
       <footer className="border-t border-stroke px-6 md:px-12 py-8 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
         <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-          <a href="#" className="hover:text-fg-primary transition-colors">Resume</a>
+          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-fg-primary transition-colors">Resume</a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-fg-primary transition-colors">LinkedIn</a>
         </div>
       </footer>
