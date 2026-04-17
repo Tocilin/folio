@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-const doodles = [
-  { src: "/images/doodle-1.svg", w: 74, h: 49 },
-  { src: "/images/doodle-2.svg", w: 51, h: 47 },
-  { src: "/images/doodle-3.svg", w: 53, h: 39 },
-];
-
 const HEIGHT = 48;
+
+const doodles = [
+  { src: "/images/doodle-1.svg", w: 74, h: 49, right: -6 },
+  { src: "/images/doodle-2.svg", w: 51, h: 47, right:  8 },
+  { src: "/images/doodle-3.svg", w: 53, h: 39, right:  0 },
+];
 
 export function AvailableTag() {
   const [index, setIndex] = useState(0);
@@ -28,23 +28,35 @@ export function AvailableTag() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setVisible(false)}
     >
+      {/* Doodle — sits behind text, peeks up from below */}
       <img
-        key={doodle.src}
         src={doodle.src}
         alt=""
         aria-hidden="true"
         width={width}
         height={HEIGHT}
-        className={`
-          absolute -top-16 right-0
-          transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-          pointer-events-none
-          ${visible
-            ? "opacity-100 translate-y-0 scale-100"
-            : "opacity-0 translate-y-2 scale-90"}
-        `}
+        style={{
+          position: "absolute",
+          bottom: 0,
+          right: doodle.right,
+          zIndex: 0,
+          transform: visible ? "translateY(-52%)" : "translateY(20%)",
+          opacity: visible ? 1 : 0,
+          transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s ease",
+          pointerEvents: "none",
+        }}
       />
-      <span className="text-sm text-fg-tertiary">Available for work</span>
+      {/* Text — sits in front, background hides doodle's lower body */}
+      <span
+        className="text-sm text-fg-tertiary relative"
+        style={{
+          zIndex: 1,
+          backgroundColor: "rgb(var(--surface-base))",
+          paddingInline: "2px",
+        }}
+      >
+        Available for work
+      </span>
     </div>
   );
 }
