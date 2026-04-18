@@ -38,7 +38,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
         {/* Header block */}
         <section className="flex flex-col gap-12">
-          <h1 className="text-5xl md:text-6xl font-semibold tracking-tighter leading-[1.05]">
+          <h1 className="text-5xl md:text-6xl font-semibold tracking-[-1.28px] leading-[1.05]">
             {project.name}
           </h1>
           <div className="border-t border-stroke" />
@@ -63,7 +63,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
           <img
             src={project.heroImage ?? "/images/placeholder.png"}
             alt={project.name}
-            className="w-full aspect-video rounded-lg object-cover"
+            className="w-full h-[520px] rounded-lg object-cover"
           />
         </section>
 
@@ -73,7 +73,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
             <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>
             <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
             {section.images && section.images.length > 0 && (
-              <div className={`grid gap-4 mt-2 ${
+              <div className={`grid gap-6 mt-2 ${
                 section.images.length === 1 ? "grid-cols-1" :
                 section.images.length === 2 ? "grid-cols-2" :
                 "grid-cols-3"
@@ -83,9 +83,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
                     key={j}
                     src={src}
                     alt={`${project.name} — ${section.label} ${j + 1}`}
-                    className={`rounded-md object-cover w-full ${
-                      section.images!.length === 1 ? "aspect-video" : "aspect-[3/4]"
-                    }`}
+                    className="rounded-lg object-cover w-full h-[520px]"
                   />
                 ))}
               </div>
@@ -105,7 +103,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         </section>
 
         {/* Prev / Next */}
-        <div className="flex items-center justify-between border-t border-stroke pt-12 gap-4">
+        <div className="flex items-center justify-between border-t border-stroke py-12 gap-4">
           {prev ? (
             <Link href={`/work/${prev.slug}`} className="group flex flex-col gap-1">
               <span className="text-xs text-fg-tertiary uppercase tracking-widest">Previous</span>
@@ -128,10 +126,10 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-stroke px-6 md:px-12 py-8 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
         <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-          <a href="#" className="hover:text-fg-primary transition-colors">Resume</a>
+          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-fg-primary transition-colors">Resume</a>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-fg-primary transition-colors">LinkedIn</a>
         </div>
       </footer>

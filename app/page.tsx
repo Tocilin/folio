@@ -19,11 +19,11 @@ export default function Home() {
 
         {/* Hero */}
         <section className="mb-40">
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-[1.05] mb-10">
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-[-1.44px] leading-[1.05] mb-12">
             Design &<br />Development
           </h1>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="flex flex-col gap-7">
+            <div className="flex flex-col gap-6">
               <p className="text-fg-secondary text-lg leading-relaxed max-w-sm">
                 Making digital products that are simple,
                 considered, and built to last.
@@ -39,32 +39,30 @@ export default function Home() {
 
         {/* Work */}
         <section id="work" className="mb-40">
-          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-8">Selected Work</p>
-          <div className="divide-y divide-stroke">
+          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Selected Work</p>
+          <div className="border-t border-stroke">
             {projects.map((p) => (
               <Link
                 key={p.slug}
                 href={`/work/${p.slug}`}
-                className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-6"
+                className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-5 border-b border-stroke"
               >
-                <span className="text-xs text-fg-tertiary font-mono w-10 shrink-0">{p.index}</span>
+                <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{p.index}</span>
                 <div className="flex-1 min-w-0">
                   <span className="text-xl font-medium tracking-tight group-hover:text-fg-primary transition-colors">
                     {p.name}
                   </span>
                   <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
                 </div>
-                <div className="flex items-center gap-8 md:gap-12 shrink-0">
-                  <span className="text-sm text-fg-tertiary">{p.category}</span>
-                </div>
+                <span className="text-sm text-fg-tertiary shrink-0">View ↗</span>
               </Link>
             ))}
           </div>
         </section>
 
         {/* About */}
-        <section id="about" className="mb-40 max-w-xl">
-          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-8">About</p>
+        <section id="about" className="mb-40 max-w-[560px]">
+          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">About</p>
           <p className="text-fg-secondary text-lg leading-relaxed">
             Independent designer and developer focused on brand, product,
             and interactive work. Five years building for startups and agencies
@@ -76,7 +74,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-stroke px-6 md:px-12 py-8 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
         <div className="flex items-center gap-6 text-sm text-fg-tertiary">
           <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-fg-primary transition-colors">Resume</a>
