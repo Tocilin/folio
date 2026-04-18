@@ -107,7 +107,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
           {prev ? (
             <Link href={`/work/${prev.slug}`} className="group flex flex-col gap-1">
               <span className="text-xs text-fg-tertiary uppercase tracking-widest">Previous</span>
-              <span className="text-5xl font-medium tracking-[-0.96px] leading-tight group-hover:text-fg-primary transition-colors">
+              <span className="text-xl font-medium tracking-tight group-hover:text-fg-primary transition-colors">
                 ← {prev.name}
               </span>
             </Link>
@@ -116,7 +116,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
           {next ? (
             <Link href={`/work/${next.slug}`} className="group flex flex-col gap-1 text-right">
               <span className="text-xs text-fg-tertiary uppercase tracking-widest">Next</span>
-              <span className="text-5xl font-medium tracking-[-0.96px] leading-tight group-hover:text-fg-primary transition-colors">
+              <span className="text-xl font-medium tracking-tight group-hover:text-fg-primary transition-colors">
                 {next.name} →
               </span>
             </Link>
