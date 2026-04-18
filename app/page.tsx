@@ -49,7 +49,7 @@ export default function Home() {
               >
                 <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{p.index}</span>
                 <div className="flex-1 min-w-0">
-                  <span className="text-xl font-medium tracking-tight group-hover:text-fg-primary transition-colors">
+                  <span className="text-5xl font-medium tracking-[-0.96px] leading-tight group-hover:text-fg-primary transition-colors">
                     {p.name}
                   </span>
                   <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
