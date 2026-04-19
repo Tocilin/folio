@@ -23,10 +23,10 @@ export type Project = {
 export const projects: Project[] = [
   {
     index: "01",
-    slug: "forma",
+    slug: "superapp",
     name: "Bolt SuperApp",
     category: "Product Design",
-    year: "2024",
+    year: "2026",
     client: "Bolt",
     role: "Product Design, UX Research",
     description: "Full product redesign for a fintech SuperApp, from information architecture to design system.",
@@ -162,9 +162,9 @@ export const projects: Project[] = [
     ],
     credits: [
       { label: "Client", value: "Bolt" },
-      { label: "Design", value: "Eugene Tochilin" },
       { label: "Role", value: "Product Design, UX Research" },
-      { label: "Year", value: "2024" },
+      { label: "Category", value: "Product Design" },
+      { label: "Year", value: "2026" },
     ],
   },
   {
