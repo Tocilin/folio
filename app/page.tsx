@@ -64,10 +64,9 @@ export default function Home() {
         <section id="about" className="mb-40 max-w-[560px]">
           <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">About</p>
           <p className="text-fg-secondary text-lg leading-relaxed">
-            Independent designer and developer focused on brand, product,
-            and interactive work. Five years building for startups and agencies
-            across Europe and the US. I care deeply about the details:
-            type, spacing, and the moments in between.
+            Independent designer and developer focused on product, brand, and AI-driven experiences.
+            Built for startups and larger companies across Europe and the US.
+            I care about creating thoughtful work that drives impact, solves real problems, and delivers strong outcomes.
           </p>
         </section>
 
