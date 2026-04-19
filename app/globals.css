@@ -97,8 +97,8 @@
 
     /* Text */
     --text-neutral-strong:   var(--neutral-50);    /* warm near-white headings  */
-    --text-neutral-base:     var(--neutral-500);   /* body text                 */
-    --text-neutral-subtle:   var(--neutral-600);   /* labels, meta              */
+    --text-neutral-base:     var(--neutral-300);   /* body text                 */
+    --text-neutral-subtle:   var(--neutral-400);   /* labels, meta              */
     --text-neutral-faint:    var(--neutral-700);   /* timestamps, placeholders  */
     --text-interactive:      var(--neutral-0);
 
