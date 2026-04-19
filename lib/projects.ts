@@ -1,4 +1,5 @@
 export type Section = {
+  group?: string;
   label: string;
   body: string;
   images?: string[];
@@ -24,45 +25,127 @@ export const projects: Project[] = [
     index: "01",
     slug: "forma",
     name: "Bolt SuperApp",
-    category: "Brand Identity",
+    category: "Product Design",
     year: "2024",
-    client: "Forma Labs",
-    role: "Brand Design, Art Direction",
-    description: "Visual system and identity for a B2B infrastructure startup.",
+    client: "Bolt",
+    role: "Product Design, UX Research",
+    description: "Full product redesign for a fintech SuperApp, from information architecture to design system.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     heroImage: "/images/forma/hero.jpg",
     sections: [
       {
-        label: "Context",
-        body: "Forma Labs needed an identity that felt authoritative without being corporate — something that could hold its own alongside enterprise software while still communicating forward momentum. The solution centres on a geometric wordmark and a disciplined two-colour palette that scales from CLI docs to conference booths.",
+        group: "Background",
+        label: "About Bolt",
+        body: "Bolt is a fintech company that built its reputation on a single, successful product: Checkout. It was focused, effective, and it worked. But at some point, the CEO set his sights on something much bigger.",
         images: ["/images/forma/gallery-1.jpg"],
       },
       {
-        label: "Problem",
-        body: "Forma Labs needed an identity that felt authoritative without being corporate — something that could hold its own alongside enterprise software while still communicating forward momentum. The solution centres on a geometric wordmark and a disciplined two-colour palette that scales from CLI docs to conference booths.",
-        images: [
-          "/images/forma/gallery-1.jpg",
-          "/images/forma/gallery-2.jpg",
-          "/images/forma/gallery-3.jpg",
-        ],
+        group: "Background",
+        label: "CEO's New Toy: SuperApp",
+        body: "The vision was bold. One app for everything. Banking, crypto, shopping, investing, insurance, games, all living under one roof. The strategy was simple and unapologetically aggressive: pack the app with as many features as possible, launch fast, and see what sticks. The goal wasn't just to build a product people loved. It was to show investors that the team could execute at scale.",
       },
       {
-        label: "Approach",
-        body: "We started with a type audit across forty infrastructure brands to map the space. Most leaned on either sterile sans-serifs or over-engineered custom marks. The opportunity was restraint: a single strong typeface, tight tracking, and a mark built entirely from the letterforms themselves. Colour came last — deep navy as the anchor, electric indigo for interaction states.",
-        images: [
-          "/images/forma/gallery-2.jpg",
-          "/images/forma/gallery-3.jpg",
-        ],
+        group: "Background",
+        label: "Business Context",
+        body: "The engineering team had pulled it off, technically. A working app existed. But it had been assembled quickly and without much structure, with features added through multiple integrations, scattered across the product in a chaotic way. When the company began preparing to present to investors, it became clear the app wasn't ready. Not even close.",
       },
       {
-        label: "Outcomes",
-        body: "The new identity launched with Forma's Series A announcement. Brand recognition in pipeline surveys increased by 34% quarter-over-quarter. The system has since extended to three product lines, a developer documentation site, and a merch line sold out at launch.",
+        group: "The Problem",
+        label: "Core Issues",
+        body: "Several things were actively holding the product back. Navigation was confusing and users didn't know where to tap, where to go, or how to move through the app. The information architecture was fragmented, with features piled on without a clear structure. Onboarding was broken and people installed the app only to immediately feel lost, leading to low engagement and poor retention. The visual design, built entirely by engineers, lacked consistency, polish, and any kind of system behind it.",
+      },
+      {
+        group: "The Problem",
+        label: "My Role",
+        body: "That's when the company brought in a seasoned UX designer, me. My job was to bring order to the product, improve usability and visual quality, and transform a scattered collection of features into a coherent app experience. The biggest constraint: I had three months to make it happen.",
+      },
+      {
+        group: "Goals",
+        label: "Design Goals",
+        body: "The work had to serve both the product and the business at the same time. On the product side: rebuild the information architecture, introduce a proper design system, fix onboarding, and raise the overall quality across usability, accessibility, and trust. On the business side: help the company reach 2M+ registrations, grow to 1,000+ monthly active users, launch three new features, hit 60% feature parity with competitors like PayPal, Revolut, and Wise, and achieve a 4.5+ app store rating.",
+      },
+      {
+        group: "Goals",
+        label: "Mission",
+        body: "Turn a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
+      },
+      {
+        group: "Discovery",
+        label: "Customer Support Insights",
+        body: "I started with the people closest to the users: customer support. I booked time with support reps and asked them to walk me through the most common complaints, repeated questions, and confusing moments they heard every day. It gave me a fast, unfiltered view of where the product was genuinely failing real customers, before I had ever opened the app myself.",
+        images: ["/images/forma/gallery-2.jpg"],
+      },
+      {
+        group: "Discovery",
+        label: "Product Audit",
+        body: "Next, I became the user. I installed the app, went through every flow, tested every feature one by one, and documented every usability issue I could find. This gave me a first-time user's perspective and helped me see exactly where the friction was, not just in theory, but in practice.",
+      },
+      {
+        group: "Discovery",
+        label: "Data Insights",
+        body: "To balance what people were saying with what was actually happening, I set up access to product analytics through DataDog. I looked at total users and registrations, iOS vs Android split, registration and KYC completion rates, the most used features, and where users were dropping off. Facts, not assumptions.",
+      },
+      {
+        group: "Discovery",
+        label: "Competitive Review",
+        body: "Finally, I looked outside the company. I signed up for PayPal, Revolut, Wise, Robinhood, and Coinbase and studied how each of them handled onboarding, navigation, transfers, investing, crypto, and trust building. This helped me understand what users already expected from products like this, and where our most obvious gaps were.",
+      },
+      {
+        group: "Design",
+        label: "Rebuilding the Information Architecture",
+        body: "After reviewing all the research, one thing was clear: the app needed a completely new structure. Everything had been built around a single home screen, a grid of feature buttons sitting under a balance total. There were no quick actions, no personalization, no clear next step. Every new feature just added more clutter. Users landed there and immediately felt lost. And as a model, it wasn't scalable. It would only get worse over time.",
+        images: ["/images/forma/gallery-3.jpg"],
+      },
+      {
+        group: "Design",
+        label: "Early Concept Prototype",
+        body: "I moved quickly. Based on the research, I designed an early concept built around a modular system: a customizable dashboard supported by independent mini-apps. The dashboard gave each user a personalized home screen with shortcuts to what they used most. The mini-apps, banking, crypto, transfers, shopping, order tracking, each lived as their own self-contained product area. One shared account identity tied everything together across the ecosystem.",
+      },
+      {
+        group: "Design",
+        label: "Fixing the Onboarding Funnel",
+        body: "The data told a brutal story. Of everyone who registered, only 7% started or completed KYC. Only 2% were approved. Just 0.3% created a bank account. The biggest drop-off was happening before users ever experienced anything. The app had started as a banking product, so everyone had to complete full identity verification before they could do anything at all, even browse. That made sense for a bank. It made no sense for a SuperApp.",
+      },
+      {
+        group: "Design",
+        label: "Rebuilding Onboarding for Growth",
+        body: "I redesigned the onboarding so users could enter the app immediately and start using features that didn't require any identity verification, like shopping, order tracking, and browsing the ecosystem. KYC was moved to the moment of need, triggered only when a user wanted to do something that genuinely required it: crypto, investing, P2P transfers, banking. This reduced friction, improved the first-time experience, and gave users a reason to stay before asking them to trust us with sensitive information.",
+      },
+      {
+        group: "Design",
+        label: "Creating the Core Components",
+        body: "One of the biggest underlying problems was visual inconsistency. The app had been built without any design system, with styles hard-coded, components duplicated, and theming nearly impossible. I started by building the foundation layer from scratch: color tokens, typography, spacing, corner radius rules, and an icon library. This became the shared language for everything that followed.",
+      },
+      {
+        group: "Design",
+        label: "Scaling the System in Parallel",
+        body: "With the foundation in place, I built out the most commonly used UI components: buttons, inputs, checkboxes, toggles, avatars, loaders and states. I focused on the high-frequency building blocks that appeared across the most screens, and raised the visual quality of each one to make the product feel more premium and trustworthy. These reusable components brought consistency to the experience while reducing both design and engineering effort across the board.",
+      },
+      {
+        group: "Design",
+        label: "Using AI to Scale as a Team of One",
+        body: "I was the only designer on a workload that would normally require a full team. To keep up, I built a tight workflow around AI tools. I used Cursor and Claude Code to generate concepts and interfaces, Figma to refine and polish the details, and Google Flow with Gemini for image generation. The loop was continuous: generate, refine, feed improvements back in, and keep evolving. Instead of delivering static mockups, I produced interactive coded prototypes that engineers and stakeholders could actually experience, which cut alignment time and kept the team moving fast.",
+      },
+      {
+        group: "Delivery",
+        label: "The Work I Delivered",
+        body: "In three months, as a team of one, I completed a full product redesign. I rebuilt the entire app around a new modular architecture. I created a completely new onboarding flow. I built the product's first design system from scratch. I refreshed the visual design to feel more premium and polished. I designed and launched three new product features. And I delivered interactive coded prototypes that helped engineering move faster and align on execution with far less back-and-forth.",
+      },
+      {
+        group: "Delivery",
+        label: "Gamified User Testing",
+        body: "Once the redesign was ready, I needed real user feedback, but there was no time or budget for traditional research. So I turned testing into a game. I hid coins throughout the app, placed across different screens and features. To find them, users had to naturally explore the product, move through flows, and interact with the new experience. Each coin earned points redeemable for cashback or partner rewards. Users had fun and earned something real. We got genuine behavioral data from real users. And we quickly spotted the flows that still caused confusion, without ever asking anyone to participate in a test.",
+      },
+      {
+        group: "Results",
+        label: "Results",
+        body: "The redesigned SuperApp launched publicly, a real market-ready product live on iOS and Android. 2M+ total registrations. Around 1,000 daily active users. A 4.6 star rating in the Apple App Store. Three or more new integrations launched after the redesign. A full design system in place. Clearer onboarding. And a stronger, more credible investor story backed by real product momentum.",
       },
     ],
     credits: [
-      { label: "Client", value: "Forma Labs" },
-      { label: "Design", value: "Studio Portfolio" },
-      { label: "Typography", value: "Söhne by Klim Type" },
+      { label: "Client", value: "Bolt" },
+      { label: "Design", value: "Eugene Tochilin" },
+      { label: "Role", value: "Product Design, UX Research" },
       { label: "Year", value: "2024" },
     ],
   },

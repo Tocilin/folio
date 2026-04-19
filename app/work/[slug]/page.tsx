@@ -68,28 +68,37 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         </section>
 
         {/* Content sections */}
-        {project.sections.map((section, i) => (
-          <section key={i} className="flex flex-col gap-6">
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>
-            <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
-            {section.images && section.images.length > 0 && (
-              <div className={`grid gap-6 mt-2 ${
-                section.images.length === 1 ? "grid-cols-1" :
-                section.images.length === 2 ? "grid-cols-2" :
-                "grid-cols-3"
-              }`}>
-                {section.images.map((src, j) => (
-                  <img
-                    key={j}
-                    src={src}
-                    alt={`${project.name} — ${section.label} ${j + 1}`}
-                    className="rounded-lg object-cover w-full h-[520px]"
-                  />
-                ))}
-              </div>
-            )}
-          </section>
-        ))}
+        {project.sections.map((section, i) => {
+          const prevGroup = i > 0 ? project.sections[i - 1].group : undefined;
+          const showGroupHeader = section.group && section.group !== prevGroup;
+          return (
+            <div key={i} className="flex flex-col gap-10">
+              {showGroupHeader && (
+                <h2 className="text-2xl font-semibold tracking-tight">{section.group}</h2>
+              )}
+              <section className="flex flex-col gap-6">
+                <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>
+                <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
+                {section.images && section.images.length > 0 && (
+                  <div className={`grid gap-6 mt-2 ${
+                    section.images.length === 1 ? "grid-cols-1" :
+                    section.images.length === 2 ? "grid-cols-2" :
+                    "grid-cols-3"
+                  }`}>
+                    {section.images.map((src, j) => (
+                      <img
+                        key={j}
+                        src={src}
+                        alt={`${project.name} — ${section.label} ${j + 1}`}
+                        className="rounded-lg object-cover w-full h-[520px]"
+                      />
+                    ))}
+                  </div>
+                )}
+              </section>
+            </div>
+          );
+        })}
 
         {/* Credits */}
         <section className="border-t border-stroke pt-12 flex flex-col gap-4">
