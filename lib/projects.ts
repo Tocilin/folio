@@ -14,6 +14,7 @@ export type Project = {
   client: string;
   role: string;
   description: string;
+  subtitle?: string;
   hero: { from: string; via: string; to: string };
   heroImage?: string;
   sections: Section[];
@@ -30,6 +31,7 @@ export const projects: Project[] = [
     client: "Bolt",
     role: "Product Design, UX Research",
     description: "Full product redesign for a fintech SuperApp, from information architecture to design system.",
+    subtitle: "Rebuilding a chaotic fintech product into a scalable SuperApp as a team of one.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     heroImage: "/images/forma/hero.jpg",
     sections: [

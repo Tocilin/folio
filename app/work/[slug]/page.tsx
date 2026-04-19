@@ -38,9 +38,14 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
         {/* Header block */}
         <section className="flex flex-col gap-12">
-          <h1 className="text-5xl md:text-6xl font-semibold tracking-[-1.28px] leading-[1.05]">
-            {project.name}
-          </h1>
+          <div className="flex flex-col gap-6">
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-[-1.28px] leading-[1.05]">
+              {project.name}
+            </h1>
+            {project.subtitle && (
+              <p className="text-fg-secondary text-xl leading-snug max-w-[560px]">{project.subtitle}</p>
+            )}
+          </div>
           <div className="border-t border-stroke" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
