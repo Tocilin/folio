@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/projects";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
+import { FadeImage } from "@/app/components/FadeImage";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -65,10 +66,11 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
               <p className="text-sm text-fg-secondary font-mono">{project.year}</p>
             </div>
           </div>
-          <img
+          <FadeImage
             src={project.heroImage ?? "/images/placeholder.png"}
             alt={project.name}
-            className="w-full h-[520px] rounded-lg object-cover"
+            className="w-full h-[520px] rounded-lg"
+            priority
           />
         </section>
 
@@ -91,11 +93,11 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
                     "grid-cols-3"
                   }`}>
                     {section.images.map((src, j) => (
-                      <img
+                      <FadeImage
                         key={j}
                         src={src}
                         alt={`${project.name} — ${section.label} ${j + 1}`}
-                        className="rounded-lg object-cover w-full h-[520px]"
+                        className="rounded-lg w-full h-[520px]"
                       />
                     ))}
                   </div>
