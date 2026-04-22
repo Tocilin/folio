@@ -29,7 +29,10 @@
       "Bash(curl -L \"https://www.figma.com/api/mcp/asset/9b7f5abd-dcf7-4fa7-9310-6c9c92c7ce8d\" -o /Users/eugenetochilin/Projects/red-square/public/images/doodle-1.svg)",
       "Bash(curl -L \"https://www.figma.com/api/mcp/asset/68feec8e-c3be-44a4-8dab-e9d4bbd4531c\" -o /Users/eugenetochilin/Projects/red-square/public/images/doodle-2.svg)",
       "Bash(python3:*)",
-      "Bash(ls /Users/eugenetochilin/Projects/red-square/.env*)"
+      "Bash(ls /Users/eugenetochilin/Projects/red-square/.env*)",
+      "Bash(git -C /Users/eugenetochilin/Projects/red-square add -A)",
+      "Bash(git -C /Users/eugenetochilin/Projects/red-square commit -m \"remove password protection\")",
+      "Bash(git -C /Users/eugenetochilin/Projects/red-square push)"
     ]
   }
 }
