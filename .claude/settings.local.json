@@ -14,7 +14,22 @@
       "Bash(git add:*)",
       "Bash(git commit -m 'Initial commit:*)",
       "Bash(git rm:*)",
-      "Bash(git commit -m 'Fix: add .gitignore, remove build artifacts:*)"
+      "Bash(git commit -m 'Fix: add .gitignore, remove build artifacts:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo:*)",
+      "Bash(git commit:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(git stash:*)",
+      "Bash(curl -L \"https://www.figma.com/api/mcp/asset/4eee8fe1-745f-41fc-bbe3-fccca3100900\" -o /Users/eugenetochilin/Projects/red-square/public/images/forma/hero.jpg)",
+      "Bash(curl -L \"https://www.figma.com/api/mcp/asset/817befc6-48ca-4010-b9bb-648fa62d8832\" -o /Users/eugenetochilin/Projects/red-square/public/images/forma/gallery-1.jpg)",
+      "Bash(curl -L \"https://www.figma.com/api/mcp/asset/a4dc37d0-20a9-4731-bb3b-0c9080c5801a\" -o /Users/eugenetochilin/Projects/red-square/public/images/forma/gallery-2.jpg)",
+      "Bash(curl -L \"https://www.figma.com/api/mcp/asset/72cd7448-0ff4-454e-beb1-3a82e3b4b809\" -o /Users/eugenetochilin/Projects/red-square/public/images/forma/gallery-3.jpg)",
+      "Bash(kill 20206:*)",
+      "Bash(curl -L \"https://www.figma.com/api/mcp/asset/9b7f5abd-dcf7-4fa7-9310-6c9c92c7ce8d\" -o /Users/eugenetochilin/Projects/red-square/public/images/doodle-1.svg)",
+      "Bash(curl -L \"https://www.figma.com/api/mcp/asset/68feec8e-c3be-44a4-8dab-e9d4bbd4531c\" -o /Users/eugenetochilin/Projects/red-square/public/images/doodle-2.svg)",
+      "Bash(python3:*)",
+      "Bash(ls /Users/eugenetochilin/Projects/red-square/.env*)"
     ]
   }
 }
