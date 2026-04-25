@@ -11,7 +11,7 @@ const DH = 34;  // dude height (preserves 52.6 : 31.96 ratio)
 //          and dude is fully below the container (hidden).
 // On peek: assembly at translateY(0), both visible, banana on top.
 const CONTAINER_H = BW + DH; // 90px
-const REST_OFFSET = DH;       // 34px — dude hidden below, banana bottom flush with footer line
+const REST_OFFSET = DH + 21;  // dude hidden below, banana 21px lower
 
 export function BananaPeek() {
   const [peeking, setPeeking] = useState(false);
