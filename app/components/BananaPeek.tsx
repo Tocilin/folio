@@ -2,12 +2,16 @@
 
 import { useState } from "react";
 
-const BW = 56;           // banana size (square)
-const DW = 56;           // dude width
-const DH = 34;           // dude height (preserves 52.6 : 31.96 ratio)
-const GAP_FIX = 20;      // banana SVG has ~20px empty space at bottom — closed with negative margin
-const ASSEMBLY_H = BW + DH - GAP_FIX; // 70px — true visual height of the stacked assembly
-const REST_OFFSET = ASSEMBLY_H - BW;  // 14px — shifts assembly so banana bottom = container bottom
+const BW = 56;  // banana width & height (square)
+const DW = 56;  // dude width
+const DH = 34;  // dude height (preserves 52.6 : 31.96 ratio)
+
+// Container shows banana + dude stacked.
+// At rest: assembly shifted down by DH so banana sits at container bottom (footer line)
+//          and dude is fully below the container (hidden).
+// On peek: assembly at translateY(0), both visible, banana on top.
+const CONTAINER_H = BW + DH; // 90px
+const REST_OFFSET = DH;       // 34px — dude hidden below, banana bottom flush with footer line
 
 export function BananaPeek() {
   const [peeking, setPeeking] = useState(false);
@@ -22,7 +26,7 @@ export function BananaPeek() {
     <div className="relative z-10 flex justify-center">
       <div
         className="relative overflow-hidden cursor-pointer select-none"
-        style={{ width: BW, height: ASSEMBLY_H }}
+        style={{ width: BW, height: CONTAINER_H }}
         onClick={handleClick}
         role="button"
         aria-label="Click the banana"
@@ -38,11 +42,11 @@ export function BananaPeek() {
               : "transform 0.35s ease-in",
           }}
         >
-          {/* Banana — sits on dude's head; negative margin closes the SVG's internal bottom whitespace */}
+          {/* Banana — on top of dude's head */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/banana.svg" alt="" style={{ display: "block", width: BW, height: BW, marginBottom: -20, position: "relative", zIndex: 1 }} />
+          <img src="/images/banana.svg" alt="" style={{ display: "block", width: BW, height: BW }} />
 
-          {/* Dude — inlined SVG so fg-primary token applies via currentColor */}
+          {/* Dude — inlined so fg-primary token applies via currentColor */}
           <svg
             viewBox="0 0 52.6299 31.9603"
             fill="none"
