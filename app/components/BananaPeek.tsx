@@ -10,8 +10,10 @@ const DH = 34;  // dude height (preserves 52.6 : 31.96 ratio)
 // At rest: assembly shifted down by DH so banana sits at container bottom (footer line)
 //          and dude is fully below the container (hidden).
 // On peek: assembly at translateY(0), both visible, banana on top.
-const CONTAINER_H = BW + DH; // 90px
-const REST_OFFSET = DH + 21;  // dude hidden below, banana 21px lower
+const SHIFT = 21;                    // banana sits 21px lower in both states
+const CONTAINER_H = BW + DH + SHIFT; // 111px — extra room for the shift
+const REST_OFFSET = DH + SHIFT;      // dude hidden below, banana 21px lower at rest
+const PEEK_OFFSET = SHIFT;           // banana 21px lower when peeking
 
 export function BananaPeek() {
   const [peeking, setPeeking] = useState(false);
@@ -36,7 +38,7 @@ export function BananaPeek() {
             position: "absolute",
             top: 0,
             width: BW,
-            transform: peeking ? "translateY(0)" : `translateY(${REST_OFFSET}px)`,
+            transform: peeking ? `translateY(${PEEK_OFFSET}px)` : `translateY(${REST_OFFSET}px)`,
             transition: peeking
               ? "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)"
               : "transform 0.35s ease-in",
