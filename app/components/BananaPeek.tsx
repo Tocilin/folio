@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 
-const BW = 56; // banana width & height (square)
+const BW = 56; // banana size (square)
 const DW = 56; // dude width
-const DH = 34; // dude height (preserves 52.6 : 31.96 aspect ratio)
-const CONTAINER_H = BW + DH; // 90px — upper zone for dude, lower zone for banana
+const DH = 34; // dude height (preserves 52.6 : 31.96 ratio)
 
 export function BananaPeek() {
   const [peeking, setPeeking] = useState(false);
@@ -18,42 +17,36 @@ export function BananaPeek() {
 
   return (
     <div className="flex justify-center">
-      {/* overflow-hidden clips dude when it's below; banana sits at bottom = on footer border */}
+      {/* Container: height = banana + dude. Overflow-hidden clips dude at rest. */}
       <div
         className="relative overflow-hidden cursor-pointer select-none"
-        style={{ width: BW, height: CONTAINER_H }}
+        style={{ width: BW, height: BW + DH }}
         onClick={handleClick}
         role="button"
         aria-label="Click the banana"
       >
-        {/* Dude — rises from below, sits behind banana */}
+        {/*
+          Assembly moves as one unit.
+          At rest:   translateY(DH) — banana sits at container bottom (footer line), dude hidden below
+          On peek:   translateY(0)  — banana at top, dude appears beneath it
+        */}
         <div
           style={{
             position: "absolute",
-            bottom: 0,
-            width: DW,
-            height: DH,
-            transform: peeking ? "translateY(-90%)" : "translateY(110%)",
+            top: 0,
+            width: BW,
+            transform: peeking ? "translateY(0)" : `translateY(${DH}px)`,
             transition: peeking
               ? "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)"
               : "transform 0.35s ease-in",
-            zIndex: 5,
           }}
         >
+          {/* Banana — sits on dude's head */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/dude.svg" alt="" width={DW} height={DH} style={{ width: DW, height: DH }} />
-        </div>
-
-        {/* Banana — fixed at bottom of container = rests on footer border */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            zIndex: 10,
-          }}
-        >
+          <img src="/images/banana.svg" alt="" style={{ display: "block", width: BW, height: BW }} />
+          {/* Dude — body below */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/banana.svg" alt="" width={BW} height={BW} style={{ width: BW, height: BW }} />
+          <img src="/images/dude.svg" alt="" style={{ display: "block", width: DW, height: DH }} />
         </div>
       </div>
     </div>
