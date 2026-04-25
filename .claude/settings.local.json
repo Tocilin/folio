@@ -39,10 +39,7 @@
       "Bash(curl -s \"https://www.figma.com/api/mcp/asset/b35c1559-5942-43a4-b6b7-5f20d88a0a07\" -o /tmp/figma_issue2.png)",
       "Bash(curl -s \"https://www.figma.com/api/mcp/asset/67bf83df-9cdd-47f6-95fa-4a6e0ebae594\" -o /tmp/figma_current.png)",
       "Bash(curl -s \"https://www.figma.com/api/mcp/asset/b7b40a00-be04-4cdc-a96a-5e409cfa4153\" -o /tmp/figma_default.png)",
-      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/c8ecd61f-db30-487a-9c5e-f860e6f3dead\" -o /tmp/fig.png)",
-      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/0a453509-d99b-4e1e-9b8b-5af52e5f3ba7\" -o /tmp/target.png)",
-      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/d9581595-ed22-449b-80c7-00db4266e219\" -o /Users/eugenetochilin/Projects/red-square/public/images/banana.png)",
-      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/4430cab1-bdbc-4cba-94e0-4d3cc577aedd\" -o /Users/eugenetochilin/Projects/red-square/public/images/dude-and-banana.png)"
+      "Bash(curl -s \"https://www.figma.com/api/mcp/asset/c8ecd61f-db30-487a-9c5e-f860e6f3dead\" -o /tmp/fig.png)"
     ]
   }
 }
