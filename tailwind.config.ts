@@ -73,6 +73,9 @@ const config: Config = {
           DEFAULT: "rgb(var(--stroke) / var(--stroke-opacity))",
           subtle:  "rgb(var(--stroke-subtle) / 0.08)",
         },
+        status: {
+          available: "rgb(var(--status-available) / <alpha-value>)",
+        },
         button: {
           "primary-fill":     "rgb(var(--button-primary-fill)     / <alpha-value>)",
           "primary-label":    "rgb(var(--button-primary-label)    / <alpha-value>)",

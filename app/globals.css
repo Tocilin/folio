@@ -89,6 +89,9 @@
 
   /* Dark (default) */
   :root {
+    /* Status */
+    --status-available: var(--green-400);
+
     /* Button */
     --button-primary-fill:     var(--neutral-50);
     --button-primary-label:    var(--neutral-950);
@@ -118,6 +121,8 @@
 
   /* Light */
   :root.light {
+    --status-available: var(--green-600);
+
     --button-primary-fill:     var(--neutral-950);
     --button-primary-label:    var(--neutral-50);
     --button-secondary-stroke: var(--neutral-300);
@@ -155,6 +160,12 @@
     --stroke-subtle: var(--stroke-neutral-subtle);
   }
 
+
+  /* ── Animations ─────────────────────────────────────────────── */
+  @keyframes pulse-available {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.25; }
+  }
 
   /* ── Global resets ───────────────────────────────────────────── */
   * { box-sizing: border-box; }

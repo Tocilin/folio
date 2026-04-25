@@ -3,6 +3,7 @@ import { projects } from "@/lib/projects";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
 import { AvailableTag } from "@/app/components/AvailableTag";
+import { BananaPeek } from "@/app/components/BananaPeek";
 
 export default function Home() {
   return (
@@ -75,6 +76,8 @@ export default function Home() {
         </section>
 
       </main>
+
+      <BananaPeek />
 
       {/* Footer */}
       <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">

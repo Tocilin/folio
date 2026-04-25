@@ -56,13 +56,20 @@ export function AvailableTag() {
       />
       {/* Text — sits in front, background hides doodle's lower body */}
       <span
-        className="text-sm text-fg-tertiary relative"
+        className="flex items-center gap-2 text-sm text-fg-tertiary relative"
         style={{
           zIndex: 1,
           backgroundColor: "rgb(var(--surface-base))",
           paddingInline: "2px",
         }}
       >
+        <span
+          className="w-2 h-2 rounded-full shrink-0"
+          style={{
+            backgroundColor: "rgb(var(--status-available))",
+            animation: "pulse-available 3s ease-in-out infinite",
+          }}
+        />
         Available for work
       </span>
     </div>
