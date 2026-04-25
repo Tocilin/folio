@@ -77,10 +77,9 @@ export default function Home() {
 
       </main>
 
-      <BananaPeek />
-
       {/* Footer */}
-      <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <footer className="relative border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <BananaPeek />
         <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
         <div className="flex items-center gap-6 text-sm text-fg-tertiary">
           <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-fg-primary transition-colors">Resume</a>
