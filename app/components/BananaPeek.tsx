@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 
-const BW = 56; // banana size (square)
-const DW = 56; // dude width
-const DH = 34; // dude height (preserves 52.6 : 31.96 ratio)
-const REST_OFFSET = DH + 20; // 20px below footer line at rest
+const BW = 56;           // banana size (square)
+const DW = 56;           // dude width
+const DH = 34;           // dude height (preserves 52.6 : 31.96 ratio)
+const GAP_FIX = 20;      // banana SVG has ~20px empty space at bottom — closed with negative margin
+const ASSEMBLY_H = BW + DH - GAP_FIX; // 70px — true visual height of the stacked assembly
+const REST_OFFSET = ASSEMBLY_H - BW;  // 14px — shifts assembly so banana bottom = container bottom
 
 export function BananaPeek() {
   const [peeking, setPeeking] = useState(false);
@@ -20,7 +22,7 @@ export function BananaPeek() {
     <div className="relative z-10 flex justify-center">
       <div
         className="relative overflow-hidden cursor-pointer select-none"
-        style={{ width: BW, height: BW + DH }}
+        style={{ width: BW, height: ASSEMBLY_H }}
         onClick={handleClick}
         role="button"
         aria-label="Click the banana"
