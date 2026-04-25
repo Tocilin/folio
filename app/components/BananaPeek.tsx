@@ -17,7 +17,7 @@ export function BananaPeek() {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="relative z-10 flex justify-center">
       <div
         className="relative overflow-hidden cursor-pointer select-none"
         style={{ width: BW, height: BW + DH }}
@@ -36,9 +36,9 @@ export function BananaPeek() {
               : "transform 0.35s ease-in",
           }}
         >
-          {/* Banana — sits on dude's head */}
+          {/* Banana — sits on dude's head; negative margin closes the SVG's internal bottom whitespace */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/banana.svg" alt="" style={{ display: "block", width: BW, height: BW }} />
+          <img src="/images/banana.svg" alt="" style={{ display: "block", width: BW, height: BW, marginBottom: -20, position: "relative", zIndex: 1 }} />
 
           {/* Dude — inlined SVG so fg-primary token applies via currentColor */}
           <svg
