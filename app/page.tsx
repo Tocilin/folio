@@ -56,7 +56,7 @@ export default function Home() {
                   <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
                 </div>
                 {/* View → hidden by default, slides in from right on hover */}
-                <span className="text-sm text-fg-tertiary underline shrink-0 opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
+                <span className="text-sm text-fg-tertiary underline-dots shrink-0 opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
                   View →
                 </span>
               </Link>
@@ -80,8 +80,8 @@ export default function Home() {
       <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
         <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-fg-primary transition-colors">Resume</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-fg-primary transition-colors">LinkedIn</a>
+          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">Resume</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">LinkedIn</a>
         </div>
       </footer>
     </div>

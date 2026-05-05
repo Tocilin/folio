@@ -29,7 +29,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
     <div className="min-h-screen flex flex-col">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
-        <Link href="/" className="text-sm text-fg-secondary underline hover:text-fg-primary transition-colors">
+        <Link href="/" className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
           ← Back
         </Link>
         <span className="text-sm font-medium tracking-tight">Eugene Tochilin</span>
@@ -182,8 +182,8 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
       <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
         <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-fg-primary transition-colors">Resume</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-fg-primary transition-colors">LinkedIn</a>
+          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">Resume</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">LinkedIn</a>
         </div>
       </footer>
     </div>
