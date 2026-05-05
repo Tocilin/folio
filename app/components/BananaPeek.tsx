@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 
-const BW = 56;            // banana width & height
-const DW = 56;            // dude width
-const DH = 34;            // dude height
-const CONTAINER_H = BW + DH; // 90px — banana on top, dude below
-const REST_OFFSET = DH;   // 34px — at rest, banana bottom = container bottom = footer border
+const BW = 46;            // banana width (rendered square)
+const DW = 53;            // dude width
+const DH = 32;            // dude height
+const CW = DW;            // container width = max(BW, DW)
+const CONTAINER_H = BW + DH; // 78px — banana on top, dude below
+const REST_OFFSET = DH + 8; // 40px — banana as low as possible without clipping
 
 export function BananaPeek() {
   const [peeking, setPeeking] = useState(false);
@@ -21,16 +22,15 @@ export function BananaPeek() {
     /*
      * Positioned absolutely inside the footer, bottom: 100% anchors the
      * container's bottom edge to the footer's top border line.
-     * This keeps the banana in the footer's stacking context — no sibling
-     * z-index fight — and overflow-hidden hides the dude below the border.
+     * overflow-hidden hides the dude below the border at rest.
      */
     <div
       className="absolute overflow-hidden cursor-pointer select-none z-10"
       style={{
-        bottom: "100%",
+        bottom: "calc(100% - 2px)",
         left: "50%",
         transform: "translateX(-50%)",
-        width: BW,
+        width: CW,
         height: CONTAINER_H,
       }}
       onClick={handleClick}
@@ -41,16 +41,25 @@ export function BananaPeek() {
         style={{
           position: "absolute",
           top: 0,
-          width: BW,
+          width: CW,
           transform: peeking ? "translateY(0)" : `translateY(${REST_OFFSET}px)`,
           transition: peeking
             ? "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)"
             : "transform 0.35s ease-in",
         }}
       >
-        {/* Banana */}
+        {/* Banana — centered in the wider container */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/banana.svg" alt="" style={{ display: "block", width: BW, height: BW }} />
+        <img
+          src="/images/banana.svg"
+          alt=""
+          style={{
+            display: "block",
+            width: BW,
+            height: BW,
+            marginLeft: (CW - BW) / 2,
+          }}
+        />
 
         {/* Dude — inlined so fg-primary token applies via currentColor */}
         <svg

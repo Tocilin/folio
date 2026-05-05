@@ -1,8 +1,16 @@
+export type IssueBlock = {
+  tag: string;
+  tagAccent?: boolean;
+  title: string;
+  body: string;
+};
+
 export type Section = {
   group?: string;
   label: string;
   body: string;
   images?: string[];
+  blocks?: IssueBlock[];
 };
 
 export type Project = {
@@ -29,9 +37,9 @@ export const projects: Project[] = [
     category: "Product Design",
     year: "2026",
     client: "Bolt",
-    role: "Product Design, UX Research",
+    role: "Lead UX Designer",
     description: "Full product redesign for a fintech SuperApp, from information architecture to design system.",
-    subtitle: "Rebuilding a chaotic fintech product into a scalable SuperApp as a team of one.",
+    subtitle: "Turning a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     heroImage: "/images/forma/hero.jpg",
     sections: [
@@ -57,7 +65,29 @@ export const projects: Project[] = [
         group: "The Problem",
         label: "Core Issues",
         body: "Several things were actively holding the product back. Navigation was confusing and users didn't know where to tap, where to go, or how to move through the app. The information architecture was fragmented, with features piled on without a clear structure. Onboarding was broken and people installed the app only to immediately feel lost, leading to low engagement and poor retention. The visual design, built entirely by engineers, lacked consistency, polish, and any kind of system behind it.",
-        images: ["/images/placeholder.png"],
+        blocks: [
+          {
+            tag: "Most critical",
+            tagAccent: true,
+            title: "Weak information architecture",
+            body: "Features were added rapidly without structure, making the product feel fragmented and hard to understand.",
+          },
+          {
+            tag: "First impression",
+            title: "Broken onboarding",
+            body: "Users installed the app and felt immediately lost, leading to low engagement and weak retention from day one.",
+          },
+          {
+            tag: "Navigation",
+            title: "Confusing navigation",
+            body: "Users couldn't find where to tap, where to go, or how to move through the app. Every screen felt like a dead end.",
+          },
+          {
+            tag: "Foundation",
+            title: "No design system",
+            body: "Built entirely by engineers, the interface lacked polish, consistency, and any visual language to build trust.",
+          },
+        ],
       },
       {
         group: "The Problem",
@@ -158,15 +188,16 @@ export const projects: Project[] = [
       {
         group: "Results",
         label: "Results",
-        body: "The redesigned SuperApp launched publicly, a real market-ready product live on iOS and Android. 2M+ total registrations. Around 1,000 daily active users. A 4.6 star rating in the Apple App Store. Three or more new integrations launched after the redesign. A full design system in place. Clearer onboarding. And a stronger, more credible investor story backed by real product momentum.",
+        body: "The redesigned SuperApp launched publicly, a real market-ready product live on iOS and Android. The numbers made the case, but the bigger win was a product the team could finally grow with confidence.",
         images: ["/images/placeholder.png"],
       },
     ],
     credits: [
       { label: "Client", value: "Bolt" },
-      { label: "Role", value: "Product Design, UX Research" },
-      { label: "Category", value: "Product Design" },
-      { label: "Year", value: "2026" },
+      { label: "Role", value: "Lead UX Designer" },
+      { label: "Timeline", value: "3 months" },
+      { label: "Team", value: "Team of one" },
+      { label: "Platform", value: "iOS & Android" },
     ],
   },
   {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/projects";
+import type { IssueBlock } from "@/lib/projects";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { FadeImage } from "@/app/components/FadeImage";
 
@@ -86,6 +87,42 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
               <section className="flex flex-col gap-6">
                 <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>
                 <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
+                {section.blocks && section.blocks.length > 0 && (
+                  <div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-px rounded-xl overflow-hidden mt-2"
+                    style={{ backgroundColor: "rgb(var(--neutral-700))" }}
+                  >
+                    {section.blocks.map((block: IssueBlock, k: number) => (
+                      <div
+                        key={k}
+                        className="flex flex-col gap-4 p-6"
+                        style={{ backgroundColor: "rgb(var(--neutral-900))" }}
+                      >
+                        <span
+                          className="self-start text-xs font-medium px-3 py-1 rounded-full"
+                          style={block.tagAccent
+                            ? { backgroundColor: "rgba(220, 90, 40, 0.15)", color: "rgb(220, 90, 40)" }
+                            : { backgroundColor: "rgb(var(--neutral-800))", color: "rgb(var(--neutral-400))" }
+                          }
+                        >
+                          {block.tag}
+                        </span>
+                        <h3
+                          className="text-xl font-semibold leading-snug tracking-tight"
+                          style={{ color: "rgb(var(--neutral-50))" }}
+                        >
+                          {block.title}
+                        </h3>
+                        <p
+                          className="text-sm leading-relaxed"
+                          style={{ color: "rgb(var(--neutral-400))" }}
+                        >
+                          {block.body}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 {section.images && section.images.length > 0 && (
                   <div className={`grid gap-6 mt-2 ${
                     section.images.length === 1 ? "grid-cols-1" :
