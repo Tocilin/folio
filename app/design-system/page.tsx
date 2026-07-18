@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
-import { AvailableTag } from "@/app/components/AvailableTag";
 import { FadeImage } from "@/app/components/FadeImage";
 
 export const metadata = {
@@ -269,12 +268,6 @@ export default function DesignSystem() {
               </div>
             </div>
 
-            {/* Available tag */}
-            <div>
-              <p className="text-sm text-fg-secondary mb-4">AvailableTag</p>
-              <AvailableTag />
-            </div>
-
             {/* Theme toggle */}
             <div>
               <p className="text-sm text-fg-secondary mb-4">ThemeToggle</p>
@@ -302,44 +295,6 @@ export default function DesignSystem() {
                     <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">Short project description.</p>
                   </div>
                   <span className="text-sm text-fg-tertiary underline-dots shrink-0">View →</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Feature / issue card */}
-            <div>
-              <p className="text-sm text-fg-secondary mb-4">Feature card (case study blocks)</p>
-              <div
-                className="grid grid-cols-1 md:grid-cols-2 gap-px rounded-xl overflow-hidden"
-                style={{ backgroundColor: "rgb(var(--neutral-700))" }}
-              >
-                <div className="flex flex-col gap-4 p-6" style={{ backgroundColor: "rgb(var(--neutral-900))" }}>
-                  <span
-                    className="self-start text-xs font-medium px-3 py-1 rounded-full"
-                    style={{ backgroundColor: "rgba(220, 90, 40, 0.15)", color: "rgb(220, 90, 40)" }}
-                  >
-                    Problem
-                  </span>
-                  <h3 className="text-xl font-semibold leading-snug tracking-tight" style={{ color: "rgb(var(--neutral-50))" }}>
-                    Accented tag variant
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgb(var(--neutral-400))" }}>
-                    Used to flag core issues or problem statements within a case study.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-4 p-6" style={{ backgroundColor: "rgb(var(--neutral-900))" }}>
-                  <span
-                    className="self-start text-xs font-medium px-3 py-1 rounded-full"
-                    style={{ backgroundColor: "rgb(var(--neutral-800))", color: "rgb(var(--neutral-400))" }}
-                  >
-                    Default
-                  </span>
-                  <h3 className="text-xl font-semibold leading-snug tracking-tight" style={{ color: "rgb(var(--neutral-50))" }}>
-                    Neutral tag variant
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgb(var(--neutral-400))" }}>
-                    Default styling for supporting context blocks.
-                  </p>
                 </div>
               </div>
             </div>

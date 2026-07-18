@@ -2,7 +2,6 @@ import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
-import { AvailableTag } from "@/app/components/AvailableTag";
 
 export default function Home() {
   return (
@@ -33,7 +32,18 @@ export default function Home() {
                 <Button variant="secondary" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</Button>
               </div>
             </div>
-            <AvailableTag />
+            <div className="inline-flex items-center shrink-0">
+              <span className="flex items-center gap-2 text-sm text-fg-tertiary">
+                <span
+                  className="w-2 h-2 rounded-full shrink-0"
+                  style={{
+                    backgroundColor: "rgb(var(--status-available))",
+                    animation: "pulse-available 3s ease-in-out infinite",
+                  }}
+                />
+                Available for work
+              </span>
+            </div>
           </div>
         </section>
 

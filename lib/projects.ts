@@ -1,16 +1,8 @@
-export type IssueBlock = {
-  tag: string;
-  tagAccent?: boolean;
-  title: string;
-  body: string;
-};
-
 export type Section = {
   group?: string;
   label: string;
   body: string;
   images?: string[];
-  blocks?: IssueBlock[];
 };
 
 export type Project = {
@@ -65,29 +57,6 @@ export const projects: Project[] = [
         group: "The Problem",
         label: "Core Issues",
         body: "Several things were actively holding the product back. Navigation was confusing and users didn't know where to tap, where to go, or how to move through the app. The information architecture was fragmented, with features piled on without a clear structure. Onboarding was broken and people installed the app only to immediately feel lost, leading to low engagement and poor retention. The visual design, built entirely by engineers, lacked consistency, polish, and any kind of system behind it.",
-        blocks: [
-          {
-            tag: "Most critical",
-            tagAccent: true,
-            title: "Weak information architecture",
-            body: "Features were added rapidly without structure, making the product feel fragmented and hard to understand.",
-          },
-          {
-            tag: "First impression",
-            title: "Broken onboarding",
-            body: "Users installed the app and felt immediately lost, leading to low engagement and weak retention from day one.",
-          },
-          {
-            tag: "Navigation",
-            title: "Confusing navigation",
-            body: "Users couldn't find where to tap, where to go, or how to move through the app. Every screen felt like a dead end.",
-          },
-          {
-            tag: "Foundation",
-            title: "No design system",
-            body: "Built entirely by engineers, the interface lacked polish, consistency, and any visual language to build trust.",
-          },
-        ],
       },
       {
         group: "The Problem",
