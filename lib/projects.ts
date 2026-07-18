@@ -41,13 +41,13 @@ export const projects: Project[] = [
     description: "Full product redesign for a fintech SuperApp, from information architecture to design system.",
     subtitle: "Turning a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
-    heroImage: "/images/forma/hero.jpg",
+    heroImage: "/images/superapp/hero.jpg",
     sections: [
       {
         group: "Background",
         label: "About Bolt",
         body: "Bolt is a fintech company that built its reputation on a single, successful product: Checkout. It was focused, effective, and it worked. But at some point, the CEO set his sights on something much bigger.",
-        images: ["/images/placeholder.png"],
+        images: ["/images/superapp/02_about_bolt.jpg"],
       },
       {
         group: "Background",
