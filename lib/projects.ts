@@ -25,12 +25,12 @@ export const projects: Project[] = [
   {
     index: "01",
     slug: "superapp",
-    name: "Bolt SuperApp",
+    name: "Building a Fintech SuperApp",
     category: "Product Design",
     year: "2026",
     client: "Bolt",
     role: "Lead UX Designer",
-    description: "Full product redesign for a fintech SuperApp, from information architecture to design system.",
+    description: "A complete redesign of Bolt's SuperApp, from information architecture to a scalable design system.",
     subtitle: "Turning a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     heroImage: "/images/superapp/hero.jpg",
@@ -171,22 +171,22 @@ export const projects: Project[] = [
   },
   {
     index: "02",
-    slug: "slate-ds",
-    name: "Slate DS",
+    slug: "chameleon",
+    name: "The Invisible Design System",
     category: "Design System",
     year: "2024",
-    client: "Slate (YC W23)",
+    client: "JPMorgan",
     role: "Systems Design, Component Architecture",
-    description: "Component library and token architecture for a SaaS product.",
+    description: "Building a white-label design system that adapts to every brand while remaining virtually invisible to users.",
     hero: { from: "#0d1117", via: "#161b22", to: "#21262d" },
     sections: [
       {
         label: "Overview",
-        body: "Slate's product had grown fast — four designers, two squads, and a component library that had never been formally documented. Every new feature spawned new one-off patterns. Slate DS is the foundation that replaced 200+ bespoke components with a coherent, token-driven system used by the full product team.",
+        body: "Slate's product had grown fast: four designers, two squads, and a component library that had never been formally documented. Every new feature spawned new one-off patterns. Slate DS is the foundation that replaced 200+ bespoke components with a coherent, token-driven system used by the full product team.",
       },
       {
         label: "Approach",
-        body: "The audit phase catalogued every component in production. We grouped by function, not appearance, which surfaced the real duplication — seventeen different button variants, nine modal patterns. From there we defined a semantic token layer: not just colour values but intent (surface-default, interactive-primary, feedback-error). Components were rebuilt in Figma and React simultaneously.",
+        body: "The audit phase catalogued every component in production. We grouped by function, not appearance, which surfaced the real duplication: seventeen different button variants, nine modal patterns. From there we defined a semantic token layer: not just colour values but intent (surface-default, interactive-primary, feedback-error). Components were rebuilt in Figma and React simultaneously.",
       },
       {
         label: "Outcomes",
@@ -194,7 +194,7 @@ export const projects: Project[] = [
       },
     ],
     credits: [
-      { label: "Client", value: "Slate" },
+      { label: "Client", value: "JPMorgan" },
       { label: "Systems Design", value: "Studio Portfolio" },
       { label: "Engineering", value: "Slate Platform Team" },
       { label: "Year", value: "2024" },
@@ -202,22 +202,22 @@ export const projects: Project[] = [
   },
   {
     index: "03",
-    slug: "drift",
-    name: "Drift",
+    slug: "checkout",
+    name: "Checkout at Scale",
     category: "Motion & UI",
     year: "2023",
-    client: "Drift Finance",
+    client: "JPMorgan",
     role: "Product Design, Motion Design",
-    description: "Interaction and animation concepts for a mobile finance app.",
+    description: "Designing a customizable checkout platform that powers millions of payment experiences worldwide.",
     hero: { from: "#0a0a0a", via: "#1a0533", to: "#2d1b69" },
     sections: [
       {
         label: "Overview",
-        body: "Drift is a personal finance app built around the idea that money should feel less stressful. The design challenge was to make complex account data feel light and readable — not clinical. Motion was the primary tool: everything from balance updates to category breakdowns uses physics-based transitions that give the interface a sense of weight and honesty.",
+        body: "Drift is a personal finance app built around the idea that money should feel less stressful. The design challenge was to make complex account data feel light and readable, not clinical. Motion was the primary tool: everything from balance updates to category breakdowns uses physics-based transitions that give the interface a sense of weight and honesty.",
       },
       {
         label: "Approach",
-        body: "We prototyped twelve different approaches to the core spending chart before landing on the arc metaphor — a radial fill that grows as you approach your monthly limit. The colour shift (cool to warm) communicates budget state without a single number. All transitions were spec'd in Lottie-compatible JSON for direct handoff to the iOS team.",
+        body: "We prototyped twelve different approaches to the core spending chart before landing on the arc metaphor: a radial fill that grows as you approach your monthly limit. The colour shift (cool to warm) communicates budget state without a single number. All transitions were spec'd in Lottie-compatible JSON for direct handoff to the iOS team.",
       },
       {
         label: "Outcomes",
@@ -225,7 +225,7 @@ export const projects: Project[] = [
       },
     ],
     credits: [
-      { label: "Client", value: "Drift Finance" },
+      { label: "Client", value: "JPMorgan" },
       { label: "Design & Motion", value: "Studio Portfolio" },
       { label: "iOS Engineering", value: "Drift Mobile Team" },
       { label: "Year", value: "2023" },
@@ -233,22 +233,22 @@ export const projects: Project[] = [
   },
   {
     index: "04",
-    slug: "outline",
-    name: "Outline",
+    slug: "colors",
+    name: "The Science of Color",
     category: "Web Design",
     year: "2023",
-    client: "Outline Studio",
+    client: "Affirm",
     role: "Web Design, Creative Direction",
-    description: "Marketing site for a boutique creative studio.",
+    description: "Building a semantic color system that scales with clarity, consistency, and logic.",
     hero: { from: "#0c0c0c", via: "#1a1a1a", to: "#2a2a2a" },
     sections: [
       {
         label: "Overview",
-        body: "Outline came to us needing a site that matched the quality of their work — they were producing some of the best editorial photography in London but presenting it on a template that hadn't been touched since 2019. The brief was simple: make it feel as intentional as the work itself.",
+        body: "Outline came to us needing a site that matched the quality of their work: they were producing some of the best editorial photography in London but presenting it on a template that hadn't been touched since 2019. The brief was simple: make it feel as intentional as the work itself.",
       },
       {
         label: "Approach",
-        body: "The design is built around one principle: images lead, everything else follows. Type is set in a single weight — no bold, no headings in the traditional sense. The grid breaks deliberately on the project pages, letting photography bleed past the margin at specific breakpoints. Scroll transitions are slow, almost reluctant, which forces the viewer to pause.",
+        body: "The design is built around one principle: images lead, everything else follows. Type is set in a single weight: no bold, no headings in the traditional sense. The grid breaks deliberately on the project pages, letting photography bleed past the margin at specific breakpoints. Scroll transitions are slow, almost reluctant, which forces the viewer to pause.",
       },
       {
         label: "Outcomes",
@@ -256,7 +256,7 @@ export const projects: Project[] = [
       },
     ],
     credits: [
-      { label: "Client", value: "Outline Studio" },
+      { label: "Client", value: "Affirm" },
       { label: "Design", value: "Studio Portfolio" },
       { label: "Development", value: "Studio Portfolio" },
       { label: "Year", value: "2023" },
@@ -264,22 +264,22 @@ export const projects: Project[] = [
   },
   {
     index: "05",
-    slug: "thread",
-    name: "Thread",
+    slug: "a11y",
+    name: "Accessibility by Design",
     category: "Product Design",
     year: "2022",
-    client: "Thread (Seed)",
+    client: "JPMorgan",
     role: "Product Design, UX Research",
-    description: "End-to-end design for a collaborative writing tool.",
+    description: "Embedding accessibility into the design process, increasing adoption from 12% to 84%.",
     hero: { from: "#0c1a0c", via: "#0f2a0f", to: "#1a3d1a" },
     sections: [
       {
         label: "Overview",
-        body: "Thread is a writing tool for teams who draft, edit, and publish in one place. The core tension in the product was between individual focus mode and collaborative review — two experiences that feel fundamentally different but had to live in the same interface without constant context-switching.",
+        body: "Thread is a writing tool for teams who draft, edit, and publish in one place. The core tension in the product was between individual focus mode and collaborative review, two experiences that feel fundamentally different but had to live in the same interface without constant context-switching.",
       },
       {
         label: "Approach",
-        body: "Eight weeks of research with writing teams at two media companies and a consultancy surfaced the key insight: the biggest friction wasn't the tools, it was knowing when something was ready for feedback. We designed around that — introducing a soft state model (Draft, In Review, Final) that shifts the UI's visual weight and available actions depending on where a document sits in the workflow.",
+        body: "Eight weeks of research with writing teams at two media companies and a consultancy surfaced the key insight: the biggest friction wasn't the tools, it was knowing when something was ready for feedback. We designed around that by introducing a soft state model (Draft, In Review, Final) that shifts the UI's visual weight and available actions depending on where a document sits in the workflow.",
       },
       {
         label: "Outcomes",
@@ -287,10 +287,72 @@ export const projects: Project[] = [
       },
     ],
     credits: [
-      { label: "Client", value: "Thread" },
+      { label: "Client", value: "JPMorgan" },
       { label: "Design & Research", value: "Studio Portfolio" },
       { label: "Founder", value: "James Park" },
       { label: "Year", value: "2022" },
+    ],
+  },
+  {
+    index: "06",
+    slug: "roi",
+    name: "Proving Design System ROI",
+    category: "Design System",
+    year: "2024",
+    client: "Affirm",
+    role: "Design Systems Lead",
+    description: "How we measured design system impact to earn stakeholder trust and investment.",
+    hero: { from: "#0d0d0d", via: "#1c1c1c", to: "#2e2e2e" },
+    sections: [
+      {
+        label: "Overview",
+        body: "Design systems are often justified on faith rather than data. This project set out to change that by building a measurement framework that connected design system investment to outcomes stakeholders could see and trust.",
+      },
+      {
+        label: "Approach",
+        body: "We worked with engineering and product leadership to define the metrics that actually mattered: adoption rate across teams, time saved on implementation, and consistency gains across the product surface. Rather than reporting activity, like components shipped, we reported impact, like hours saved and defects avoided.",
+      },
+      {
+        label: "Outcomes",
+        body: "The resulting framework gave leadership a recurring, credible view of design system value, and became the basis for continued investment in the system going forward.",
+      },
+    ],
+    credits: [
+      { label: "Client", value: "Affirm" },
+      { label: "Role", value: "Design Systems Lead" },
+      { label: "Team", value: "Design Systems Team" },
+      { label: "Year", value: "2024" },
+    ],
+  },
+  {
+    index: "07",
+    slug: "real-estate-roi",
+    name: "Real Estate ROI Calculator",
+    category: "Product Design",
+    year: "2026",
+    client: "Personal Project",
+    role: "Product Design & Development",
+    description: "A calculator that turns raw property numbers into a clear return-on-investment picture for real estate investors.",
+    hero: { from: "#0a1f14", via: "#123322", to: "#1e4d33" },
+    sections: [
+      {
+        label: "Overview",
+        body: "Evaluating a rental property usually means juggling a spreadsheet: purchase price, down payment, mortgage terms, rent, vacancy, taxes, and maintenance, all before you know if the deal is even worth pursuing. This project set out to replace that spreadsheet with a focused tool that turns those inputs into a clear, instant answer.",
+      },
+      {
+        label: "Approach",
+        body: "The calculator takes the core variables of a real estate deal, purchase price, financing terms, rental income, and operating expenses, and translates them into the metrics investors actually decide on: cap rate, cash-on-cash return, and long-term ROI. The interface was designed to make trade-offs visible in real time, so changing a single assumption, like down payment size or rent, immediately shows its effect on returns.",
+      },
+      {
+        label: "Outcomes",
+        body: "The result is a tool that compresses a process that used to take a spreadsheet and a calculator into a few seconds of input, making it easy to compare multiple properties side by side and move faster on decisions.",
+      },
+    ],
+    credits: [
+      { label: "Client", value: "Personal Project" },
+      { label: "Role", value: "Product Design & Development" },
+      { label: "Platform", value: "Web" },
+      { label: "Year", value: "2026" },
     ],
   },
 ];

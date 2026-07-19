@@ -50,13 +50,6 @@ const config: Config = {
         fill: {
           darkest: "rgb(var(--fill-neutral-darkest)  / <alpha-value>)",
           surface: "rgb(var(--fill-surface)          / <alpha-value>)",
-          overlay: "rgb(var(--fill-surface-overlay)  / <alpha-value>)",
-        },
-        border: {
-          bold:        "rgb(var(--stroke-neutral-bold)   / <alpha-value>)",
-          subtle:      "rgb(var(--stroke-neutral-subtle) / 0.06)",
-          faint:       "rgb(var(--stroke-neutral-faint)  / 0.08)",
-          interactive: "rgb(var(--stroke-interactive)    / <alpha-value>)",
         },
 
         // ── Tier 3: Aliases ────────────────────────────────────────
@@ -71,7 +64,7 @@ const config: Config = {
         },
         stroke: {
           DEFAULT: "rgb(var(--stroke) / var(--stroke-opacity))",
-          subtle:  "rgb(var(--stroke-subtle) / 0.08)",
+          strong:  "rgb(var(--stroke-strong) / <alpha-value>)",
         },
         status: {
           available: "rgb(var(--status-available) / <alpha-value>)",

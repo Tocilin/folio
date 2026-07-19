@@ -72,6 +72,18 @@
     --violet-800:  91  33 182;
     --violet-900:  76  29 149;
 
+    /* Peach — debug theme accent */
+    --peach-50:  255 248 243;
+    --peach-100: 255 240 230;
+    --peach-200: 255 224 204;
+    --peach-300: 255 200 163;
+    --peach-400: 255 173 122;
+    --peach-500: 250 145  87;
+    --peach-600: 224 112  61;
+    --peach-700: 181  84  45;
+    --peach-800: 138  61  32;
+    --peach-900:  94  40  20;
+
     /* ── Border radius scale ─────────────────────────────────────── */
     --radius-xs:  4px;   /* chips, badges                  */
     --radius-sm:  8px;   /* buttons, tags, inputs          */
@@ -108,15 +120,11 @@
     /* Fill */
     --fill-neutral-darkest:  var(--neutral-0);
     --fill-surface:          var(--neutral-950);   /* #08090a warm dark         */
-    --fill-surface-overlay:  var(--neutral-950);
 
     /* Stroke — Linear style: white at low opacity on dark bg */
-    --stroke-neutral-bold:            var(--neutral-700);
     --stroke-neutral-default:         var(--neutral-0);
     --stroke-neutral-default-opacity: 0.08;         /* ultra-subtle, Linear feel */
-    --stroke-neutral-subtle:          var(--neutral-0);
-    --stroke-neutral-faint:           var(--neutral-0);
-    --stroke-interactive:             var(--neutral-0);
+    --stroke-neutral-strong:          var(--neutral-600);   /* opaque, for swatches that need real contrast */
   }
 
   /* Light */
@@ -136,14 +144,56 @@
 
     --fill-neutral-darkest:  var(--neutral-0);
     --fill-surface:          var(--neutral-50);
-    --fill-surface-overlay:  var(--neutral-50);
 
-    --stroke-neutral-bold:            var(--neutral-300);
     --stroke-neutral-default:         var(--neutral-950);
     --stroke-neutral-default-opacity: 0.06;
-    --stroke-neutral-subtle:          var(--neutral-950);
-    --stroke-neutral-faint:           var(--neutral-950);
-    --stroke-interactive:             var(--neutral-950);
+    --stroke-neutral-strong:          var(--neutral-400);
+  }
+
+  /* Debug — peach surface + accent on actions only; text/structure stay neutral */
+  :root.debug {
+    --status-available: var(--green-600);
+
+    --button-primary-fill:     var(--peach-600);
+    --button-primary-label:    var(--neutral-50);
+    --button-secondary-stroke: var(--peach-300);
+    --button-secondary-label:  var(--peach-700);
+
+    --text-neutral-strong:   var(--neutral-900);
+    --text-neutral-base:     var(--neutral-500);
+    --text-neutral-subtle:   var(--neutral-400);
+    --text-neutral-faint:    var(--neutral-300);
+    --text-interactive:      var(--neutral-950);
+
+    --fill-neutral-darkest:  var(--neutral-0);
+    --fill-surface:          var(--peach-50);
+
+    --stroke-neutral-default:         var(--neutral-950);
+    --stroke-neutral-default-opacity: 0.06;
+    --stroke-neutral-strong:          var(--neutral-400);
+  }
+
+  /* Violet — violet surface + accent on actions only; text/structure stay neutral */
+  :root.violet {
+    --status-available: var(--green-600);
+
+    --button-primary-fill:     var(--violet-600);
+    --button-primary-label:    var(--neutral-50);
+    --button-secondary-stroke: var(--violet-300);
+    --button-secondary-label:  var(--violet-700);
+
+    --text-neutral-strong:   var(--neutral-900);
+    --text-neutral-base:     var(--neutral-500);
+    --text-neutral-subtle:   var(--neutral-400);
+    --text-neutral-faint:    var(--neutral-300);
+    --text-interactive:      var(--neutral-950);
+
+    --fill-neutral-darkest:  var(--neutral-0);
+    --fill-surface:          var(--violet-50);
+
+    --stroke-neutral-default:         var(--neutral-950);
+    --stroke-neutral-default-opacity: 0.06;
+    --stroke-neutral-strong:          var(--neutral-400);
   }
 
 
@@ -157,7 +207,7 @@
     --surface-base:  var(--fill-surface);
     --stroke:        var(--stroke-neutral-default);
     --stroke-opacity: var(--stroke-neutral-default-opacity);
-    --stroke-subtle: var(--stroke-neutral-subtle);
+    --stroke-strong: var(--stroke-neutral-strong);
   }
 
 
@@ -166,6 +216,21 @@
     0%, 100% { opacity: 1; }
     50%       { opacity: 0.25; }
   }
+
+  /* ── Theme-conditional inline text (design system reference page) ── */
+  .theme-only-dark   { display: inline; }
+  .theme-only-light  { display: none; }
+  .theme-only-debug  { display: none; }
+  .theme-only-violet { display: none; }
+
+  :root.light .theme-only-dark  { display: none; }
+  :root.light .theme-only-light { display: inline; }
+
+  :root.debug .theme-only-dark  { display: none; }
+  :root.debug .theme-only-debug { display: inline; }
+
+  :root.violet .theme-only-dark   { display: none; }
+  :root.violet .theme-only-violet { display: inline; }
 
   /* ── Dotted round underline ─────────────────────────────────── */
   .underline-dots {

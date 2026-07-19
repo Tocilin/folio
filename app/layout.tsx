@@ -20,8 +20,8 @@ export default function RootLayout({
         {/* Runs before paint — prevents theme flash */}
         <script dangerouslySetInnerHTML={{ __html: `
           try {
-            if (localStorage.getItem('theme') === 'light')
-              document.documentElement.classList.add('light');
+            var t = localStorage.getItem('theme');
+            if (t === 'light' || t === 'debug' || t === 'violet') document.documentElement.classList.add(t);
           } catch(e) {}
         ` }} />
       </head>

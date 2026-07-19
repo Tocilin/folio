@@ -2,9 +2,10 @@ import Link from "next/link";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
 import { FadeImage } from "@/app/components/FadeImage";
+import { Footer } from "@/app/components/Footer";
 
 export const metadata = {
-  title: "Design System — Portfolio",
+  title: "Design System - Portfolio",
 };
 
 const primitiveRamps: { name: string; key: string; steps: number[] }[] = [
@@ -13,60 +14,144 @@ const primitiveRamps: { name: string; key: string; steps: number[] }[] = [
   { name: "Amber", key: "amber", steps: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
   { name: "Red", key: "red", steps: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
   { name: "Violet", key: "violet", steps: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
+  { name: "Peach", key: "peach", steps: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
 ];
 
-const semanticTokens: { group: string; rows: { name: string; mapsTo: string }[] }[] = [
+type ThemeValue = { dark: string; light: string; debug: string; violet: string };
+
+const semanticTokens: { group: string; rows: { name: string; mapsTo: ThemeValue; description: string }[] }[] = [
   {
     group: "Status",
-    rows: [{ name: "--status-available", mapsTo: "green-400 (dark) / green-600 (light)" }],
+    rows: [{
+      name: "--status-available",
+      mapsTo: { dark: "green-400", light: "green-600", debug: "green-600", violet: "green-600" },
+      description: "Color of the pulse dot in the “Available for work” indicator on the homepage. Stays green in every theme: it's a semantic status signal, not a themeable accent.",
+    }],
   },
   {
     group: "Button",
     rows: [
-      { name: "--button-primary-fill", mapsTo: "neutral-50 (dark) / neutral-950 (light)" },
-      { name: "--button-primary-label", mapsTo: "neutral-950 (dark) / neutral-50 (light)" },
-      { name: "--button-secondary-stroke", mapsTo: "neutral-700 (dark) / neutral-300 (light)" },
-      { name: "--button-secondary-label", mapsTo: "neutral-400 (dark) / neutral-600 (light)" },
+      {
+        name: "--button-primary-fill",
+        mapsTo: { dark: "neutral-50", light: "neutral-950", debug: "peach-600", violet: "violet-600" },
+        description: "Background of the primary (solid) button, e.g. the Resume button.",
+      },
+      {
+        name: "--button-primary-label",
+        mapsTo: { dark: "neutral-950", light: "neutral-50", debug: "neutral-50", violet: "neutral-50" },
+        description: "Label color on top of the primary button fill.",
+      },
+      {
+        name: "--button-secondary-stroke",
+        mapsTo: { dark: "neutral-700", light: "neutral-300", debug: "peach-300", violet: "violet-300" },
+        description: "Border color of the secondary (outlined) button, e.g. the LinkedIn button.",
+      },
+      {
+        name: "--button-secondary-label",
+        mapsTo: { dark: "neutral-400", light: "neutral-600", debug: "peach-700", violet: "violet-700" },
+        description: "Label color of the secondary button.",
+      },
     ],
   },
   {
     group: "Text",
     rows: [
-      { name: "--text-neutral-strong", mapsTo: "neutral-50 (dark) / neutral-900 (light) — headings" },
-      { name: "--text-neutral-base", mapsTo: "neutral-300 (dark) / neutral-500 (light) — body" },
-      { name: "--text-neutral-subtle", mapsTo: "neutral-400 — labels, meta" },
-      { name: "--text-neutral-faint", mapsTo: "neutral-700 (dark) / neutral-300 (light) — placeholders" },
-      { name: "--text-interactive", mapsTo: "neutral-0 (dark) / neutral-950 (light)" },
+      {
+        name: "--text-neutral-strong",
+        mapsTo: { dark: "neutral-50", light: "neutral-900", debug: "neutral-900", violet: "neutral-900" },
+        description: "Headings and primary content. Flows through the --fg-primary alias, used on h1/h2/h3 and the nav brand name.",
+      },
+      {
+        name: "--text-neutral-base",
+        mapsTo: { dark: "neutral-300", light: "neutral-500", debug: "neutral-500", violet: "neutral-500" },
+        description: "Body copy. Flows through --fg-secondary: paragraph and description text.",
+      },
+      {
+        name: "--text-neutral-subtle",
+        mapsTo: { dark: "neutral-400", light: "neutral-400", debug: "neutral-400", violet: "neutral-400" },
+        description: "Secondary/meta text. Flows through --fg-tertiary, the most-used text color: labels, project descriptions, footer links, timestamps.",
+      },
+      {
+        name: "--text-neutral-faint",
+        mapsTo: { dark: "neutral-700", light: "neutral-300", debug: "neutral-300", violet: "neutral-300" },
+        description: "Lowest-emphasis text (placeholders, disabled states). Defined but not consumed by any component yet; reserved for future use.",
+      },
+      {
+        name: "--text-interactive",
+        mapsTo: { dark: "neutral-0", light: "neutral-950", debug: "neutral-950", violet: "neutral-950" },
+        description: "Label color for text drawn directly on an accent-colored surface. Defined but not consumed yet; reserved for future use.",
+      },
     ],
   },
   {
     group: "Fill",
     rows: [
-      { name: "--fill-neutral-darkest", mapsTo: "neutral-0" },
-      { name: "--fill-surface", mapsTo: "neutral-950 (dark) / neutral-50 (light) — page background" },
-      { name: "--fill-surface-overlay", mapsTo: "neutral-950 (dark) / neutral-50 (light)" },
+      {
+        name: "--fill-neutral-darkest",
+        mapsTo: { dark: "neutral-0", light: "neutral-0", debug: "neutral-0", violet: "neutral-0" },
+        description: "Constant near-white fill. Defined but not consumed by any component yet; reserved for future use.",
+      },
+      {
+        name: "--fill-surface",
+        mapsTo: { dark: "neutral-950", light: "neutral-50", debug: "peach-50", violet: "violet-50" },
+        description: "Page background. Flows through --surface-base, applied to <body> and the blurred nav/footer bars.",
+      },
     ],
   },
   {
     group: "Stroke",
     rows: [
-      { name: "--stroke-neutral-bold", mapsTo: "neutral-700 (dark) / neutral-300 (light)" },
-      { name: "--stroke-neutral-default", mapsTo: "neutral-0 (dark) / neutral-950 (light), 8% / 6% opacity" },
-      { name: "--stroke-neutral-subtle", mapsTo: "neutral-0 (dark) / neutral-950 (light), 6% opacity" },
-      { name: "--stroke-neutral-faint", mapsTo: "neutral-0 (dark) / neutral-950 (light), 8% opacity" },
-      { name: "--stroke-interactive", mapsTo: "neutral-0 (dark) / neutral-950 (light)" },
+      {
+        name: "--stroke-neutral-default",
+        mapsTo: { dark: "neutral-0, 8% opacity", light: "neutral-950, 6% opacity", debug: "neutral-950, 6% opacity", violet: "neutral-950, 6% opacity" },
+        description: "Default hairline border. Flows through --stroke: nav bottom border, footer top border, section dividers, card and list-row borders.",
+      },
+      {
+        name: "--stroke-neutral-strong",
+        mapsTo: { dark: "neutral-600", light: "neutral-400", debug: "neutral-400", violet: "neutral-400" },
+        description: "Opaque, higher-contrast border for elements that need to stand out on their own rather than blend into a surface, e.g. the theme toggle circles. Flows through --stroke-strong.",
+      },
     ],
   },
 ];
 
-const aliasTokens = [
-  { name: "--fg-primary", mapsTo: "--text-neutral-strong" },
-  { name: "--fg-secondary", mapsTo: "--text-neutral-base" },
-  { name: "--fg-tertiary", mapsTo: "--text-neutral-subtle" },
-  { name: "--surface-base", mapsTo: "--fill-surface" },
-  { name: "--stroke", mapsTo: "--stroke-neutral-default" },
-  { name: "--stroke-opacity", mapsTo: "--stroke-neutral-default-opacity" },
-  { name: "--stroke-subtle", mapsTo: "--stroke-neutral-subtle" },
+const aliasTokens: { name: string; mapsTo: string; description: string; value?: ThemeValue }[] = [
+  {
+    name: "--fg-primary",
+    mapsTo: "--text-neutral-strong",
+    description: "Primary text shorthand (text-fg-primary): headings and emphasized content.",
+  },
+  {
+    name: "--fg-secondary",
+    mapsTo: "--text-neutral-base",
+    description: "Secondary text shorthand (text-fg-secondary): body copy.",
+  },
+  {
+    name: "--fg-tertiary",
+    mapsTo: "--text-neutral-subtle",
+    description: "Tertiary text shorthand (text-fg-tertiary), the most common text color: labels, descriptions, meta.",
+  },
+  {
+    name: "--surface-base",
+    mapsTo: "--fill-surface",
+    description: "Background shorthand (bg-surface-base): applied to <body> and translucent nav/footer bars.",
+  },
+  {
+    name: "--stroke",
+    mapsTo: "--stroke-neutral-default",
+    description: "Border shorthand (border-stroke), the hairline border used almost everywhere: nav, footer, dividers, cards.",
+  },
+  {
+    name: "--stroke-opacity",
+    mapsTo: "--stroke-neutral-default-opacity",
+    value: { dark: "8%", light: "6%", debug: "6%", violet: "6%" },
+    description: "Opacity paired with --stroke to produce the hairline effect.",
+  },
+  {
+    name: "--stroke-strong",
+    mapsTo: "--stroke-neutral-strong",
+    description: "Higher-contrast border shorthand (border-stroke-strong): used on the theme toggle circles.",
+  },
 ];
 
 const radii = [
@@ -93,6 +178,27 @@ function Swatch({ style, name }: { style: React.CSSProperties; name: string }) {
   );
 }
 
+function TokenSwatch({ cssVar }: { cssVar: string }) {
+  return (
+    <div
+      className="w-8 h-8 rounded-sm border border-stroke shrink-0"
+      style={{ backgroundColor: `rgb(var(${cssVar}))` }}
+    />
+  );
+}
+
+/** Shows only the mapping for whichever theme is currently active, via CSS (no JS state). */
+function ThemeMap({ dark, light, debug, violet }: ThemeValue) {
+  return (
+    <>
+      <span className="theme-only-dark">{dark}</span>
+      <span className="theme-only-light">{light}</span>
+      <span className="theme-only-debug">{debug}</span>
+      <span className="theme-only-violet">{violet}</span>
+    </>
+  );
+}
+
 export default function DesignSystem() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -113,7 +219,7 @@ export default function DesignSystem() {
             Design System
           </h1>
           <p className="text-fg-secondary text-lg leading-relaxed max-w-sm">
-            The tokens and components this portfolio is built from —
+            The tokens and components this portfolio is built from:
             a living reference, not a separate library.
           </p>
         </section>
@@ -143,8 +249,8 @@ export default function DesignSystem() {
         <section>
           <SectionLabel>Semantic Tokens</SectionLabel>
           <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px] mb-10">
-            Intent-based tokens that map to primitives. These flip automatically between
-            the dark and light themes — everything below reflects the theme currently active.
+            Intent-based tokens that map to primitives. Both the swatch and the mapping below it
+            reflect whichever theme is active; switch themes above to see them update.
           </p>
           <div className="flex flex-col gap-10">
             {semanticTokens.map((group) => (
@@ -154,10 +260,16 @@ export default function DesignSystem() {
                   {group.rows.map((row) => (
                     <div
                       key={row.name}
-                      className="flex flex-col md:flex-row md:items-center gap-1 md:gap-6 py-3 border-b border-stroke"
+                      className="flex items-start gap-4 py-4 border-b border-stroke"
                     >
-                      <span className="text-sm font-mono text-fg-primary w-full md:w-72 shrink-0">{row.name}</span>
-                      <span className="text-sm text-fg-tertiary">{row.mapsTo}</span>
+                      <TokenSwatch cssVar={row.name} />
+                      <div className="flex flex-col gap-1">
+                        <span className="text-sm font-mono text-fg-primary">{row.name}</span>
+                        <span className="text-sm text-fg-tertiary font-mono">
+                          <ThemeMap {...row.mapsTo} />
+                        </span>
+                        <span className="text-xs text-fg-tertiary/70 leading-relaxed">{row.description}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -178,10 +290,22 @@ export default function DesignSystem() {
             {aliasTokens.map((row) => (
               <div
                 key={row.name}
-                className="flex flex-col md:flex-row md:items-center gap-1 md:gap-6 py-3 border-b border-stroke"
+                className="flex items-start gap-4 py-4 border-b border-stroke"
               >
-                <span className="text-sm font-mono text-fg-primary w-full md:w-72 shrink-0">{row.name}</span>
-                <span className="text-sm text-fg-tertiary font-mono">{row.mapsTo}</span>
+                {row.value ? <div className="w-8 shrink-0" /> : <TokenSwatch cssVar={row.name} />}
+                <div className="flex flex-col gap-1">
+                  <span className="text-sm font-mono text-fg-primary">{row.name}</span>
+                  <span className="text-sm text-fg-tertiary font-mono">
+                    {row.mapsTo}
+                    {row.value && (
+                      <>
+                        {" · "}
+                        <ThemeMap {...row.value} />
+                      </>
+                    )}
+                  </span>
+                  <span className="text-xs text-fg-tertiary/70 leading-relaxed">{row.description}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -215,29 +339,29 @@ export default function DesignSystem() {
           </p>
           <div className="flex flex-col gap-8 border-t border-stroke pt-10">
             <div>
-              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 — Hero · text-5xl/7xl, tracking -1.44px</p>
+              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 · Hero · text-5xl/7xl, tracking -1.44px</p>
               <h1 className="text-5xl font-semibold tracking-[-1.44px] leading-[1.05]">Design & Development</h1>
             </div>
             <div>
-              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 — Case study · text-5xl/6xl, tracking -1.28px</p>
+              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 · Case study · text-5xl/6xl, tracking -1.28px</p>
               <h1 className="text-4xl font-semibold tracking-[-1.28px] leading-[1.05]">Case Study Title</h1>
             </div>
             <div>
-              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H2 — Section group · text-2xl, tracking tight</p>
+              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H2 · Section group · text-2xl, tracking tight</p>
               <h2 className="text-2xl font-semibold tracking-tight">Section Group</h2>
             </div>
             <div>
-              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H3 — Card title · text-xl, tracking tight</p>
+              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H3 · Card title · text-xl, tracking tight</p>
               <h3 className="text-xl font-semibold leading-snug tracking-tight">Card Title</h3>
             </div>
             <div>
-              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">Body — large · text-lg, fg-secondary</p>
+              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">Body · large · text-lg, fg-secondary</p>
               <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">
                 Making digital products that are simple, considered, and built to last.
               </p>
             </div>
             <div>
-              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">Body — small · text-sm, fg-tertiary</p>
+              <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">Body · small · text-sm, fg-tertiary</p>
               <p className="text-sm text-fg-tertiary leading-relaxed max-w-[560px]">
                 Supporting copy, descriptions, and secondary detail.
               </p>
@@ -294,14 +418,13 @@ export default function DesignSystem() {
                     </span>
                     <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">Short project description.</p>
                   </div>
-                  <span className="text-sm text-fg-tertiary underline-dots shrink-0">View →</span>
                 </div>
               </div>
             </div>
 
             {/* FadeImage */}
             <div>
-              <p className="text-sm text-fg-secondary mb-4">FadeImage — fades in on load, used for hero &amp; gallery images</p>
+              <p className="text-sm text-fg-secondary mb-4">FadeImage · fades in on load, used for hero &amp; gallery images</p>
               <FadeImage
                 src="/images/superapp/hero.jpg"
                 alt="FadeImage example"
@@ -309,14 +432,27 @@ export default function DesignSystem() {
               />
             </div>
 
-            {/* Nav / footer pattern */}
+            {/* Nav bar pattern */}
             <div>
-              <p className="text-sm text-fg-secondary mb-4">Nav bar — fixed, blurred, bottom border</p>
+              <p className="text-sm text-fg-secondary mb-4">Nav bar · fixed, blurred, bottom border</p>
               <div className="border border-stroke rounded-md overflow-hidden">
                 <div className="flex items-center justify-between px-6 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
                   <span className="text-sm font-medium tracking-tight">Eugene Tochilin</span>
-                  <span className="text-sm text-fg-tertiary">Light</span>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded-full border border-stroke" style={{ backgroundColor: "rgb(var(--neutral-950))" }} />
+                    <div className="w-4 h-4 rounded-full border border-stroke opacity-50" style={{ backgroundColor: "rgb(var(--neutral-50))" }} />
+                    <div className="w-4 h-4 rounded-full border border-stroke opacity-50" style={{ backgroundColor: "rgb(var(--peach-500))" }} />
+                    <div className="w-4 h-4 rounded-full border border-stroke opacity-50" style={{ backgroundColor: "rgb(var(--violet-500))" }} />
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div>
+              <p className="text-sm text-fg-secondary mb-4">Footer · used identically on every page</p>
+              <div className="border border-stroke rounded-md overflow-hidden">
+                <Footer />
               </div>
             </div>
 
@@ -325,15 +461,7 @@ export default function DesignSystem() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
-        <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">Resume</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">LinkedIn</a>
-          <Link href="/design-system" className="underline-dots hover:text-fg-primary transition-colors">Design System</Link>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

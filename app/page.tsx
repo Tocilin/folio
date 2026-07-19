@@ -2,6 +2,7 @@ import Link from "next/link";
 import { projects } from "@/lib/projects";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
+import { Footer } from "@/app/components/Footer";
 
 export default function Home() {
   return (
@@ -65,10 +66,6 @@ export default function Home() {
                   </span>
                   <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
                 </div>
-                {/* View → hidden by default, slides in from right on hover */}
-                <span className="text-sm text-fg-tertiary underline-dots shrink-0 opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
-                  View →
-                </span>
               </Link>
             ))}
           </div>
@@ -86,15 +83,7 @@ export default function Home() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-stroke px-6 md:px-12 py-12 max-w-[900px] mx-auto w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <span className="text-sm text-fg-tertiary">Eugene Tochilin</span>
-        <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-          <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">Resume</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">LinkedIn</a>
-          <Link href="/design-system" className="underline-dots hover:text-fg-primary transition-colors">Design System</Link>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
