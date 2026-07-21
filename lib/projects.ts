@@ -1,9 +1,16 @@
+export type SectionImage = {
+  src: string;
+  alt: string;
+};
+
 export type Section = {
   group?: string;
   label: string;
   body: string;
-  images?: string[];
+  images?: SectionImage[];
 };
+
+export type WorkTrack = "management" | "ic" | "design-systems" | "side-projects";
 
 export type Project = {
   index: string;
@@ -19,6 +26,7 @@ export type Project = {
   heroImage?: string;
   sections: Section[];
   credits: { label: string; value: string }[];
+  track: WorkTrack;
 };
 
 export const projects: Project[] = [
@@ -33,132 +41,242 @@ export const projects: Project[] = [
     description: "A complete redesign of Bolt's SuperApp, from information architecture to a scalable design system.",
     subtitle: "Turning a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
-    heroImage: "/images/superapp/hero.jpg",
+    heroImage: "/images/superapp/01-hero.webp",
     sections: [
       {
         group: "Background",
         label: "About Bolt",
         body: "Bolt is a fintech company that built its reputation on a single, successful product: Checkout. It was focused, effective, and it worked. But at some point, the CEO set his sights on something much bigger.",
-        images: ["/images/superapp/02_about_bolt.jpg"],
+        images: [
+          {
+            src: "/images/superapp/02-about-bolt.webp",
+            alt: "Bolt's Checkout marketing website homepage, headlined 'The world's most intelligent checkout'",
+          },
+        ],
       },
       {
         group: "Background",
         label: "CEO's New Toy: SuperApp",
         body: "The vision was bold. One app for everything. Banking, crypto, shopping, investing, insurance, games, all living under one roof. The strategy was simple and unapologetically aggressive: pack the app with as many features as possible, launch fast, and see what sticks. The goal wasn't just to build a product people loved. It was to show investors that the team could execute at scale.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/03-superapp-vision.webp",
+            alt: "Concept slide reading 'One SuperApp to rule them all', with icons for sending money, rewards, crypto, and investing orbiting a stick figure",
+          },
+        ],
       },
       {
         group: "Background",
         label: "Business Context",
         body: "The engineering team had pulled it off, technically. A working app existed. But it had been assembled quickly and without much structure, with features added through multiple integrations, scattered across the product in a chaotic way. When the company began preparing to present to investors, it became clear the app wasn't ready. Not even close.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/04-business-context.webp",
+            alt: "Slide quoting a potential investor: 'The app looks like something high school students threw together over a weekend,' next to screenshots of the early app",
+          },
+        ],
       },
       {
         group: "The Problem",
         label: "Core Issues",
         body: "Several things were actively holding the product back. Navigation was confusing and users didn't know where to tap, where to go, or how to move through the app. The information architecture was fragmented, with features piled on without a clear structure. Onboarding was broken and people installed the app only to immediately feel lost, leading to low engagement and poor retention. The visual design, built entirely by engineers, lacked consistency, polish, and any kind of system behind it.",
+        images: [
+          {
+            src: "/images/superapp/05-core-issues.webp",
+            alt: "Slide listing six main design challenges: weak information architecture, poor onboarding, confusing navigation, inconsistent visual design, lack of user trust, and accessibility risks",
+          },
+        ],
       },
       {
         group: "The Problem",
         label: "My Role",
         body: "That's when the company brought in a seasoned UX designer, me. My job was to bring order to the product, improve usability and visual quality, and transform a scattered collection of features into a coherent app experience. The biggest constraint: I had three months to make it happen.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/06-my-role.webp",
+            alt: "Slide titled 'The \"fun\" part' noting the biggest constraint was time: only 3 months to deliver meaningful change, illustrated with a stressed stick figure beside a fast-moving stopwatch",
+          },
+        ],
       },
       {
         group: "Goals",
         label: "Design Goals",
         body: "The work had to serve both the product and the business at the same time. On the product side: rebuild the information architecture, introduce a proper design system, fix onboarding, and raise the overall quality across usability, accessibility, and trust. On the business side: help the company reach 2M+ registrations, grow to 1,000+ monthly active users, launch three new features, hit 60% feature parity with competitors like PayPal, Revolut, and Wise, and achieve a 4.5+ app store rating.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/07-design-goals.webp",
+            alt: "Project goals slide organized in three columns: Business (raise funding), Product (user growth, active users, new features, app ratings), and Design (information architecture, visual design, onboarding, product quality)",
+          },
+        ],
       },
       {
         group: "Goals",
         label: "Mission",
         body: "Turn a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/08-mission.webp",
+            alt: "Mission slide reading 'Turn a chaotic proof of concept into a real product,' next to an illustration of a caped stick figure surrounded by app feature icons",
+          },
+        ],
       },
       {
         group: "Discovery",
         label: "Customer Support Insights",
         body: "I started with the people closest to the users: customer support. I booked time with support reps and asked them to walk me through the most common complaints, repeated questions, and confusing moments they heard every day. It gave me a fast, unfiltered view of where the product was genuinely failing real customers, before I had ever opened the app myself.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/09-customer-support-insights.webp",
+            alt: "Illustration of a stick figure holding a magnifying glass among research icons — bar chart, pie chart, checklist, and chat bubble — symbolizing the discovery phase",
+          },
+        ],
       },
       {
         group: "Discovery",
         label: "Product Audit",
         body: "Next, I became the user. I installed the app, went through every flow, tested every feature one by one, and documented every usability issue I could find. This gave me a first-time user's perspective and helped me see exactly where the friction was, not just in theory, but in practice.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/10-product-audit-map.webp",
+            alt: "Figma canvas mapping the full product audit, with dozens of connected app screens across finance and card categories, each flagged with red 'needs improvement' notes",
+          },
+          {
+            src: "/images/superapp/11-product-audit-annotations.webp",
+            alt: "Close-up of an audited withdrawal screen with red 'needs improvement' callouts on button placement and account labeling, next to a grid of additional flagged card and P2P screens",
+          },
+        ],
       },
       {
         group: "Discovery",
         label: "Data Insights",
         body: "To balance what people were saying with what was actually happening, I set up access to product analytics through DataDog. I looked at total users and registrations, iOS vs Android split, registration and KYC completion rates, the most used features, and where users were dropping off. Facts, not assumptions.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/12-data-insights.webp",
+            alt: "Analytics dashboard showing SuperApp performance data: total sign-ups, KYC completion, debit card volume, crypto trading activity, and user engagement over time",
+          },
+        ],
       },
       {
         group: "Discovery",
         label: "Competitive Review",
         body: "Finally, I looked outside the company. I signed up for PayPal, Revolut, Wise, Robinhood, and Coinbase and studied how each of them handled onboarding, navigation, transfers, investing, crypto, and trust building. This helped me understand what users already expected from products like this, and where our most obvious gaps were.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/superapp/13-competitive-review.webp",
+            alt: "Competitive review slide describing the analysis of PayPal, Revolut, Wise, Robinhood, and Coinbase, alongside real screenshots of crypto, transfer, wallet, and travel-booking screens studied during the review",
+          },
+        ],
       },
       {
         group: "Design",
         label: "Rebuilding the Information Architecture",
         body: "After reviewing all the research, one thing was clear: the app needed a completely new structure. Everything had been built around a single home screen, a grid of feature buttons sitting under a balance total. There were no quick actions, no personalization, no clear next step. Every new feature just added more clutter. Users landed there and immediately felt lost. And as a model, it wasn't scalable. It would only get worse over time.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Old information architecture diagram showing every feature flattened into a single grid under the home screen's balance total",
+          },
+        ],
       },
       {
         group: "Design",
         label: "Early Concept Prototype",
         body: "I moved quickly. Based on the research, I designed an early concept built around a modular system: a customizable dashboard supported by independent mini-apps. The dashboard gave each user a personalized home screen with shortcuts to what they used most. The mini-apps, banking, crypto, transfers, shopping, order tracking, each lived as their own self-contained product area. One shared account identity tied everything together across the ecosystem.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Early concept mockup of the modular dashboard with customizable shortcuts and independent mini-apps for banking, crypto, and shopping",
+          },
+        ],
       },
       {
         group: "Design",
         label: "Fixing the Onboarding Funnel",
         body: "The data told a brutal story. Of everyone who registered, only 7% started or completed KYC. Only 2% were approved. Just 0.3% created a bank account. The biggest drop-off was happening before users ever experienced anything. The app had started as a banking product, so everyone had to complete full identity verification before they could do anything at all, even browse. That made sense for a bank. It made no sense for a SuperApp.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Onboarding funnel chart showing the drop-off from registration through KYC start, approval, and bank account creation",
+          },
+        ],
       },
       {
         group: "Design",
         label: "Rebuilding Onboarding for Growth",
         body: "I redesigned the onboarding so users could enter the app immediately and start using features that didn't require any identity verification, like shopping, order tracking, and browsing the ecosystem. KYC was moved to the moment of need, triggered only when a user wanted to do something that genuinely required it: crypto, investing, P2P transfers, banking. This reduced friction, improved the first-time experience, and gave users a reason to stay before asking them to trust us with sensitive information.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Redesigned onboarding flow diagram showing immediate app access with KYC deferred until a user reaches a feature that requires it",
+          },
+        ],
       },
       {
         group: "Design",
         label: "Creating the Core Components",
         body: "One of the biggest underlying problems was visual inconsistency. The app had been built without any design system, with styles hard-coded, components duplicated, and theming nearly impossible. I started by building the foundation layer from scratch: color tokens, typography, spacing, corner radius rules, and an icon library. This became the shared language for everything that followed.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Design system foundation sheet showing the new color token palette, typography scale, spacing units, and icon library",
+          },
+        ],
       },
       {
         group: "Design",
         label: "Scaling the System in Parallel",
         body: "With the foundation in place, I built out the most commonly used UI components: buttons, inputs, checkboxes, toggles, avatars, loaders and states. I focused on the high-frequency building blocks that appeared across the most screens, and raised the visual quality of each one to make the product feel more premium and trustworthy. These reusable components brought consistency to the experience while reducing both design and engineering effort across the board.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Component library sheet showing buttons, inputs, checkboxes, toggles, avatars, and loading states in their default and interactive variants",
+          },
+        ],
       },
       {
         group: "Design",
         label: "Using AI to Scale as a Team of One",
         body: "I was the only designer on a workload that would normally require a full team. To keep up, I built a tight workflow around AI tools. I used Cursor and Claude Code to generate concepts and interfaces, Figma to refine and polish the details, and Google Flow with Gemini for image generation. The loop was continuous: generate, refine, feed improvements back in, and keep evolving. Instead of delivering static mockups, I produced interactive coded prototypes that engineers and stakeholders could actually experience, which cut alignment time and kept the team moving fast.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Workflow diagram showing the generate-refine loop across Cursor, Claude Code, Figma, and Google Flow used to produce coded prototypes",
+          },
+        ],
       },
       {
         group: "Delivery",
         label: "The Work I Delivered",
         body: "In three months, as a team of one, I completed a full product redesign. I rebuilt the entire app around a new modular architecture. I created a completely new onboarding flow. I built the product's first design system from scratch. I refreshed the visual design to feel more premium and polished. I designed and launched three new product features. And I delivered interactive coded prototypes that helped engineering move faster and align on execution with far less back-and-forth.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Summary board of shipped deliverables: modular architecture, new onboarding flow, design system, refreshed visuals, and three new features",
+          },
+        ],
       },
       {
         group: "Delivery",
         label: "Gamified User Testing",
         body: "Once the redesign was ready, I needed real user feedback, but there was no time or budget for traditional research. So I turned testing into a game. I hid coins throughout the app, placed across different screens and features. To find them, users had to naturally explore the product, move through flows, and interact with the new experience. Each coin earned points redeemable for cashback or partner rewards. Users had fun and earned something real. We got genuine behavioral data from real users. And we quickly spotted the flows that still caused confusion, without ever asking anyone to participate in a test.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Screenshot of the coin-hunt overlay showing hidden coins placed across app screens as part of the gamified testing exercise",
+          },
+        ],
       },
       {
         group: "Results",
         label: "Results",
         body: "The redesigned SuperApp launched publicly, a real market-ready product live on iOS and Android. The numbers made the case, but the bigger win was a product the team could finally grow with confidence.",
-        images: ["/images/placeholder.png"],
+        images: [
+          {
+            src: "/images/placeholder.png",
+            alt: "Results dashboard showing registration growth, monthly active users, and app store rating after the SuperApp's public launch",
+          },
+        ],
       },
     ],
     credits: [
@@ -168,6 +286,7 @@ export const projects: Project[] = [
       { label: "Team", value: "Team of one" },
       { label: "Platform", value: "iOS & Android" },
     ],
+    track: "ic",
   },
   {
     index: "02",
@@ -199,6 +318,7 @@ export const projects: Project[] = [
       { label: "Engineering", value: "Slate Platform Team" },
       { label: "Year", value: "2024" },
     ],
+    track: "design-systems",
   },
   {
     index: "03",
@@ -230,12 +350,13 @@ export const projects: Project[] = [
       { label: "iOS Engineering", value: "Drift Mobile Team" },
       { label: "Year", value: "2023" },
     ],
+    track: "ic",
   },
   {
     index: "04",
     slug: "colors",
     name: "The Science of Color",
-    category: "Web Design",
+    category: "Design System",
     year: "2023",
     client: "Affirm",
     role: "Web Design, Creative Direction",
@@ -261,6 +382,7 @@ export const projects: Project[] = [
       { label: "Development", value: "Studio Portfolio" },
       { label: "Year", value: "2023" },
     ],
+    track: "design-systems",
   },
   {
     index: "05",
@@ -292,6 +414,7 @@ export const projects: Project[] = [
       { label: "Founder", value: "James Park" },
       { label: "Year", value: "2022" },
     ],
+    track: "management",
   },
   {
     index: "06",
@@ -323,6 +446,7 @@ export const projects: Project[] = [
       { label: "Team", value: "Design Systems Team" },
       { label: "Year", value: "2024" },
     ],
+    track: "design-systems",
   },
   {
     index: "07",
@@ -354,5 +478,102 @@ export const projects: Project[] = [
       { label: "Platform", value: "Web" },
       { label: "Year", value: "2026" },
     ],
+    track: "side-projects",
+  },
+  {
+    index: "08",
+    slug: "scaling-design-team",
+    name: "Scaling a Design Team from 3 to 12",
+    category: "Team Leadership",
+    year: "2025",
+    client: "Northwind",
+    role: "Head of Design",
+    description: "Growing a small design team into a multi-pod organization without losing craft or cohesion.",
+    hero: { from: "#1a1420", via: "#241c33", to: "#332747" },
+    sections: [
+      {
+        label: "Overview",
+        body: "Northwind's design team had grown organically alongside the product, three designers covering everything from onboarding to billing. As the roadmap expanded into two new product lines, it became clear that a team of three generalists couldn't keep pace without either burning out or shipping inconsistent work.",
+      },
+      {
+        label: "Approach",
+        body: "Rather than hiring reactively, I built a pod structure first: three small, cross-functional pods each paired with an engineering counterpart, then hired against the gaps that structure revealed. I introduced a shared critique rhythm, a lightweight leveling framework for growth conversations, and a rotating on-call design role so no single pod became a bottleneck.",
+      },
+      {
+        label: "Outcomes",
+        body: "The team grew from 3 to 12 designers over five quarters with zero regretted attrition. Time from brief to shippable design dropped by roughly a third, and the leveling framework was later adopted by two other departments as a model for growth conversations.",
+      },
+    ],
+    credits: [
+      { label: "Client", value: "Northwind" },
+      { label: "Role", value: "Head of Design" },
+      { label: "Team Growth", value: "3 → 12 designers" },
+      { label: "Year", value: "2025" },
+    ],
+    track: "management",
+  },
+  {
+    index: "09",
+    slug: "design-ops-function",
+    name: "Building a Design Ops Function from Scratch",
+    category: "Design Operations",
+    year: "2024",
+    client: "Fenwick & Co.",
+    role: "Director of Design Operations",
+    description: "Standing up tooling, rituals, and a hiring pipeline so design could scale without reinventing itself every quarter.",
+    hero: { from: "#161a1a", via: "#1f2626", to: "#2a3535" },
+    sections: [
+      {
+        label: "Overview",
+        body: "Design at Fenwick had no dedicated operations function. Every process, from file organization to interview loops, was reinvented by whoever needed it that week. As headcount plans doubled the org within a year, leadership brought me in to build the operational backbone before the growth hit.",
+      },
+      {
+        label: "Approach",
+        body: "I started by auditing where designers actually lost time: inconsistent file structures, ad hoc interview panels, and no shared vendor or tooling budget. From there I stood up a design ops team of two, published a standard project and file structure, built a structured interview loop with calibrated take-homes, and centralized tooling procurement so every hire didn't mean re-negotiating the same licenses.",
+      },
+      {
+        label: "Outcomes",
+        body: "Time-to-hire for design roles dropped from an average of 11 weeks to 6. Onboarding time for new designers fell by half once the standard project structure was in place. The design ops playbook was later rolled out to the research and content teams as well.",
+      },
+    ],
+    credits: [
+      { label: "Client", value: "Fenwick & Co." },
+      { label: "Role", value: "Director of Design Operations" },
+      { label: "Team", value: "Design Ops, 2 FTE" },
+      { label: "Year", value: "2024" },
+    ],
+    track: "management",
+  },
+  {
+    index: "10",
+    slug: "analytics-dashboard-redesign",
+    name: "Redesigning a Cluttered Analytics Dashboard",
+    category: "Product Design",
+    year: "2022",
+    client: "Vantage Analytics",
+    role: "Senior Product Designer",
+    description: "Simplifying a data-dense dashboard so teams could find the one metric that mattered without digging.",
+    hero: { from: "#12181c", via: "#1a2328", to: "#243036" },
+    sections: [
+      {
+        label: "Overview",
+        body: "Vantage's dashboard had accumulated a chart for every stakeholder request over three years, forty-plus widgets on a single scrollable page, with no clear hierarchy between what mattered daily and what mattered once a quarter. Most users reported using only two or three of the widgets regularly, but couldn't say which ones without checking.",
+      },
+      {
+        label: "Approach",
+        body: "I ran a card-sort with the top twenty customer accounts to surface which metrics actually drove decisions, then rebuilt the dashboard around a three-tier hierarchy: a fixed summary row, a customizable mid-section for team-specific metrics, and a collapsed archive for the long tail. Nothing was deleted, just re-prioritized and made optional.",
+      },
+      {
+        label: "Outcomes",
+        body: "Average time to find a key metric dropped from just under two minutes to under fifteen seconds in follow-up testing. Support tickets tagged 'can't find X' fell by more than half in the following quarter, and the customizable mid-section became the most-used feature in the redesigned product.",
+      },
+    ],
+    credits: [
+      { label: "Client", value: "Vantage Analytics" },
+      { label: "Role", value: "Senior Product Designer" },
+      { label: "Platform", value: "Web" },
+      { label: "Year", value: "2022" },
+    ],
+    track: "ic",
   },
 ];

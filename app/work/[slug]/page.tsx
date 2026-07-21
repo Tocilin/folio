@@ -70,7 +70,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
           <FadeImage
             src={project.heroImage ?? "/images/placeholder.png"}
             alt={project.name}
-            className="w-full h-[520px] rounded-lg"
+            className="w-full aspect-[16/10] rounded-lg"
             priority
           />
         </section>
@@ -93,12 +93,12 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
                     section.images.length === 2 ? "grid-cols-2" :
                     "grid-cols-3"
                   }`}>
-                    {section.images.map((src, j) => (
+                    {section.images.map((image, j) => (
                       <FadeImage
                         key={j}
-                        src={src}
-                        alt={`${project.name} — ${section.label} ${j + 1}`}
-                        className="rounded-lg w-full h-[520px]"
+                        src={image.src}
+                        alt={image.alt}
+                        className="rounded-lg w-full aspect-[16/10]"
                       />
                     ))}
                   </div>

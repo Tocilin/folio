@@ -340,7 +340,7 @@ export default function DesignSystem() {
           <div className="flex flex-col gap-8 border-t border-stroke pt-10">
             <div>
               <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 · Hero · text-5xl/7xl, tracking -1.44px</p>
-              <h1 className="text-5xl font-semibold tracking-[-1.44px] leading-[1.05]">Design & Development</h1>
+              <h1 className="text-5xl font-semibold tracking-[-1.44px] leading-[1.05]">Design & Management</h1>
             </div>
             <div>
               <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 · Case study · text-5xl/6xl, tracking -1.28px</p>
@@ -426,9 +426,9 @@ export default function DesignSystem() {
             <div>
               <p className="text-sm text-fg-secondary mb-4">FadeImage · fades in on load, used for hero &amp; gallery images</p>
               <FadeImage
-                src="/images/superapp/hero.jpg"
+                src="/images/superapp/01-hero.webp"
                 alt="FadeImage example"
-                className="w-full h-64 rounded-lg"
+                className="w-full aspect-[16/10] rounded-lg"
               />
             </div>
 

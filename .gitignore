@@ -31,3 +31,6 @@ yarn-error.log*
 
 # TypeScript
 tsconfig.tsbuildinfo
+
+# Uncompressed source images (not served, kept locally as masters)
+assets-originals/

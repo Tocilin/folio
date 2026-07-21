@@ -1,8 +1,15 @@
 import Link from "next/link";
-import { projects } from "@/lib/projects";
+import { projects, type WorkTrack } from "@/lib/projects";
+import { articles } from "@/lib/articles";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
 import { Footer } from "@/app/components/Footer";
+
+const WORK_TRACKS: { id: WorkTrack; label: string }[] = [
+  { id: "management", label: "Management" },
+  { id: "ic", label: "Individual Contributor" },
+  { id: "design-systems", label: "Design Systems" },
+];
 
 export default function Home() {
   return (
@@ -20,7 +27,7 @@ export default function Home() {
         {/* Hero */}
         <section className="mb-40">
           <h1 className="text-5xl md:text-7xl font-semibold tracking-[-1.44px] leading-[1.05] mb-12">
-            Design &<br />Development
+            Design &<br />Management
           </h1>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="flex flex-col gap-6">
@@ -48,26 +55,86 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Work */}
-        <section id="work" className="mb-40">
-          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Selected Work</p>
-          <div className="border-t border-stroke">
-            {projects.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/work/${p.slug}`}
-                className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-5 border-b border-stroke"
-              >
-                <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{p.index}</span>
-                <div className="flex-1 min-w-0">
-                  <span className="relative inline-block text-xl font-medium tracking-tight transition-colors duration-300 group-hover:text-fg-primary">
-                    {p.name}
-                    <span className="absolute bottom-0 left-0 h-px w-0 bg-fg-primary group-hover:w-full transition-all duration-500 ease-out" />
-                  </span>
-                  <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
+        {/* Work, Side Projects & Articles */}
+        <section className="mb-40 flex flex-col gap-16">
+          {WORK_TRACKS.map(({ id, label }) => {
+            const trackProjects = projects.filter((p) => p.track === id);
+            if (trackProjects.length === 0) return null;
+            return (
+              <div key={id} id={id === "management" ? "work" : undefined}>
+                <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">{label}</p>
+                <div className="border-t border-stroke">
+                  {trackProjects.map((p, i) => {
+                    const rowIndex = String(i + 1).padStart(2, "0");
+                    return (
+                      <Link
+                        key={p.slug}
+                        href={`/work/${p.slug}`}
+                        className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-5 border-b border-stroke"
+                      >
+                        <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{rowIndex}</span>
+                        <div className="flex-1 min-w-0">
+                          <span className="relative inline-block text-xl font-medium tracking-tight transition-colors duration-300 group-hover:text-fg-primary">
+                            {p.name}
+                            <span className="absolute bottom-0 left-0 h-px w-0 bg-fg-primary group-hover:w-full transition-all duration-500 ease-out" />
+                          </span>
+                          <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
-              </Link>
-            ))}
+              </div>
+            );
+          })}
+
+          {/* Side Projects */}
+          <div id="side-projects">
+            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Side Projects</p>
+            <div className="border-t border-stroke">
+              {projects.filter((p) => p.track === "side-projects").map((p, i) => (
+                <Link
+                  key={p.slug}
+                  href={`/work/${p.slug}`}
+                  className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-5 border-b border-stroke"
+                >
+                  <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  <div className="flex-1 min-w-0">
+                    <span className="relative inline-block text-xl font-medium tracking-tight transition-colors duration-300 group-hover:text-fg-primary">
+                      {p.name}
+                      <span className="absolute bottom-0 left-0 h-px w-0 bg-fg-primary group-hover:w-full transition-all duration-500 ease-out" />
+                    </span>
+                    <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Articles */}
+          <div id="articles">
+            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Articles</p>
+            <div className="border-t border-stroke">
+              {articles.map((a) => (
+                <a
+                  key={a.index}
+                  href={a.href}
+                  target={a.href.startsWith("#") ? undefined : "_blank"}
+                  rel={a.href.startsWith("#") ? undefined : "noopener noreferrer"}
+                  className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-5 border-b border-stroke"
+                >
+                  <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{a.index}</span>
+                  <div className="flex-1 min-w-0">
+                    <span className="relative inline-block text-xl font-medium tracking-tight transition-colors duration-300 group-hover:text-fg-primary">
+                      {a.title}
+                      <span className="absolute bottom-0 left-0 h-px w-0 bg-fg-primary group-hover:w-full transition-all duration-500 ease-out" />
+                    </span>
+                    <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{a.description}</p>
+                  </div>
+                  <span className="text-xs text-fg-tertiary font-mono shrink-0">{a.date}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
