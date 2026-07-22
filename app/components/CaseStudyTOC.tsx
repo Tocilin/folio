@@ -8,21 +8,27 @@ export function CaseStudyTOC({ items }: { items: TocItem[] }) {
   const [activeId, setActiveId] = useState(items[0]?.id);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveId(entry.target.id);
-        }
-      },
-      { rootMargin: "-96px 0px -70% 0px", threshold: 0 }
-    );
-
     const elements = items
       .map(({ id }) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
-    elements.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
+    const updateActive = () => {
+      const line = 120;
+      let current = elements[0]?.id;
+      for (const el of elements) {
+        if (el.getBoundingClientRect().top <= line) current = el.id;
+      }
+      if (current) setActiveId(current);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
+
+    return () => {
+      window.removeEventListener("scroll", updateActive);
+      window.removeEventListener("resize", updateActive);
+    };
   }, [items]);
 
   return (
