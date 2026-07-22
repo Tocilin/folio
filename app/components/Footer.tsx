@@ -12,6 +12,7 @@ export function Footer() {
         <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">Resume</a>
         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">LinkedIn</a>
         <Link href="/design-system" className="underline-dots hover:text-fg-primary transition-colors">Design System</Link>
+        <Link href="/templates" className="underline-dots hover:text-fg-primary transition-colors">Templates</Link>
       </div>
     </footer>
   );
