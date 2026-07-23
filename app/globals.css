@@ -250,3 +250,62 @@
     color: rgb(var(--fill-surface));
   }
 }
+
+/* ── Row-anchored hover flyouts (Management / Design Systems) ─────
+   Kept outside @layer base — Tailwind v3's base-layer processing was
+   observed silently dropping plain (non-:hover) rules placed there;
+   unlayered CSS still wins the cascade and custom properties like
+   var(--radius-lg) resolve fine regardless of layer. ─────────────── */
+
+.mgmt-flyout {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease-in, opacity 0.2s ease-in;
+  will-change: transform, opacity;
+}
+.mgmt-flyout--left  { top: 50%; left: 0;   transform: translate(-25%, -50%) scale(0.3) rotate(0deg); }
+.mgmt-flyout--right { top: 50%; left: 100%; transform: translate(-75%, -50%) scale(0.3) rotate(0deg); }
+.mgmt-flyout--top   { top: 0;   left: 50%; transform: translate(-50%, -25%) scale(0.3) rotate(0deg); }
+
+.group:hover .mgmt-flyout--left {
+  opacity: 1;
+  transform: translate(calc(-100% + var(--tx)), calc(-50% + var(--ty))) scale(1) rotate(var(--rot));
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0ms, opacity 0.2s ease-out 0ms;
+}
+.group:hover .mgmt-flyout--right {
+  opacity: 1;
+  transform: translate(var(--tx), calc(-50% + var(--ty))) scale(1) rotate(var(--rot));
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 60ms, opacity 0.2s ease-out 60ms;
+}
+.group:hover .mgmt-flyout--top {
+  opacity: 1;
+  transform: translate(calc(-50% + var(--tx)), calc(-100% + var(--ty))) scale(1) rotate(var(--rot));
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 120ms, opacity 0.2s ease-out 120ms;
+}
+
+.ds-flyout {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 180px;
+  height: 150px;
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.45);
+  transform: translate(calc(-10% + var(--tx)), 10%) scale(0.3) rotate(0deg);
+  transition: transform 0.2s ease-in, opacity 0.2s ease-in;
+  will-change: transform, opacity;
+}
+.group:hover .ds-flyout {
+  opacity: 1;
+  transform: translate(var(--tx), calc(-88% + var(--ty))) scale(1) rotate(var(--rot));
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease-out;
+}
