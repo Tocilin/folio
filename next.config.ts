@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: "/Users/eugenetochilin/Projects/red-square",
   images: {
     remotePatterns: [
       {
