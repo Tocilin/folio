@@ -19,7 +19,7 @@ export const siteConfigs: Record<WorkTrack, SiteConfig> = {
     abbr: "MD",
     domain: "https://tochilin.me",
     heroWords: ["Product.", "Design.", "Strategy."],
-    subtitle: "Making digital products that are simple, considered, and built to last.",
+    subtitle: "Solving real business problems through design strategy, planning, and tactical execution.",
     resumeHref: "/resume",
   },
   ic: {
