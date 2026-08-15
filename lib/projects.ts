@@ -689,7 +689,7 @@ export const projects: Project[] = [
   {
     index: "11",
     slug: "adyen-reporting-reconciliation",
-    name: "Adyen's reporting and reconciliation",
+    name: "Reporting and reconciliation",
     category: "Product Design",
     year: "TBD",
     client: "Adyen",
@@ -721,7 +721,7 @@ export const projects: Project[] = [
   {
     index: "12",
     slug: "superapp-md",
-    name: "Bolt SuperApp",
+    name: "SuperApp",
     category: "Product Design",
     year: "2026",
     client: "Bolt",
@@ -1067,7 +1067,7 @@ export const projects: Project[] = [
   {
     index: "13",
     slug: "checkout-md",
-    name: "J.P. Morgan Chase checkout",
+    name: "Checkout",
     category: "Product Design",
     year: "2023",
     client: "J.P. Morgan Chase",
