@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { FadeImage } from "@/app/components/FadeImage";
+import { FramedImage } from "@/app/components/FramedImage";
 import { Footer } from "@/app/components/Footer";
 import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
 import type { Project } from "@/lib/projects";
@@ -69,12 +70,25 @@ export function CaseStudyView({
             <p className="text-sm text-fg-secondary font-mono">{project.year}</p>
           </div>
         </div>
-        <FadeImage
-          src={project.heroImage ?? "/images/placeholder.png"}
-          alt={project.name}
-          className="w-full aspect-[16/10] rounded-lg"
-          priority
-        />
+        {project.heroImage && (
+          project.heroFramed ? (
+            <FramedImage
+              src={project.heroImage}
+              alt={project.name}
+              width={project.heroImageWidth ?? 1800}
+              height={project.heroImageHeight ?? 1012}
+              className="w-full rounded-lg"
+              priority
+            />
+          ) : (
+            <FadeImage
+              src={project.heroImage}
+              alt={project.name}
+              className="w-full aspect-[16/10] rounded-lg"
+              priority
+            />
+          )
+        )}
       </section>
 
       {/* Content sections */}
@@ -99,14 +113,25 @@ export function CaseStudyView({
                   section.images.length === 2 ? "grid-cols-2" :
                   "grid-cols-3"
                 }`}>
-                  {section.images.map((image, j) => (
-                    <FadeImage
-                      key={j}
-                      src={image.src}
-                      alt={image.alt}
-                      className="rounded-lg w-full aspect-[16/10]"
-                    />
-                  ))}
+                  {section.images.map((image, j) =>
+                    image.framed ? (
+                      <FramedImage
+                        key={j}
+                        src={image.src}
+                        alt={image.alt}
+                        width={image.width ?? 1800}
+                        height={image.height ?? 1012}
+                        className="rounded-lg w-full"
+                      />
+                    ) : (
+                      <FadeImage
+                        key={j}
+                        src={image.src}
+                        alt={image.alt}
+                        className="rounded-lg w-full aspect-[16/10]"
+                      />
+                    )
+                  )}
                 </div>
               )}
             </section>

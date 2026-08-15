@@ -1,9 +1,9 @@
 import type { Project } from "@/lib/projects";
 
 export const dummyCaseStudy: Project = {
-  index: "—",
+  index: "00",
   slug: "template-preview",
-  name: "Example Case Study Title",
+  name: "Example case study title",
   category: "Product Design",
   year: "2026",
   client: "Acme Corp",
@@ -27,7 +27,7 @@ export const dummyCaseStudy: Project = {
     {
       group: "Approach",
       label: "Research",
-      body: "Dummy text describing a research phase: interviews, audits, competitive analysis — whatever fits the real project once this template is applied.",
+      body: "Dummy text describing a research phase: interviews, audits, competitive analysis, whatever fits the real project once this template is applied.",
       images: [
         { src: "/images/placeholder.png", alt: "Placeholder image" },
         { src: "/images/placeholder.png", alt: "Placeholder image" },
@@ -41,7 +41,7 @@ export const dummyCaseStudy: Project = {
     {
       group: "Outcomes",
       label: "Results",
-      body: "Placeholder results copy — metrics, launch details, or qualitative impact would go here in a real case study.",
+      body: "Placeholder results copy: metrics, launch details, or qualitative impact would go here in a real case study.",
       images: [{ src: "/images/placeholder.png", alt: "Placeholder image" }],
     },
   ],

@@ -4,8 +4,8 @@ import { dummyCaseStudy } from "@/lib/dummy-case-study";
 
 const VARIANTS: { id: CaseStudyLayout; name: string }[] = [
   { id: "centered", name: "Centered" },
-  { id: "toc-left", name: "Table of Contents — Left" },
-  { id: "toc-right", name: "Table of Contents — Right" },
+  { id: "toc-left", name: "Table of contents (left)" },
+  { id: "toc-right", name: "Table of contents (right)" },
 ];
 
 export function generateStaticParams() {
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ variant: 
   const { variant } = await params;
   const match = VARIANTS.find((v) => v.id === variant);
   if (!match) return {};
-  return { title: `${match.name} Template — Portfolio` };
+  return { title: `${match.name} Template | Portfolio` };
 }
 
 export default async function TemplatePreview({ params }: { params: Promise<{ variant: string }> }) {
@@ -31,7 +31,7 @@ export default async function TemplatePreview({ params }: { params: Promise<{ va
       next={null}
       layout={match.id}
       backHref="/templates"
-      navLabel={`Template — ${match.name}`}
+      navLabel={`Template: ${match.name}`}
       linkPrefix="/templates"
     />
   );

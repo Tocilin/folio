@@ -1,120 +1,55 @@
 import Link from "next/link";
+import { headers } from "next/headers";
 import { projects } from "@/lib/projects";
-import { articles } from "@/lib/articles";
+import type { WorkTrack } from "@/lib/projects";
+import { siteConfigs, DEFAULT_TRACK } from "@/lib/siteConfig";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
-import { Button } from "@/app/components/Button";
 import { Footer } from "@/app/components/Footer";
 import { ManagementSection } from "@/app/components/ManagementSection";
+import { Hero } from "@/app/components/Hero";
 import { ICSection } from "@/app/components/ICSection";
 import { DesignSystemsSection } from "@/app/components/DesignSystemsSection";
+import { SideProjectsSection } from "@/app/components/SideProjectsSection";
+import { TrackSwitcher } from "@/app/components/TrackSwitcher";
 
-export default function Home() {
+export default async function Home() {
+  const headersList = await headers();
+  const track = (headersList.get("x-track") as WorkTrack) || DEFAULT_TRACK;
+  const config = siteConfigs[track];
+  const trackProjects = projects.filter((p) => p.track === track);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
-        <Link href="/" className="text-sm font-medium tracking-tight hover:text-fg-secondary transition-colors">
-          Eugene Tochilin
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link href="/" className="text-sm font-medium tracking-tight hover:text-fg-secondary transition-colors">
+            Eugene Tochilin
+          </Link>
+          <TrackSwitcher current={track} />
+        </div>
         <ThemeToggle />
       </nav>
 
       <main className="flex-1 max-w-[900px] mx-auto w-full px-6 md:px-12 pt-44 pb-32">
 
-        {/* Hero */}
-        <section className="mb-40">
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-[-1.44px] leading-[1.05] mb-12">
-            Design &<br />Management
-          </h1>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="flex flex-col gap-6">
-              <p className="text-fg-secondary text-lg leading-relaxed max-w-sm">
-                Making digital products that are simple,
-                considered, and built to last.
-              </p>
-              <div className="flex items-center gap-3">
-                <Button variant="primary" href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
-                <Button variant="secondary" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</Button>
-              </div>
-            </div>
-            <div className="inline-flex items-center shrink-0">
-              <span className="flex items-center gap-2 text-sm text-fg-tertiary">
-                <span
-                  className="w-2 h-2 rounded-full shrink-0"
-                  style={{
-                    backgroundColor: "rgb(var(--status-available))",
-                    animation: "pulse-available 3s ease-in-out infinite",
-                  }}
-                />
-                Available for work
-              </span>
-            </div>
-          </div>
-        </section>
+        <Hero heroWords={config.heroWords} subtitle={config.subtitle} resumeHref={config.resumeHref} />
 
-        {/* Work, Side Projects & Articles */}
+        {/* Work */}
         <section className="mb-40 flex flex-col gap-16">
-          <ManagementSection projects={projects.filter((p) => p.track === "management")} />
-          <ICSection projects={projects.filter((p) => p.track === "ic")} />
-          <DesignSystemsSection projects={projects.filter((p) => p.track === "design-systems")} />
-
-          {/* Side Projects */}
-          <div id="side-projects">
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Side Projects</p>
-            <div className="border-t border-stroke">
-              {projects.filter((p) => p.track === "side-projects").map((p, i) => (
-                <Link
-                  key={p.slug}
-                  href={`/work/${p.slug}`}
-                  className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-5 border-b border-stroke"
-                >
-                  <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                  <div className="flex-1 min-w-0">
-                    <span className="relative inline-block text-xl font-medium tracking-tight transition-colors duration-300 group-hover:text-fg-primary">
-                      {p.name}
-                      <span className="absolute bottom-0 left-0 h-px w-0 bg-fg-primary group-hover:w-full transition-all duration-500 ease-out" />
-                    </span>
-                    <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Articles */}
-          <div id="articles">
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Articles</p>
-            <div className="border-t border-stroke">
-              {articles.map((a) => (
-                <a
-                  key={a.index}
-                  href={a.href}
-                  target={a.href.startsWith("#") ? undefined : "_blank"}
-                  rel={a.href.startsWith("#") ? undefined : "noopener noreferrer"}
-                  className="group flex flex-col md:flex-row md:items-center gap-3 md:gap-0 py-5 border-b border-stroke"
-                >
-                  <span className="text-xs text-fg-tertiary font-mono w-8 shrink-0">{a.index}</span>
-                  <div className="flex-1 min-w-0">
-                    <span className="relative inline-block text-xl font-medium tracking-tight transition-colors duration-300 group-hover:text-fg-primary">
-                      {a.title}
-                      <span className="absolute bottom-0 left-0 h-px w-0 bg-fg-primary group-hover:w-full transition-all duration-500 ease-out" />
-                    </span>
-                    <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{a.description}</p>
-                  </div>
-                  <span className="text-xs text-fg-tertiary font-mono shrink-0">{a.date}</span>
-                </a>
-              ))}
-            </div>
-          </div>
+          {track === "management" && <ManagementSection projects={trackProjects} />}
+          {track === "ic" && <ICSection projects={trackProjects} />}
+          {track === "design-systems" && <DesignSystemsSection projects={trackProjects} />}
+          {track === "side-projects" && <SideProjectsSection projects={trackProjects} />}
         </section>
 
         {/* About */}
         <section id="about" className="mb-40 max-w-[560px]">
           <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">About</p>
           <p className="text-fg-secondary text-lg leading-relaxed">
-            Independent designer and developer focused on product, brand, and AI-driven experiences.
+            Independent designer and developer focused on product, brand, design systems, and AI-driven experiences.
             Built for startups and larger companies across Europe and the US.
-            I care about creating thoughtful work that drives impact, solves real problems, and delivers strong outcomes.
+            I care about creating thoughtful work that drives impact, solves real problems, and delivers strong outcomes through a systematic approach to building products.
           </p>
         </section>
 

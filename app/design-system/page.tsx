@@ -5,7 +5,7 @@ import { FadeImage } from "@/app/components/FadeImage";
 import { Footer } from "@/app/components/Footer";
 
 export const metadata = {
-  title: "Design System - Portfolio",
+  title: "Design system - Portfolio",
 };
 
 const primitiveRamps: { name: string; key: string; steps: number[] }[] = [
@@ -96,6 +96,11 @@ const semanticTokens: { group: string; rows: { name: string; mapsTo: ThemeValue;
         mapsTo: { dark: "neutral-950", light: "neutral-50", debug: "peach-50", violet: "violet-50" },
         description: "Page background. Flows through --surface-base, applied to <body> and the blurred nav/footer bars.",
       },
+      {
+        name: "--fill-frame",
+        mapsTo: { dark: "neutral-900", light: "neutral-100", debug: "peach-100", violet: "violet-100" },
+        description: "One step up from --fill-surface. Flows through --surface-frame, the backdrop behind transparent product-shot images (FramedImage). Same color for every case study, only the theme changes it.",
+      },
     ],
   },
   {
@@ -135,6 +140,11 @@ const aliasTokens: { name: string; mapsTo: string; description: string; value?: 
     name: "--surface-base",
     mapsTo: "--fill-surface",
     description: "Background shorthand (bg-surface-base): applied to <body> and translucent nav/footer bars.",
+  },
+  {
+    name: "--surface-frame",
+    mapsTo: "--fill-frame",
+    description: "Background shorthand for FramedImage: the themed backdrop behind transparent product-shot images in case studies.",
   },
   {
     name: "--stroke",
@@ -207,7 +217,7 @@ export default function DesignSystem() {
         <Link href="/" className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
           ← Back
         </Link>
-        <span className="text-sm font-medium tracking-tight">Design System</span>
+        <span className="text-sm font-medium tracking-tight">Design system</span>
         <ThemeToggle />
       </nav>
 
@@ -216,7 +226,7 @@ export default function DesignSystem() {
         {/* Intro */}
         <section>
           <h1 className="text-5xl md:text-7xl font-semibold tracking-[-1.44px] leading-[1.05] mb-6">
-            Design System
+            Design system
           </h1>
           <p className="text-fg-secondary text-lg leading-relaxed max-w-sm">
             The tokens and components this portfolio is built from:
@@ -340,19 +350,19 @@ export default function DesignSystem() {
           <div className="flex flex-col gap-8 border-t border-stroke pt-10">
             <div>
               <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 · Hero · text-5xl/7xl, tracking -1.44px</p>
-              <h1 className="text-5xl font-semibold tracking-[-1.44px] leading-[1.05]">Design & Management</h1>
+              <h1 className="text-5xl font-semibold tracking-[-1.44px] leading-[1.05]">Design & management</h1>
             </div>
             <div>
               <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H1 · Case study · text-5xl/6xl, tracking -1.28px</p>
-              <h1 className="text-4xl font-semibold tracking-[-1.28px] leading-[1.05]">Case Study Title</h1>
+              <h1 className="text-4xl font-semibold tracking-[-1.28px] leading-[1.05]">Case study title</h1>
             </div>
             <div>
               <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H2 · Section group · text-2xl, tracking tight</p>
-              <h2 className="text-2xl font-semibold tracking-tight">Section Group</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">Section group</h2>
             </div>
             <div>
               <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">H3 · Card title · text-xl, tracking tight</p>
-              <h3 className="text-xl font-semibold leading-snug tracking-tight">Card Title</h3>
+              <h3 className="text-xl font-semibold leading-snug tracking-tight">Card title</h3>
             </div>
             <div>
               <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-3">Body · large · text-lg, fg-secondary</p>

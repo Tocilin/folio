@@ -105,10 +105,13 @@
     --status-available: var(--green-400);
 
     /* Button */
-    --button-primary-fill:     var(--neutral-50);
-    --button-primary-label:    var(--neutral-950);
-    --button-secondary-stroke: var(--neutral-700);
-    --button-secondary-label:  var(--neutral-400);
+    --button-primary-fill:       var(--neutral-0);
+    --button-primary-fill-hover: var(--neutral-200);
+    --button-primary-label:      var(--neutral-950);
+    --button-secondary-stroke:       var(--neutral-700);
+    --button-secondary-stroke-hover: var(--neutral-500);
+    --button-secondary-label:        var(--neutral-400);
+    --button-secondary-label-hover:  var(--neutral-50);
 
     /* Text */
     --text-neutral-strong:   var(--neutral-50);    /* warm near-white headings  */
@@ -120,6 +123,7 @@
     /* Fill */
     --fill-neutral-darkest:  var(--neutral-0);
     --fill-surface:          var(--neutral-950);   /* #08090a warm dark         */
+    --fill-frame:            var(--neutral-900);   /* one step up from surface, for framed product shots */
 
     /* Stroke — Linear style: white at low opacity on dark bg */
     --stroke-neutral-default:         var(--neutral-0);
@@ -131,10 +135,13 @@
   :root.light {
     --status-available: var(--green-600);
 
-    --button-primary-fill:     var(--neutral-950);
-    --button-primary-label:    var(--neutral-50);
-    --button-secondary-stroke: var(--neutral-300);
-    --button-secondary-label:  var(--neutral-600);
+    --button-primary-fill:       var(--neutral-950);
+    --button-primary-fill-hover: var(--neutral-800);
+    --button-primary-label:      var(--neutral-50);
+    --button-secondary-stroke:       var(--neutral-300);
+    --button-secondary-stroke-hover: var(--neutral-500);
+    --button-secondary-label:        var(--neutral-600);
+    --button-secondary-label-hover:  var(--neutral-950);
 
     --text-neutral-strong:   var(--neutral-900);
     --text-neutral-base:     var(--neutral-500);
@@ -144,6 +151,7 @@
 
     --fill-neutral-darkest:  var(--neutral-0);
     --fill-surface:          var(--neutral-50);
+    --fill-frame:            var(--neutral-100);
 
     --stroke-neutral-default:         var(--neutral-950);
     --stroke-neutral-default-opacity: 0.06;
@@ -154,10 +162,13 @@
   :root.debug {
     --status-available: var(--green-600);
 
-    --button-primary-fill:     var(--peach-600);
-    --button-primary-label:    var(--neutral-50);
-    --button-secondary-stroke: var(--peach-300);
-    --button-secondary-label:  var(--peach-700);
+    --button-primary-fill:       var(--peach-500);
+    --button-primary-fill-hover: var(--peach-600);
+    --button-primary-label:      var(--neutral-50);
+    --button-secondary-stroke:       var(--peach-300);
+    --button-secondary-stroke-hover: var(--peach-500);
+    --button-secondary-label:        var(--peach-700);
+    --button-secondary-label-hover:  var(--peach-900);
 
     --text-neutral-strong:   var(--neutral-900);
     --text-neutral-base:     var(--neutral-500);
@@ -167,6 +178,7 @@
 
     --fill-neutral-darkest:  var(--neutral-0);
     --fill-surface:          var(--peach-50);
+    --fill-frame:            var(--peach-100);
 
     --stroke-neutral-default:         var(--neutral-950);
     --stroke-neutral-default-opacity: 0.06;
@@ -177,10 +189,13 @@
   :root.violet {
     --status-available: var(--green-600);
 
-    --button-primary-fill:     var(--violet-600);
-    --button-primary-label:    var(--neutral-50);
-    --button-secondary-stroke: var(--violet-300);
-    --button-secondary-label:  var(--violet-700);
+    --button-primary-fill:       var(--violet-500);
+    --button-primary-fill-hover: var(--violet-600);
+    --button-primary-label:      var(--neutral-50);
+    --button-secondary-stroke:       var(--violet-300);
+    --button-secondary-stroke-hover: var(--violet-500);
+    --button-secondary-label:        var(--violet-700);
+    --button-secondary-label-hover:  var(--violet-900);
 
     --text-neutral-strong:   var(--neutral-900);
     --text-neutral-base:     var(--neutral-500);
@@ -190,6 +205,7 @@
 
     --fill-neutral-darkest:  var(--neutral-0);
     --fill-surface:          var(--violet-50);
+    --fill-frame:            var(--violet-100);
 
     --stroke-neutral-default:         var(--neutral-950);
     --stroke-neutral-default-opacity: 0.06;
@@ -205,6 +221,7 @@
     --fg-secondary:  var(--text-neutral-base);
     --fg-tertiary:   var(--text-neutral-subtle);
     --surface-base:  var(--fill-surface);
+    --surface-frame: var(--fill-frame);
     --stroke:        var(--stroke-neutral-default);
     --stroke-opacity: var(--stroke-neutral-default-opacity);
     --stroke-strong: var(--stroke-neutral-strong);
@@ -308,4 +325,11 @@
   opacity: 1;
   transform: translate(var(--tx), calc(-88% + var(--ty))) scale(1) rotate(var(--rot));
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease-out;
+}
+
+/* ── Framed image — transparent product shots on a themed backdrop ──
+   Uses --surface-frame, the same token everywhere: the backdrop is tied
+   to the active theme, not to any individual project or image. ────── */
+.framed-image {
+  background: rgb(var(--surface-frame));
 }

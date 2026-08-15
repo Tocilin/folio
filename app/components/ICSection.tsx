@@ -69,7 +69,7 @@ export function ICSection({ projects }: { projects: Project[] }) {
 
   return (
     <div onMouseLeave={handleLeave}>
-      <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Individual Contributor</p>
+      <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Selected Work</p>
       <div className="border-t border-stroke">
         {projects.map((p, i) => (
           <Link

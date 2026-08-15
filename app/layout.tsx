@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Eugene Tochilin — Design & Management",
+  title: "Eugene Tochilin | Design & Management",
   description: "Independent designer and developer focused on product, brand, and AI-driven experiences.",
 };
 

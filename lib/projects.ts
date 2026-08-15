@@ -1,6 +1,14 @@
 export type SectionImage = {
   src: string;
   alt: string;
+  // When true, rendered as a transparent product shot on a themed gradient
+  // backdrop (via FramedImage) instead of a plain full-bleed photo tile.
+  // width/height must match the source file's actual pixel size — FramedImage
+  // uses next/image (not `fill`), so these drive both the aspect ratio and
+  // Next's automatic format/srcset optimization.
+  framed?: boolean;
+  width?: number;
+  height?: number;
 };
 
 export type Section = {
@@ -24,6 +32,12 @@ export type Project = {
   subtitle?: string;
   hero: { from: string; via: string; to: string };
   heroImage?: string;
+  // When true, heroImage is rendered as a transparent product shot on a
+  // themed gradient backdrop instead of a plain photo tile. Width/height
+  // must match the source file — see SectionImage for why.
+  heroFramed?: boolean;
+  heroImageWidth?: number;
+  heroImageHeight?: number;
   sections: Section[];
   credits: { label: string; value: string }[];
   track: WorkTrack;
@@ -33,7 +47,7 @@ export const projects: Project[] = [
   {
     index: "01",
     slug: "superapp",
-    name: "Building a Fintech SuperApp",
+    name: "Bolt SuperApp",
     category: "Product Design",
     year: "2026",
     client: "Bolt",
@@ -41,22 +55,26 @@ export const projects: Project[] = [
     description: "A complete redesign of Bolt's SuperApp, from information architecture to a scalable design system.",
     subtitle: "Turning a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
-    heroImage: "/images/superapp/01-hero.webp",
+    heroImage: "/images/superapp/00-hero-framed.png",
+    heroFramed: true,
+    heroImageWidth: 1800,
+    heroImageHeight: 1012,
     sections: [
       {
-        group: "Background",
+        group: "Overview",
         label: "About Bolt",
         body: "Bolt is a fintech company that built its reputation on a single, successful product: Checkout. It was focused, effective, and it worked. But at some point, the CEO set his sights on something much bigger.",
         images: [
           {
-            src: "/images/superapp/02-about-bolt.webp",
+            src: "/images/superapp/02-about-bolt-framed.png",
             alt: "Bolt's Checkout marketing website homepage, headlined 'The world's most intelligent checkout'",
+            framed: true,
           },
         ],
       },
       {
-        group: "Background",
-        label: "CEO's New Toy: SuperApp",
+        group: "Overview",
+        label: "CEO's new toy: SuperApp",
         body: "The vision was bold. One app for everything. Banking, crypto, shopping, investing, insurance, games, all living under one roof. The strategy was simple and unapologetically aggressive: pack the app with as many features as possible, launch fast, and see what sticks. The goal wasn't just to build a product people loved. It was to show investors that the team could execute at scale.",
         images: [
           {
@@ -66,41 +84,57 @@ export const projects: Project[] = [
         ],
       },
       {
-        group: "Background",
-        label: "Business Context",
+        group: "Overview",
+        label: "Business context",
         body: "The engineering team had pulled it off, technically. A working app existed. But it had been assembled quickly and without much structure, with features added through multiple integrations, scattered across the product in a chaotic way. When the company began preparing to present to investors, it became clear the app wasn't ready. Not even close.",
         images: [
           {
-            src: "/images/superapp/04-business-context.webp",
-            alt: "Slide quoting a potential investor: 'The app looks like something high school students threw together over a weekend,' next to screenshots of the early app",
+            src: "/images/superapp/04-business-context-framed.png",
+            alt: "Four screens from the early app's rewards flow, captioned 'Built by engineers. No designers involved'",
+            framed: true,
+            width: 1800,
+            height: 1012,
           },
         ],
       },
       {
-        group: "The Problem",
-        label: "Core Issues",
+        group: "The problem",
+        label: "Core issues",
         body: "Several things were actively holding the product back. Navigation was confusing and users didn't know where to tap, where to go, or how to move through the app. The information architecture was fragmented, with features piled on without a clear structure. Onboarding was broken and people installed the app only to immediately feel lost, leading to low engagement and poor retention. The visual design, built entirely by engineers, lacked consistency, polish, and any kind of system behind it.",
         images: [
           {
-            src: "/images/superapp/05-core-issues.webp",
+            src: "/images/superapp/investor-quote-framed.png",
+            alt: "Slide quoting a potential investor: 'The app looks like something high school students threw together over a weekend'",
+            framed: true,
+            width: 1800,
+            height: 1012,
+          },
+          {
+            src: "/images/superapp/05-core-issues-framed.png",
             alt: "Slide listing six main design challenges: weak information architecture, poor onboarding, confusing navigation, inconsistent visual design, lack of user trust, and accessibility risks",
+            framed: true,
+            width: 1800,
+            height: 1012,
           },
         ],
       },
       {
-        group: "The Problem",
-        label: "My Role",
+        group: "The problem",
+        label: "My role",
         body: "That's when the company brought in a seasoned UX designer, me. My job was to bring order to the product, improve usability and visual quality, and transform a scattered collection of features into a coherent app experience. The biggest constraint: I had three months to make it happen.",
         images: [
           {
-            src: "/images/superapp/06-my-role.webp",
+            src: "/images/superapp/06-my-role-framed.png",
             alt: "Slide titled 'The \"fun\" part' noting the biggest constraint was time: only 3 months to deliver meaningful change, illustrated with a stressed stick figure beside a fast-moving stopwatch",
+            framed: true,
+            width: 1800,
+            height: 1012,
           },
         ],
       },
       {
         group: "Goals",
-        label: "Design Goals",
+        label: "Design goals",
         body: "The work had to serve both the product and the business at the same time. On the product side: rebuild the information architecture, introduce a proper design system, fix onboarding, and raise the overall quality across usability, accessibility, and trust. On the business side: help the company reach 2M+ registrations, grow to 1,000+ monthly active users, launch three new features, hit 60% feature parity with competitors like PayPal, Revolut, and Wise, and achieve a 4.5+ app store rating.",
         images: [
           {
@@ -122,18 +156,18 @@ export const projects: Project[] = [
       },
       {
         group: "Discovery",
-        label: "Customer Support Insights",
+        label: "Customer support insights",
         body: "I started with the people closest to the users: customer support. I booked time with support reps and asked them to walk me through the most common complaints, repeated questions, and confusing moments they heard every day. It gave me a fast, unfiltered view of where the product was genuinely failing real customers, before I had ever opened the app myself.",
         images: [
           {
             src: "/images/superapp/09-customer-support-insights.webp",
-            alt: "Illustration of a stick figure holding a magnifying glass among research icons — bar chart, pie chart, checklist, and chat bubble — symbolizing the discovery phase",
+            alt: "Illustration of a stick figure holding a magnifying glass among research icons (bar chart, pie chart, checklist, and chat bubble), symbolizing the discovery phase",
           },
         ],
       },
       {
         group: "Discovery",
-        label: "Product Audit",
+        label: "Product audit",
         body: "Next, I became the user. I installed the app, went through every flow, tested every feature one by one, and documented every usability issue I could find. This gave me a first-time user's perspective and helped me see exactly where the friction was, not just in theory, but in practice.",
         images: [
           {
@@ -148,7 +182,7 @@ export const projects: Project[] = [
       },
       {
         group: "Discovery",
-        label: "Data Insights",
+        label: "Data insights",
         body: "To balance what people were saying with what was actually happening, I set up access to product analytics through DataDog. I looked at total users and registrations, iOS vs Android split, registration and KYC completion rates, the most used features, and where users were dropping off. Facts, not assumptions.",
         images: [
           {
@@ -159,7 +193,7 @@ export const projects: Project[] = [
       },
       {
         group: "Discovery",
-        label: "Competitive Review",
+        label: "Competitive review",
         body: "Finally, I looked outside the company. I signed up for PayPal, Revolut, Wise, Robinhood, and Coinbase and studied how each of them handled onboarding, navigation, transfers, investing, crypto, and trust building. This helped me understand what users already expected from products like this, and where our most obvious gaps were.",
         images: [
           {
@@ -170,100 +204,164 @@ export const projects: Project[] = [
       },
       {
         group: "Design",
-        label: "Rebuilding the Information Architecture",
+        label: "Rebuilding the information architecture",
         body: "After reviewing all the research, one thing was clear: the app needed a completely new structure. Everything had been built around a single home screen, a grid of feature buttons sitting under a balance total. There were no quick actions, no personalization, no clear next step. Every new feature just added more clutter. Users landed there and immediately felt lost. And as a model, it wasn't scalable. It would only get worse over time.",
         images: [
           {
-            src: "/images/placeholder.png",
+            src: "/images/superapp/15-rebuilding-ia.jpg",
             alt: "Old information architecture diagram showing every feature flattened into a single grid under the home screen's balance total",
+          },
+          {
+            src: "/images/superapp/17-dashboard-ia.jpg",
+            alt: "New dashboard information architecture with a customizable widget layout and an app-switcher for independent mini-apps",
+          },
+          {
+            src: "/images/superapp/18-dashboard-modules.jpg",
+            alt: "Dashboard module breakdown showing the mini-app tiles and banking module arranged in the new structure",
           },
         ],
       },
       {
         group: "Design",
-        label: "Early Concept Prototype",
+        label: "Early concept prototype",
         body: "I moved quickly. Based on the research, I designed an early concept built around a modular system: a customizable dashboard supported by independent mini-apps. The dashboard gave each user a personalized home screen with shortcuts to what they used most. The mini-apps, banking, crypto, transfers, shopping, order tracking, each lived as their own self-contained product area. One shared account identity tied everything together across the ecosystem.",
         images: [
           {
-            src: "/images/placeholder.png",
+            src: "/images/superapp/16-initial-draft-concept.jpg",
             alt: "Early concept mockup of the modular dashboard with customizable shortcuts and independent mini-apps for banking, crypto, and shopping",
           },
         ],
       },
       {
         group: "Design",
-        label: "Fixing the Onboarding Funnel",
+        label: "Fixing the onboarding funnel",
         body: "The data told a brutal story. Of everyone who registered, only 7% started or completed KYC. Only 2% were approved. Just 0.3% created a bank account. The biggest drop-off was happening before users ever experienced anything. The app had started as a banking product, so everyone had to complete full identity verification before they could do anything at all, even browse. That made sense for a bank. It made no sense for a SuperApp.",
         images: [
           {
-            src: "/images/placeholder.png",
+            src: "/images/superapp/19-onboarding.jpg",
+            alt: "Onboarding overview slide introducing the funnel problem",
+          },
+          {
+            src: "/images/superapp/20-original-onboarding.jpg",
+            alt: "Grid of the original onboarding screens users had to complete before accessing anything in the app",
+          },
+          {
+            src: "/images/superapp/21-onboarding-funnel-data.jpg",
             alt: "Onboarding funnel chart showing the drop-off from registration through KYC start, approval, and bank account creation",
           },
         ],
       },
       {
         group: "Design",
-        label: "Rebuilding Onboarding for Growth",
+        label: "Rebuilding onboarding for growth",
         body: "I redesigned the onboarding so users could enter the app immediately and start using features that didn't require any identity verification, like shopping, order tracking, and browsing the ecosystem. KYC was moved to the moment of need, triggered only when a user wanted to do something that genuinely required it: crypto, investing, P2P transfers, banking. This reduced friction, improved the first-time experience, and gave users a reason to stay before asking them to trust us with sensitive information.",
         images: [
           {
-            src: "/images/placeholder.png",
-            alt: "Redesigned onboarding flow diagram showing immediate app access with KYC deferred until a user reaches a feature that requires it",
+            src: "/images/superapp/22-simplified-onboarding.jpg",
+            alt: "Redesigned onboarding flow showing simplified registration, OTP, and app-selection screens with KYC deferred until needed",
           },
         ],
       },
       {
         group: "Design",
-        label: "Creating the Core Components",
+        label: "Creating the core components",
         body: "One of the biggest underlying problems was visual inconsistency. The app had been built without any design system, with styles hard-coded, components duplicated, and theming nearly impossible. I started by building the foundation layer from scratch: color tokens, typography, spacing, corner radius rules, and an icon library. This became the shared language for everything that followed.",
         images: [
           {
-            src: "/images/placeholder.png",
-            alt: "Design system foundation sheet showing the new color token palette, typography scale, spacing units, and icon library",
+            src: "/images/superapp/23-design-system.jpg",
+            alt: "Design system overview slide",
+          },
+          {
+            src: "/images/superapp/24-foundation.jpg",
+            alt: "Design token foundation showing color, spacing, and text-size variable collections across dark, light, and debug themes",
+          },
+          {
+            src: "/images/superapp/25-core-components-1.jpg",
+            alt: "Button and icon-button component variants across filled, muted, and text styles",
+          },
+          {
+            src: "/images/superapp/26-core-components-2.jpg",
+            alt: "Avatar and avatar-stack components with their decision tree and size variants",
+          },
+          {
+            src: "/images/superapp/27-core-components-3.jpg",
+            alt: "List item component with single-select and multi-select variants",
           },
         ],
       },
       {
         group: "Design",
-        label: "Scaling the System in Parallel",
+        label: "Scaling the system in parallel",
         body: "With the foundation in place, I built out the most commonly used UI components: buttons, inputs, checkboxes, toggles, avatars, loaders and states. I focused on the high-frequency building blocks that appeared across the most screens, and raised the visual quality of each one to make the product feel more premium and trustworthy. These reusable components brought consistency to the experience while reducing both design and engineering effort across the board.",
         images: [
           {
-            src: "/images/placeholder.png",
-            alt: "Component library sheet showing buttons, inputs, checkboxes, toggles, avatars, and loading states in their default and interactive variants",
+            src: "/images/superapp/28-core-components-4.jpg",
+            alt: "Marketing and intro screen templates built from the shared component library",
+          },
+          {
+            src: "/images/superapp/29-core-components-5.jpg",
+            alt: "App bar component and its scroll-collapse interaction behavior",
           },
         ],
       },
       {
         group: "Design",
-        label: "Using AI to Scale as a Team of One",
+        label: "Using AI to scale as a team of one",
         body: "I was the only designer on a workload that would normally require a full team. To keep up, I built a tight workflow around AI tools. I used Cursor and Claude Code to generate concepts and interfaces, Figma to refine and polish the details, and Google Flow with Gemini for image generation. The loop was continuous: generate, refine, feed improvements back in, and keep evolving. Instead of delivering static mockups, I produced interactive coded prototypes that engineers and stakeholders could actually experience, which cut alignment time and kept the team moving fast.",
         images: [
           {
-            src: "/images/placeholder.png",
-            alt: "Workflow diagram showing the generate-refine loop across Cursor, Claude Code, Figma, and Google Flow used to produce coded prototypes",
+            src: "/images/superapp/30-ai.jpg",
+            alt: "Building with AI title slide",
+          },
+          {
+            src: "/images/superapp/31-design-process.jpg",
+            alt: "Workflow diagram showing the generate-refine loop across OpenAI, Figma, GitHub, and Vercel used to produce coded prototypes",
           },
         ],
       },
       {
         group: "Delivery",
-        label: "The Work I Delivered",
+        label: "The work I delivered",
         body: "In three months, as a team of one, I completed a full product redesign. I rebuilt the entire app around a new modular architecture. I created a completely new onboarding flow. I built the product's first design system from scratch. I refreshed the visual design to feel more premium and polished. I designed and launched three new product features. And I delivered interactive coded prototypes that helped engineering move faster and align on execution with far less back-and-forth.",
         images: [
           {
-            src: "/images/placeholder.png",
-            alt: "Summary board of shipped deliverables: modular architecture, new onboarding flow, design system, refreshed visuals, and three new features",
+            src: "/images/superapp/32-redesign.jpg",
+            alt: "After the redesign title slide",
+          },
+          {
+            src: "/images/superapp/33-design-1.jpg",
+            alt: "Redesigned onboarding screens: splash, email entry, and verification code",
+          },
+          {
+            src: "/images/superapp/34-design-2.jpg",
+            alt: "Redesigned preference selection, SuperApp home, and Bolt apps modal screens",
+          },
+          {
+            src: "/images/superapp/35-design-3.jpg",
+            alt: "Redesigned wallet detail and wallet management screens",
+          },
+          {
+            src: "/images/superapp/36-design-4.jpg",
+            alt: "Redesigned dashboard grid showing balance, banking, games, and crypto watchlist modules",
+          },
+          {
+            src: "/images/superapp/40-work-delivered.jpg",
+            alt: "Summary board of shipped deliverables: modular architecture, new onboarding flow, design system, refreshed visuals, and new features",
           },
         ],
       },
       {
         group: "Delivery",
-        label: "Gamified User Testing",
+        label: "Gamified user testing",
         body: "Once the redesign was ready, I needed real user feedback, but there was no time or budget for traditional research. So I turned testing into a game. I hid coins throughout the app, placed across different screens and features. To find them, users had to naturally explore the product, move through flows, and interact with the new experience. Each coin earned points redeemable for cashback or partner rewards. Users had fun and earned something real. We got genuine behavioral data from real users. And we quickly spotted the flows that still caused confusion, without ever asking anyone to participate in a test.",
         images: [
           {
-            src: "/images/placeholder.png",
-            alt: "Screenshot of the coin-hunt overlay showing hidden coins placed across app screens as part of the gamified testing exercise",
+            src: "/images/superapp/37-Validation.jpg",
+            alt: "Validation title slide",
+          },
+          {
+            src: "/images/superapp/38-gamified-testing.jpg",
+            alt: "Gamified app testing screen showing a hidden coin reward layered over the banking wallet screen",
           },
         ],
       },
@@ -273,8 +371,12 @@ export const projects: Project[] = [
         body: "The redesigned SuperApp launched publicly, a real market-ready product live on iOS and Android. The numbers made the case, but the bigger win was a product the team could finally grow with confidence.",
         images: [
           {
-            src: "/images/placeholder.png",
-            alt: "Results dashboard showing registration growth, monthly active users, and app store rating after the SuperApp's public launch",
+            src: "/images/superapp/39-results-intro.jpg",
+            alt: "Results title slide",
+          },
+          {
+            src: "/images/superapp/41-key-product-outcomes.jpg",
+            alt: "Key product outcomes: total registrations, daily active users, App Store rating, and integrations launched after the redesign",
           },
         ],
       },
@@ -291,7 +393,7 @@ export const projects: Project[] = [
   {
     index: "02",
     slug: "chameleon",
-    name: "The Invisible Design System",
+    name: "JPMorgan Chameleon design system",
     category: "Design System",
     year: "2024",
     client: "JPMorgan",
@@ -323,39 +425,111 @@ export const projects: Project[] = [
   {
     index: "03",
     slug: "checkout",
-    name: "Checkout at Scale",
-    category: "Motion & UI",
+    name: "J.P. Morgan Chase checkout",
+    category: "Product Design",
     year: "2023",
-    client: "JPMorgan",
-    role: "Product Design, Motion Design",
-    description: "Designing a customizable checkout platform that powers millions of payment experiences worldwide.",
+    client: "J.P. Morgan Chase",
+    role: "Design Lead",
+    description: "Solo-designing and shipping J.P. Morgan Chase's Checkout, Commerce Center, and Chameleon design system during a company-wide hiring freeze.",
+    subtitle: "When a hiring freeze hit right after I joined, the deadlines didn't move. So I became a team of one and shipped the MVP for three products in six months.",
     hero: { from: "#0a0a0a", via: "#1a0533", to: "#2d1b69" },
     sections: [
       {
-        label: "Overview",
-        body: "Drift is a personal finance app built around the idea that money should feel less stressful. The design challenge was to make complex account data feel light and readable, not clinical. Motion was the primary tool: everything from balance updates to category breakdowns uses physics-based transitions that give the interface a sense of weight and honesty.",
+        group: "Overview",
+        label: "Mission: impossible (but actually possible)",
+        body: "When I joined J.P. Morgan Chase as a Design Lead, the plan was to build a design team from scratch to create the Checkout Solution. Weeks after I joined, the company announced a hiring freeze, but the deadlines didn't move. So I became a team of one, single-handedly designing and shipping the MVP for three products over the next six months: Checkout, the consumer-facing payment flow; Commerce Center, the merchant admin tool; and Chameleon, the white-label design system tying them together.",
       },
       {
-        label: "Approach",
-        body: "We prototyped twelve different approaches to the core spending chart before landing on the arc metaphor: a radial fill that grows as you approach your monthly limit. The colour shift (cool to warm) communicates budget state without a single number. All transitions were spec'd in Lottie-compatible JSON for direct handoff to the iOS team.",
+        group: "Overview",
+        label: "What is checkout",
+        body: "Checkout is J.P. Morgan Chase's solution for merchant clients: a smooth, secure, customizable online shopping experience. Customers enter payment info once, and it's processed through J.P. Morgan's Merchant Services. For merchants, the real benefit is reduced PCI compliance overhead: Checkout integrates directly with JPMC's payment processing, so businesses don't have to build and maintain that infrastructure themselves.",
       },
       {
-        label: "Outcomes",
-        body: "Drift's App Store rating moved from 3.6 to 4.8 stars in the two months following the redesign launch. Session length increased by 2.3×. The motion system has been presented at three fintech design conferences as a reference implementation for accessible animation.",
+        group: "Goals",
+        label: "Business objectives",
+        body: "The team's OKRs were set around driving adoption (targeting 25% adoption across Commerce Platform clients), scaling Checkout revenue and merchant engagement, strengthening flexibility and security (including integration with J.P. Morgan's in-house fraud detection), and improving usability, accessibility, and customization, with a target of WCAG 2.2 AA compliance and 60%+ payment-method parity with competitors. Exact transaction and revenue figures are confidential.",
+      },
+      {
+        group: "Goals",
+        label: "Design objectives",
+        body: "On the design side, I set OKRs that mirrored the business goals: every design decision backed by research or data, 100% adherence to experience success criteria, full design-system adoption, features delivered at least a quarter ahead of engineering, and 100% of delivered designs meeting WCAG 2.2 AA, with every risk-sensitive deliverable reviewed and approved by compliance.",
+      },
+      {
+        group: "Process",
+        label: "How we worked",
+        body: "Our process was structured but adaptable: define and stress-test requirements with product, validate assumptions through internal critique or client testing, choose the right research method for the problem, hand off fully annotated specs covering edge cases and accessibility, iterate with engineering through multiple feedback rounds, and stay involved through post-launch QA. But after 15 years in design, the rule I lean on most with my team is common sense: process is a tool, not a rulebook, and knowing when to skip a step is as important as knowing the framework.",
+      },
+      {
+        group: "Delivery",
+        label: "Consumer-facing checkout",
+        body: "A best-in-class checkout built for speed and conversion: clear actions, effortless form-filling, and support for multiple payment methods, accessibility, and responsive layouts, adaptable to any merchant's brand.",
+      },
+      {
+        group: "Delivery",
+        label: "Drop-in UI: embedded checkout",
+        body: "The consumer checkout is also available as Drop-in UI, an embeddable form that lets merchants host their own checkout page while our secure, PCI-compliant payment form handles the sensitive parts: full control over the flow, none of the compliance burden.",
+      },
+      {
+        group: "Delivery",
+        label: "Commerce Center: merchant tool",
+        body: "Commerce Center puts checkout customization in merchants' hands: brand-matched design, flexible payment method selection, security and fraud settings, and transaction reporting, all without needing engineering support.",
+      },
+      {
+        group: "Delivery",
+        label: "Chameleon: the design system",
+        body: "Chameleon is the lightweight, white-label system underneath all of it: flexible enough for merchants to fully customize their UI while staying consistent, scalable, and easy to build on.",
+      },
+      {
+        group: "Delivery",
+        label: "Accessibility: built-in compliance",
+        body: "Every surface was built to be fully WCAG-compliant from the start: proper color contrast, keyboard navigation, screen reader support, and clear, accessible interaction patterns. Accessibility as a default, not a retrofit.",
+      },
+      {
+        group: "Results",
+        label: "Measured outcomes",
+        body: "Checkout reached a meaningful share of Commerce Platform clients, hit 100% WCAG 2.2 AA compliance across every experience, closed to 60% payment-method parity with competitors, and held a 4.3 customer satisfaction score through the year. Commerce Center shipped enhanced fraud and security controls, and the platform drove measurable direct and acquiring revenue. Exact figures are confidential.",
+      },
+      {
+        group: "Results",
+        label: "The final look",
+        body: "A picture is worth a thousand words. Here's the shipped product.",
+        images: [
+          { src: "/images/checkout/09-gallery-1.webp", alt: "Checkout product screen" },
+          { src: "/images/checkout/10-gallery-2.webp", alt: "Checkout product screen" },
+          { src: "/images/checkout/11-gallery-3.webp", alt: "Checkout product screen" },
+          { src: "/images/checkout/12-gallery-4.webp", alt: "Checkout product screen" },
+          { src: "/images/checkout/13-gallery-5.webp", alt: "Checkout product screen" },
+          { src: "/images/checkout/14-gallery-6.webp", alt: "Checkout email notification screen" },
+          { src: "/images/checkout/15-gallery-7.webp", alt: "Checkout module screen" },
+          { src: "/images/checkout/16-gallery-8.webp", alt: "Checkout module screen" },
+          { src: "/images/checkout/17-gallery-9.webp", alt: "Checkout module screen" },
+          { src: "/images/checkout/18-gallery-10.webp", alt: "Checkout product screen" },
+          { src: "/images/checkout/19-gallery-11.webp", alt: "Chameleon design system screen" },
+          { src: "/images/checkout/20-gallery-12.webp", alt: "Chameleon design system screen" },
+          { src: "/images/checkout/21-gallery-13.webp", alt: "Chameleon design system screen" },
+          { src: "/images/checkout/22-gallery-14.webp", alt: "Chameleon design system screen" },
+          { src: "/images/checkout/23-gallery-15.webp", alt: "Commerce Center screen" },
+          { src: "/images/checkout/24-gallery-16.webp", alt: "Commerce Center screen" },
+        ],
+      },
+      {
+        group: "Results",
+        label: "Recognition",
+        body: "Six months in, the hiring freeze lifted and I built out a team of three designers and a researcher, moving back into design strategy and mentorship. That year I was promoted to Executive Director, and the team was recognized as PXD's Best Team of the Year.",
       },
     ],
     credits: [
-      { label: "Client", value: "JPMorgan" },
-      { label: "Design & Motion", value: "Studio Portfolio" },
-      { label: "iOS Engineering", value: "Drift Mobile Team" },
-      { label: "Year", value: "2023" },
+      { label: "Client", value: "J.P. Morgan Chase" },
+      { label: "Role", value: "Design Lead" },
+      { label: "Team", value: "Team of one → 3 designers, 1 researcher" },
+      { label: "Recognition", value: "PXD Best Team of the Year" },
     ],
     track: "ic",
   },
   {
     index: "04",
     slug: "colors",
-    name: "The Science of Color",
+    name: "The science behind the color tokens",
     category: "Design System",
     year: "2023",
     client: "Affirm",
@@ -387,7 +561,7 @@ export const projects: Project[] = [
   {
     index: "05",
     slug: "a11y",
-    name: "Accessibility by Design",
+    name: "Accessibility by design",
     category: "Product Design",
     year: "2022",
     client: "JPMorgan",
@@ -414,12 +588,12 @@ export const projects: Project[] = [
       { label: "Founder", value: "James Park" },
       { label: "Year", value: "2022" },
     ],
-    track: "management",
+    track: "design-systems",
   },
   {
     index: "06",
     slug: "roi",
-    name: "Proving Design System ROI",
+    name: "Proving design system ROI",
     category: "Design System",
     year: "2024",
     client: "Affirm",
@@ -451,7 +625,7 @@ export const projects: Project[] = [
   {
     index: "07",
     slug: "real-estate-roi",
-    name: "Real Estate ROI Calculator",
+    name: "Real estate ROI calculator",
     category: "Product Design",
     year: "2026",
     client: "Personal Project",
@@ -483,7 +657,7 @@ export const projects: Project[] = [
   {
     index: "08",
     slug: "scaling-design-team",
-    name: "Scaling a Design Team from 3 to 12",
+    name: "Scaling a design team from 3 to 12",
     category: "Team Leadership",
     year: "2025",
     client: "Northwind",
@@ -515,7 +689,7 @@ export const projects: Project[] = [
   {
     index: "09",
     slug: "design-ops-function",
-    name: "Building a Design Ops Function from Scratch",
+    name: "Building a design ops function from scratch",
     category: "Design Operations",
     year: "2024",
     client: "Fenwick & Co.",
@@ -547,7 +721,7 @@ export const projects: Project[] = [
   {
     index: "10",
     slug: "analytics-dashboard-redesign",
-    name: "Redesigning a Cluttered Analytics Dashboard",
+    name: "Redesigning a cluttered analytics dashboard",
     category: "Product Design",
     year: "2022",
     client: "Vantage Analytics",
@@ -575,5 +749,37 @@ export const projects: Project[] = [
       { label: "Year", value: "2022" },
     ],
     track: "ic",
+  },
+  {
+    index: "11",
+    slug: "adyen-reporting-reconciliation",
+    name: "Adyen's reporting and reconciliation",
+    category: "Product Design",
+    year: "TBD",
+    client: "Adyen",
+    role: "TBD",
+    description: "Placeholder description for the Adyen reporting and reconciliation case study, to be replaced with the real project details.",
+    subtitle: "A one- or two-line subtitle that frames the problem and the outcome, giving readers context before they dive into the details below.",
+    hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
+    sections: [
+      {
+        label: "Overview",
+        body: "Placeholder body copy standing in for this project's background, to be replaced with the real context once the details are available.",
+      },
+      {
+        label: "Approach",
+        body: "Placeholder copy describing the approach taken on this project, to be replaced with the real process, research, and design decisions.",
+      },
+      {
+        label: "Outcomes",
+        body: "Placeholder outcomes copy, metrics, launch details, or qualitative impact will go here once the real project details are added.",
+      },
+    ],
+    credits: [
+      { label: "Client", value: "Adyen" },
+      { label: "Role", value: "TBD" },
+      { label: "Year", value: "TBD" },
+    ],
+    track: "management",
   },
 ];

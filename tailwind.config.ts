@@ -50,6 +50,7 @@ const config: Config = {
         fill: {
           darkest: "rgb(var(--fill-neutral-darkest)  / <alpha-value>)",
           surface: "rgb(var(--fill-surface)          / <alpha-value>)",
+          frame:   "rgb(var(--fill-frame)            / <alpha-value>)",
         },
 
         // ── Tier 3: Aliases ────────────────────────────────────────
@@ -70,10 +71,13 @@ const config: Config = {
           available: "rgb(var(--status-available) / <alpha-value>)",
         },
         button: {
-          "primary-fill":     "rgb(var(--button-primary-fill)     / <alpha-value>)",
-          "primary-label":    "rgb(var(--button-primary-label)    / <alpha-value>)",
-          "secondary-stroke": "rgb(var(--button-secondary-stroke) / <alpha-value>)",
-          "secondary-label":  "rgb(var(--button-secondary-label)  / <alpha-value>)",
+          "primary-fill":         "rgb(var(--button-primary-fill)         / <alpha-value>)",
+          "primary-fill-hover":   "rgb(var(--button-primary-fill-hover)   / <alpha-value>)",
+          "primary-label":        "rgb(var(--button-primary-label)        / <alpha-value>)",
+          "secondary-stroke":     "rgb(var(--button-secondary-stroke)     / <alpha-value>)",
+          "secondary-stroke-hover": "rgb(var(--button-secondary-stroke-hover) / <alpha-value>)",
+          "secondary-label":      "rgb(var(--button-secondary-label)      / <alpha-value>)",
+          "secondary-label-hover": "rgb(var(--button-secondary-label-hover) / <alpha-value>)",
         },
       },
     },

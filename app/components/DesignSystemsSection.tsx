@@ -14,7 +14,7 @@ function getOffsets(slug: string) {
 export function DesignSystemsSection({ projects }: { projects: Project[] }) {
   return (
     <div>
-      <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Design Systems</p>
+      <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Selected Work</p>
       <div className="border-t border-stroke">
         {projects.map((p, i) => {
           const { tx, ty, rot } = getOffsets(p.slug);

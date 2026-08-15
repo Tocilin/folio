@@ -24,7 +24,7 @@ function getOffsets(slug: string, squareIndex: number, zone: Zone) {
 export function ManagementSection({ projects }: { projects: Project[] }) {
   return (
     <div id="work">
-      <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Management</p>
+      <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Selected Work</p>
       <div className="border-t border-stroke">
         {projects.map((p, i) => (
           <Link

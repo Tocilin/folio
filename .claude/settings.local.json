@@ -51,7 +51,8 @@
       "Bash(sips -g pixelWidth -g pixelHeight -g format public/images/superapp/*.jpg public/images/superapp/*.png)",
       "Bash(md5 *)",
       "Bash(sips -s format jpeg -s formatOptions 82 -Z 1800 public/images/superapp/02_about_bolt.png --out public/images/superapp/02_about_bolt.jpg)",
-      "Bash(sips -g pixelWidth -g pixelHeight public/images/superapp/02_about_bolt.jpg)"
+      "Bash(sips -g pixelWidth -g pixelHeight public/images/superapp/02_about_bolt.jpg)",
+      "Bash(mkdir -p .claude && ls .claude)"
     ]
   }
 }

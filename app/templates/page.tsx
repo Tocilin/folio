@@ -16,13 +16,13 @@ const templates: { id: TemplateId; name: string; description: string; current?: 
   },
   {
     id: "toc-left",
-    name: "Table of Contents — Left",
+    name: "Table of contents (left)",
     description: "A sticky anchor nav on the left tracks scroll position as you read. Used on all case studies today.",
     current: true,
   },
   {
     id: "toc-right",
-    name: "Table of Contents — Right",
+    name: "Table of contents (right)",
     description: "The same sticky anchor nav, mirrored to the right of the content column.",
   },
 ];
@@ -123,7 +123,7 @@ export default function Templates() {
             Templates
           </h1>
           <p className="text-fg-secondary text-lg leading-relaxed max-w-sm">
-            Layout options for case study pages — pick a structure, then apply it per project.
+            Layout options for case study pages. Pick a structure, then apply it per project.
           </p>
         </section>
 

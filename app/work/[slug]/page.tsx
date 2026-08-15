@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { projects } from "@/lib/projects";
 import { CaseStudyView } from "@/app/components/CaseStudyView";
+import { DEFAULT_TRACK } from "@/lib/siteConfig";
+import type { WorkTrack } from "@/lib/projects";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -10,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
-  return { title: `${project.name} — Portfolio` };
+  return { title: `${project.name} | Portfolio` };
 }
 
 export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
@@ -18,9 +21,14 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const prev = projects[currentIndex - 1] ?? null;
-  const next = projects[currentIndex + 1] ?? null;
+  const headersList = await headers();
+  const track = (headersList.get("x-track") as WorkTrack) || DEFAULT_TRACK;
+  if (project.track !== track) notFound();
+
+  const trackProjects = projects.filter((p) => p.track === track);
+  const currentIndex = trackProjects.findIndex((p) => p.slug === slug);
+  const prev = trackProjects[currentIndex - 1] ?? null;
+  const next = trackProjects[currentIndex + 1] ?? null;
 
   return <CaseStudyView project={project} prev={prev} next={next} layout="toc-left" />;
 }
