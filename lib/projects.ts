@@ -41,6 +41,9 @@ export type Project = {
   sections: Section[];
   credits: { label: string; value: string }[];
   track: WorkTrack;
+  // When set, the case study page is hidden behind a simple client-side
+  // password prompt. Not real security — just a casual gate.
+  password?: string;
 };
 
 export const projects: Project[] = [
@@ -689,12 +692,13 @@ export const projects: Project[] = [
   {
     index: "11",
     slug: "adyen-reporting-reconciliation",
+    password: "adyen",
     name: "Reporting and reconciliation",
     category: "Product Design",
     year: "TBD",
     client: "Adyen",
     role: "TBD",
-    description: "Placeholder description for the Adyen reporting and reconciliation case study, to be replaced with the real project details.",
+    description: "Transforming one of the most problematic areas of the merchant experience into a reliable place merchants keep coming back to, trust, and rely on.",
     subtitle: "A one- or two-line subtitle that frames the problem and the outcome, giving readers context before they dive into the details below.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     sections: [

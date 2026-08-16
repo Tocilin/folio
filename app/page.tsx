@@ -44,13 +44,13 @@ export default async function Home() {
         </section>
 
         {/* About */}
-        <section id="about" className="mb-40 max-w-[560px]">
-          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">About</p>
-          <p className="text-fg-secondary text-lg leading-relaxed">
-            Independent designer and developer focused on product, brand, design systems, and AI-driven experiences.
-            Built for startups and larger companies across Europe and the US.
-            I care about creating thoughtful work that drives impact, solves real problems, and delivers strong outcomes through a systematic approach to building products.
-          </p>
+        <section id="about" className="mb-40 max-w-[560px] flex flex-col gap-4">
+          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-2">About</p>
+          {config.about.map((paragraph, i) => (
+            <p key={i} className="text-fg-secondary text-lg leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
         </section>
 
       </main>

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { projects } from "@/lib/projects";
 import { CaseStudyView } from "@/app/components/CaseStudyView";
+import { PasswordGate } from "@/app/components/PasswordGate";
 import { DEFAULT_TRACK } from "@/lib/siteConfig";
 import type { WorkTrack } from "@/lib/projects";
 
@@ -30,5 +31,13 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
   const prev = trackProjects[currentIndex - 1] ?? null;
   const next = trackProjects[currentIndex + 1] ?? null;
 
-  return <CaseStudyView project={project} prev={prev} next={next} layout="toc-left" />;
+  const content = <CaseStudyView project={project} prev={prev} next={next} layout="toc-left" />;
+
+  if (!project.password) return content;
+
+  return (
+    <PasswordGate slug={project.slug} password={project.password}>
+      {content}
+    </PasswordGate>
+  );
 }
