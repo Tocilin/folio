@@ -32,8 +32,7 @@ export type Project = {
   index: string;
   slug: string;
   name: string;
-  category: string;
-  year: string;
+  responsibilities: string;
   client: string;
   role: string;
   description: string;
@@ -50,7 +49,6 @@ export type Project = {
   heroImageWidth?: number;
   heroImageHeight?: number;
   sections: Section[];
-  credits: { label: string; value: string }[];
   track: WorkTrack;
   // When set, the case study page is hidden behind a simple client-side
   // password prompt. Not real security — just a casual gate.
@@ -62,8 +60,7 @@ export const projects: Project[] = [
     index: "01",
     slug: "superapp",
     name: "Bolt SuperApp",
-    category: "Product Design",
-    year: "2026",
+    responsibilities: "Research, Product Design, Design Systems",
     client: "Bolt",
     role: "Lead UX Designer",
     description: "A complete redesign of Bolt's SuperApp, from information architecture to a scalable design system.",
@@ -395,21 +392,13 @@ export const projects: Project[] = [
         ],
       },
     ],
-    credits: [
-      { label: "Client", value: "Bolt" },
-      { label: "Role", value: "Lead UX Designer" },
-      { label: "Timeline", value: "3 months" },
-      { label: "Team", value: "Team of one" },
-      { label: "Platform", value: "iOS & Android" },
-    ],
     track: "ic",
   },
   {
     index: "02",
     slug: "chameleon",
     name: "JPMorgan Chameleon design system",
-    category: "Design System",
-    year: "2024",
+    responsibilities: "Design Systems, Component Architecture, Front-End Development",
     client: "JPMorgan",
     role: "Systems Design, Component Architecture",
     description: "Building a white-label design system that adapts to every brand while remaining virtually invisible to users.",
@@ -428,20 +417,13 @@ export const projects: Project[] = [
         body: "Design-to-dev handoff time dropped from an average of 4.5 days to under 1 day. QA defect rate on UI components fell by 61% in the first quarter post-launch. The system is now maintained by an internal guild with monthly versioning.",
       },
     ],
-    credits: [
-      { label: "Client", value: "JPMorgan" },
-      { label: "Systems Design", value: "Studio Portfolio" },
-      { label: "Engineering", value: "Slate Platform Team" },
-      { label: "Year", value: "2024" },
-    ],
     track: "design-systems",
   },
   {
     index: "03",
     slug: "checkout",
     name: "J.P. Morgan Chase checkout",
-    category: "Product Design",
-    year: "2023",
+    responsibilities: "Product Design, Design Systems, Team Leadership",
     client: "J.P. Morgan Chase",
     role: "Design Lead",
     description: "Solo-designing and shipping J.P. Morgan Chase's Checkout, Commerce Center, and Chameleon design system during a company-wide hiring freeze.",
@@ -532,20 +514,13 @@ export const projects: Project[] = [
         body: "Six months in, the hiring freeze lifted and I built out a team of three designers and a researcher, moving back into design strategy and mentorship. That year I was promoted to Executive Director, and the team was recognized as PXD's Best Team of the Year.",
       },
     ],
-    credits: [
-      { label: "Client", value: "J.P. Morgan Chase" },
-      { label: "Role", value: "Design Lead" },
-      { label: "Team", value: "Team of one → 3 designers, 1 researcher" },
-      { label: "Recognition", value: "PXD Best Team of the Year" },
-    ],
     track: "ic",
   },
   {
     index: "04",
     slug: "colors",
     name: "The science behind the color tokens",
-    category: "Design System",
-    year: "2023",
+    responsibilities: "Design Systems, Visual Design, Art Direction",
     client: "Affirm",
     role: "Web Design, Creative Direction",
     description: "Building a semantic color system that scales with clarity, consistency, and logic.",
@@ -564,20 +539,13 @@ export const projects: Project[] = [
         body: "New business enquiries increased by 85% in the three months post-launch. The site was featured in Awwwards SOTD and collected four CSS Design Awards. Outline has since expanded their team from three to seven people.",
       },
     ],
-    credits: [
-      { label: "Client", value: "Affirm" },
-      { label: "Design", value: "Studio Portfolio" },
-      { label: "Development", value: "Studio Portfolio" },
-      { label: "Year", value: "2023" },
-    ],
     track: "design-systems",
   },
   {
     index: "05",
     slug: "a11y",
     name: "Accessibility by design",
-    category: "Product Design",
-    year: "2022",
+    responsibilities: "Accessibility Audit, Product Design, UX Research",
     client: "JPMorgan",
     role: "Product Design, UX Research",
     description: "Embedding accessibility into the design process, increasing adoption from 12% to 84%.",
@@ -596,20 +564,13 @@ export const projects: Project[] = [
         body: "Thread closed a $2.1M seed round six months after launching with the redesigned product. Time-to-publish for editorial teams dropped by 40%. The state model has since become the most-cited feature in user interviews and sales demos.",
       },
     ],
-    credits: [
-      { label: "Client", value: "JPMorgan" },
-      { label: "Design & Research", value: "Studio Portfolio" },
-      { label: "Founder", value: "James Park" },
-      { label: "Year", value: "2022" },
-    ],
     track: "design-systems",
   },
   {
     index: "06",
     slug: "roi",
     name: "Proving design system ROI",
-    category: "Design System",
-    year: "2024",
+    responsibilities: "Design Systems, Stakeholder Reporting, Metrics & Analysis",
     client: "Affirm",
     role: "Design Systems Lead",
     description: "How we measured design system impact to earn stakeholder trust and investment.",
@@ -628,20 +589,13 @@ export const projects: Project[] = [
         body: "The resulting framework gave leadership a recurring, credible view of design system value, and became the basis for continued investment in the system going forward.",
       },
     ],
-    credits: [
-      { label: "Client", value: "Affirm" },
-      { label: "Role", value: "Design Systems Lead" },
-      { label: "Team", value: "Design Systems Team" },
-      { label: "Year", value: "2024" },
-    ],
     track: "design-systems",
   },
   {
     index: "07",
     slug: "real-estate-roi",
     name: "Real estate ROI calculator",
-    category: "Product Design",
-    year: "2026",
+    responsibilities: "Product Design, Front-End Development",
     client: "Personal Project",
     role: "Product Design & Development",
     description: "A calculator that turns raw property numbers into a clear return-on-investment picture for real estate investors.",
@@ -660,20 +614,13 @@ export const projects: Project[] = [
         body: "The result is a tool that compresses a process that used to take a spreadsheet and a calculator into a few seconds of input, making it easy to compare multiple properties side by side and move faster on decisions.",
       },
     ],
-    credits: [
-      { label: "Client", value: "Personal Project" },
-      { label: "Role", value: "Product Design & Development" },
-      { label: "Platform", value: "Web" },
-      { label: "Year", value: "2026" },
-    ],
     track: "side-projects",
   },
   {
     index: "10",
     slug: "patpat",
     name: "PatPat search revamp",
-    category: "Product Design",
-    year: "TBD",
+    responsibilities: "Research, Product Design, User Testing",
     client: "PatPat",
     role: "Lead Designer",
     description: "Rebuilding the mobile search experience from the ground up, turning a high-bounce, low-adoption feature into one users actually trust.",
@@ -794,12 +741,6 @@ export const projects: Project[] = [
         body: "This project reinforced the importance of a user-centered, data-driven approach to improving search functionality. Combining qualitative feedback with quantitative data, collaborating across teams, and benchmarking industry best practices led to meaningful improvements. Close teamwork between design, product, and engineering ensured feasible and impactful solutions. Some features, like filters and sorting, were deferred for future implementation, a reminder to focus on high-impact improvements first. And using research insights to guide decisions led to measurable gains in engagement and satisfaction, proof that data-driven design works.",
       },
     ],
-    credits: [
-      { label: "Client", value: "PatPat" },
-      { label: "Role", value: "Lead Designer" },
-      { label: "Platform", value: "iOS" },
-      { label: "Year", value: "TBD" },
-    ],
     track: "ic",
   },
   {
@@ -807,8 +748,7 @@ export const projects: Project[] = [
     slug: "adyen-reporting-reconciliation",
     password: "adyen",
     name: "Reporting and reconciliation",
-    category: "Product Design",
-    year: "TBD",
+    responsibilities: "TBD",
     client: "Adyen",
     role: "TBD",
     description: "Transforming one of the most problematic areas of the merchant experience into a reliable place merchants keep coming back to, trust, and rely on.",
@@ -832,19 +772,13 @@ export const projects: Project[] = [
         body: "Placeholder outcomes copy, metrics, launch details, or qualitative impact will go here once the real project details are added.",
       },
     ],
-    credits: [
-      { label: "Client", value: "Adyen" },
-      { label: "Role", value: "TBD" },
-      { label: "Year", value: "TBD" },
-    ],
     track: "management",
   },
   {
     index: "12",
     slug: "superapp-md",
     name: "SuperApp",
-    category: "Product Design",
-    year: "2026",
+    responsibilities: "Research, Product Design, Design Systems",
     client: "Bolt",
     role: "Lead UX Designer",
     description: "A complete redesign of Bolt's SuperApp, from information architecture to a scalable design system.",
@@ -1176,21 +1110,13 @@ export const projects: Project[] = [
         ],
       },
     ],
-    credits: [
-      { label: "Client", value: "Bolt" },
-      { label: "Role", value: "Lead UX Designer" },
-      { label: "Timeline", value: "3 months" },
-      { label: "Team", value: "Team of one" },
-      { label: "Platform", value: "iOS & Android" },
-    ],
     track: "management",
   },
   {
     index: "13",
     slug: "checkout-md",
     name: "Checkout",
-    category: "Product Design",
-    year: "2023",
+    responsibilities: "Product Design, Design Systems, Team Leadership",
     client: "J.P. Morgan Chase",
     role: "Design Lead",
     description: "Solo-designing and shipping J.P. Morgan Chase's Checkout, Commerce Center, and Chameleon design system during a company-wide hiring freeze.",
@@ -1280,12 +1206,6 @@ export const projects: Project[] = [
         label: "Recognition",
         body: "Six months in, the hiring freeze lifted and I built out a team of three designers and a researcher, moving back into design strategy and mentorship. That year I was promoted to Executive Director, and the team was recognized as PXD's Best Team of the Year.",
       },
-    ],
-    credits: [
-      { label: "Client", value: "J.P. Morgan Chase" },
-      { label: "Role", value: "Design Lead" },
-      { label: "Team", value: "Team of one → 3 designers, 1 researcher" },
-      { label: "Recognition", value: "PXD Best Team of the Year" },
     ],
     track: "management",
   },

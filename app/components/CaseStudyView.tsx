@@ -34,10 +34,7 @@ export function CaseStudyView({
   const tocLabels = hasGroups
     ? Array.from(new Set(project.sections.map((s) => s.group).filter((g): g is string => Boolean(g))))
     : project.sections.map((s) => s.label);
-  const toc: TocItem[] = [
-    ...tocLabels.map((label) => ({ id: slugify(label), label })),
-    { id: "credits", label: "Credits" },
-  ];
+  const toc: TocItem[] = tocLabels.map((label) => ({ id: slugify(label), label }));
 
   const content = (
     <div className="flex flex-col gap-20 max-w-[900px] w-full">
@@ -53,7 +50,7 @@ export function CaseStudyView({
           )}
         </div>
         <div className="border-t border-stroke" />
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-1">Client</p>
             <p className="text-sm text-fg-secondary">{project.client}</p>
@@ -63,12 +60,8 @@ export function CaseStudyView({
             <p className="text-sm text-fg-secondary">{project.role}</p>
           </div>
           <div>
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-1">Category</p>
-            <p className="text-sm text-fg-secondary">{project.category}</p>
-          </div>
-          <div>
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-1">Year</p>
-            <p className="text-sm text-fg-secondary font-mono">{project.year}</p>
+            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-1">Responsibilities</p>
+            <p className="text-sm text-fg-secondary">{project.responsibilities}</p>
           </div>
         </div>
         {project.heroImage && (
@@ -141,15 +134,11 @@ export function CaseStudyView({
         );
       })}
 
-      {/* Credits */}
-      <section id="credits" className="border-t border-stroke pt-12 flex flex-col gap-4 scroll-mt-28">
-        <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-4">Credits</p>
-        {project.credits.map((c) => (
-          <div key={c.label} className="flex gap-8 text-sm">
-            <span className="text-fg-tertiary w-28 shrink-0">{c.label}</span>
-            <span className="text-fg-secondary">{c.value}</span>
-          </div>
-        ))}
+      {/* Closing note */}
+      <section className="border-t border-stroke pt-20 pb-8 text-center">
+        <p className="text-5xl md:text-7xl font-semibold tracking-[-1.44px] leading-[1.05] text-fg-primary">
+          Thank you for scrolling all the way!
+        </p>
       </section>
 
       {/* Prev / Next */}

@@ -4,8 +4,7 @@ export const dummyCaseStudy: Project = {
   index: "00",
   slug: "template-preview",
   name: "Example case study title",
-  category: "Product Design",
-  year: "2026",
+  responsibilities: "Research, Product Design, Prototyping",
   client: "Acme Corp",
   role: "Product Designer",
   description: "A short summary of the project used to preview this layout template.",
@@ -44,12 +43,6 @@ export const dummyCaseStudy: Project = {
       body: "Placeholder results copy: metrics, launch details, or qualitative impact would go here in a real case study.",
       images: [{ src: "/images/placeholder.png", alt: "Placeholder image" }],
     },
-  ],
-  credits: [
-    { label: "Client", value: "Acme Corp" },
-    { label: "Role", value: "Product Designer" },
-    { label: "Timeline", value: "3 months" },
-    { label: "Year", value: "2026" },
   ],
   track: "ic",
 };
