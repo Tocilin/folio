@@ -11,19 +11,22 @@ export type SectionImage = {
   height?: number;
 };
 
+export type Metric = {
+  value: string;
+  label: string;
+};
+
 export type Section = {
   group?: string;
   label: string;
   body: string;
   images?: SectionImage[];
+  // Optional stat-card grid rendered below the body, e.g. for a Results
+  // section: { value: "52%", label: "Search engagement" }.
+  stats?: Metric[];
 };
 
 export type WorkTrack = "management" | "ic" | "design-systems" | "side-projects";
-
-export type Metric = {
-  value: string;
-  label: string;
-};
 
 export type Project = {
   index: string;
@@ -681,101 +684,109 @@ export const projects: Project[] = [
     subtitle: "A deep dive into revamping the PatPat mobile app's search experience: user research and competitive analysis leading to a redesigned search flow that cut drop-off and lifted engagement.",
     hero: { from: "#1a0a0e", via: "#2e0f16", to: "#e11d48" },
     heroImage: "/images/patpat/01-hero.jpg",
+    heroFramed: true,
+    heroImageWidth: 1800,
+    heroImageHeight: 675,
     sections: [
       {
         group: "Overview",
         label: "Introduction",
         body: "In this case study, I'll share my contribution to improving the search experience for the PatPat mobile app. Typically, in an agency setting, we don't get to see the results of our work, we deliver and move on. However, this project was different, allowing me to stay long enough to see the impact of our efforts.",
-        images: [{ src: "/images/patpat/02-intro.jpg", alt: "PatPat mobile app splash screen and home screen" }],
+        images: [{ src: "/images/patpat/02-intro.jpg", alt: "PatPat mobile app splash screen and home screen", framed: true, width: 1800, height: 675 }],
       },
       {
         group: "Overview",
         label: "About PatPat",
         body: "PatPat is a curated online boutique of fashionable matching outfits for the whole family to bring the crew together in style.",
-        images: [{ src: "/images/patpat/03-about-patpat.jpg", alt: "PatPat mobile app browsing screens showing family matching outfits" }],
+        images: [{ src: "/images/patpat/03-about-patpat.jpg", alt: "PatPat mobile app browsing screens showing family matching outfits", framed: true, width: 1800, height: 675 }],
       },
       {
         group: "Overview",
         label: "The opportunity",
         body: "Our analysis revealed that search performance was falling short. Collaborating with engineers, our product team gathered data to quantify the issues and confirm the need for improvements. About 62% of users exited the app within the first two minutes of use, indicating frustration or difficulty navigating to their desired content. Only 18% of users engaged with the search functionality at all, and among those who did, 46% abandoned the process after viewing the results page, unable to find what they were looking for or unwilling to trust the results. The design challenge: improve the search experience using best practices in usability to make it more intuitive, engaging, and effective, reducing user frustration and improving overall engagement.",
-        images: [{ src: "/images/patpat/04-the-opportunity.jpg", alt: "Design challenge and opportunity slide" }],
+        images: [{ src: "/images/patpat/04-the-opportunity.jpg", alt: "Design challenge and opportunity slide", framed: true, width: 1800, height: 675 }],
       },
       {
         group: "Research",
         label: "User interviews",
         body: "Despite having quantitative data, we needed deeper qualitative insights into search usage. I collaborated with our researcher to conduct a series of user interviews, recruiting participants through usertesting.com to gather firsthand feedback and better understand user behavior and pain points. Four things stood out: low visibility (the search bar wasn't prominent enough, so users relied on browsing instead), no search suggestions while typing, irrelevant search results that didn't match queries, and missing filter and sorting options that made search feel incomplete.",
-        images: [{ src: "/images/patpat/05-user-interviews.jpg", alt: "User interview research findings" }],
+        images: [{ src: "/images/patpat/05-user-interviews.jpg", alt: "User interview research findings", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Research",
         label: "Competitive analysis",
         body: "Alongside the quantitative and qualitative insights, I ran a competitive analysis to benchmark search functionality against both direct and indirect competitors. This helped identify common industry standards and emerging trends, evaluating search bar visibility, autosuggestions, typo correction, result relevance, filtering and sorting options, and how competitors handled empty search results.",
-        images: [{ src: "/images/patpat/06-competitive-analysis.jpg", alt: "Competitive analysis matrix comparing search functionality" }],
+        images: [{ src: "/images/patpat/06-competitive-analysis.jpg", alt: "Competitive analysis matrix comparing search functionality", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Research",
         label: "Desk research",
         body: "Finally, I conducted desk research to gather insights from industry-leading sources without direct user interaction: reviewing best practices, usability guidelines, and research findings from organizations like the Baymard Institute, Nielsen Norman Group, and Forrester Research. This gave us a solid foundation for our decisions, aligned with established UX principles and proven strategies.",
-        images: [{ src: "/images/patpat/07-desk-research.jpg", alt: "Desk research findings and industry best practices" }],
+        images: [{ src: "/images/patpat/07-desk-research.jpg", alt: "Desk research findings and industry best practices", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Search bar placement & visibility",
         body: "The search bar has been improved by placing it prominently on key screens and ensuring it remains visible while scrolling, making it easier for users to locate and use the search function without unnecessary effort.",
-        images: [{ src: "/images/patpat/08-search-bar-visibility.jpg", alt: "Redesigned search bar placement and visibility" }],
+        images: [{ src: "/images/patpat/08-search-bar-visibility.jpg", alt: "Redesigned search bar placement and visibility", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Trending searches",
         body: "Popular search suggestions have been introduced to inspire users and encourage exploration, helping users discover trending items and engage with the app even when they don't have a specific product in mind.",
-        images: [{ src: "/images/patpat/09-trending-searches.jpg", alt: "Trending searches design" }],
+        images: [{ src: "/images/patpat/09-trending-searches.jpg", alt: "Trending searches design", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Recent search queries",
         body: "Recent search queries have been introduced to help users quickly revisit previous searches without retyping, enhancing convenience and encouraging repeated engagement with the search feature.",
-        images: [{ src: "/images/patpat/10-recent-searches.jpg", alt: "Recent search queries design" }],
+        images: [{ src: "/images/patpat/10-recent-searches.jpg", alt: "Recent search queries design", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Autosuggestions",
         body: "An autosuggest feature has been implemented to provide relevant suggestions as users type, helping them find items faster and stay focused on their intent.",
-        images: [{ src: "/images/patpat/11-autosuggestions.jpg", alt: "Autosuggestions design" }],
+        images: [{ src: "/images/patpat/11-autosuggestions.jpg", alt: "Autosuggestions design", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Preserving search queries",
         body: "The search input now remains visible in the search bar after submission, letting users refine their search without needing to retype their query from scratch.",
-        images: [{ src: "/images/patpat/12-preserve-query.jpg", alt: "Preserved search query design" }],
+        images: [{ src: "/images/patpat/12-preserve-query.jpg", alt: "Preserved search query design", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Search result count",
         body: "The total number of matching results is now displayed, helping users gauge the effort needed to browse through available options and make informed decisions.",
-        images: [{ src: "/images/patpat/13-result-count.jpg", alt: "Search result count design" }],
+        images: [{ src: "/images/patpat/13-result-count.jpg", alt: "Search result count design", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Spell correction",
         body: "Typo detection and correction have been implemented to help users find relevant products even if they enter incorrect search terms, ensuring a smoother search experience.",
-        images: [{ src: "/images/patpat/14-spell-correction.jpg", alt: "Spell correction design" }],
+        images: [{ src: "/images/patpat/14-spell-correction.jpg", alt: "Spell correction design", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "No results page",
         body: "The \"no results\" page has been enhanced with an \"Other options to consider\" section featuring flash sales, new arrivals, and trending items, helping users explore relevant products even when their initial search doesn't yield exact matches.",
-        images: [{ src: "/images/patpat/15-no-results-page.jpg", alt: "Improved no results page design" }],
+        images: [{ src: "/images/patpat/15-no-results-page.jpg", alt: "Improved no results page design", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Design",
         label: "Accurate & relevant results",
         body: "Search relevancy was significantly improved by refining the ranking algorithm to weigh multiple parameters, so the most relevant items appear first. For a search like \"black jeans,\" results are ranked by exact match, popularity, ratings, and availability, in that order, so in-stock, well-reviewed, frequently bought items surface ahead of the rest.",
-        images: [{ src: "/images/patpat/16-accurate-results.jpg", alt: "Improved search result relevance and ranking" }],
+        images: [{ src: "/images/patpat/16-accurate-results.jpg", alt: "Improved search result relevance and ranking", framed: true, width: 1800, height: 820 }],
       },
       {
         group: "Results",
         label: "Measured outcomes",
         body: "Following the search experience improvements, only 38% of users exited the app within the first two minutes, down from 62%, a significant reduction in frustration and improved content discoverability. Search usage increased to 52%, showing users found the feature more accessible and intuitive. Search drop-off decreased to 24%, down from 46%, demonstrating improved trust in the search results and better alignment with user expectations.",
+        stats: [
+          { value: "38%", label: "2-min bounce rate" },
+          { value: "52%", label: "Search engagement" },
+          { value: "24%", label: "Search drop-off" },
+        ],
       },
       {
         group: "Results",

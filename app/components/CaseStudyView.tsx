@@ -4,6 +4,7 @@ import { FadeImage } from "@/app/components/FadeImage";
 import { FramedImage } from "@/app/components/FramedImage";
 import { Footer } from "@/app/components/Footer";
 import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
+import { ResultsCards } from "@/app/components/ResultsCards";
 import type { Project } from "@/lib/projects";
 
 function slugify(text: string) {
@@ -107,6 +108,7 @@ export function CaseStudyView({
             <section className="flex flex-col gap-6">
               <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>
               <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
+              {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} />}
               {section.images && section.images.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${
                   section.images.length === 1 ? "grid-cols-1" :
