@@ -100,7 +100,9 @@ export function CaseStudyView({
             )}
             <section className="flex flex-col gap-6">
               <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>
-              <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
+              {section.body && (
+                <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
+              )}
               {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} />}
               {section.images && section.images.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${

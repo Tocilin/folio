@@ -14,6 +14,9 @@ export type SectionImage = {
 export type Metric = {
   value: string;
   label: string;
+  // Optional supporting sentence shown under the label — only used when
+  // the metric renders as a full ResultsCards card (Section.stats).
+  body?: string;
 };
 
 export type Section = {
@@ -728,11 +731,23 @@ export const projects: Project[] = [
       {
         group: "Results",
         label: "Measured outcomes",
-        body: "Following the search experience improvements, only 38% of users exited the app within the first two minutes, down from 62%, a significant reduction in frustration and improved content discoverability. Search usage increased to 52%, showing users found the feature more accessible and intuitive. Search drop-off decreased to 24%, down from 46%, demonstrating improved trust in the search results and better alignment with user expectations.",
+        body: "",
         stats: [
-          { value: "38%", label: "2-min bounce rate" },
-          { value: "52%", label: "Search engagement" },
-          { value: "24%", label: "Search drop-off" },
+          {
+            value: "38%",
+            label: "Increased user retention on mobile",
+            body: "Following the search experience improvements, only 38% of users exited the app within the first two minutes, indicating a significant reduction in frustration and improved content discoverability.",
+          },
+          {
+            value: "52%",
+            label: "Higher search engagement",
+            body: "Search usage increased to 52%, showing that users found the feature more accessible and intuitive, leading to greater adoption and interaction.",
+          },
+          {
+            value: "24%",
+            label: "Reduced search drop-off",
+            body: "Search drop-off decreased to 24%, demonstrating improved trust in the search results and better alignment with user expectations.",
+          },
         ],
       },
       {
