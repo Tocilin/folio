@@ -60,7 +60,7 @@ export function PasswordGate({
         {error && <p className="text-xs text-red-500">Wrong password, try again.</p>}
         <button
           type="submit"
-          className="inline-flex items-center justify-center px-5 py-2.5 rounded-sm text-sm font-medium tracking-tight bg-button-primary-fill text-button-primary-label hover:bg-button-primary-fill-hover transition-colors"
+          className="w-full inline-flex items-center justify-center px-5 py-2.5 rounded-sm text-sm font-medium tracking-tight bg-button-primary-fill text-button-primary-label hover:bg-button-primary-fill-hover transition-colors"
         >
           Unlock
         </button>
