@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Project } from "@/lib/projects";
 import { ProjectVisual } from "@/app/components/ProjectVisual";
 import { LockIcon } from "@/app/components/LockIcon";
+import { ProjectMetrics } from "@/app/components/ProjectMetrics";
 import { seededRandom, hashSeed } from "@/lib/seededRandom";
 
 function getOffsets(slug: string) {
@@ -43,6 +44,7 @@ export function DesignSystemsSection({ projects }: { projects: Project[] }) {
                   {p.password && <LockIcon className="w-3.5 h-3.5 text-fg-tertiary shrink-0" />}
                 </span>
                 <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
+                {p.metrics && <ProjectMetrics metrics={p.metrics} />}
               </div>
             </Link>
           );

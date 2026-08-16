@@ -20,6 +20,11 @@ export type Section = {
 
 export type WorkTrack = "management" | "ic" | "design-systems" | "side-projects";
 
+export type Metric = {
+  value: string;
+  label: string;
+};
+
 export type Project = {
   index: string;
   slug: string;
@@ -29,6 +34,9 @@ export type Project = {
   client: string;
   role: string;
   description: string;
+  // Headline impact stats shown below the description on the homepage
+  // list row, e.g. { value: "+5.5x", label: "Flash sales/year" }.
+  metrics?: Metric[];
   subtitle?: string;
   hero: { from: string; via: string; to: string };
   heroImage?: string;
@@ -699,6 +707,10 @@ export const projects: Project[] = [
     client: "Adyen",
     role: "TBD",
     description: "Transforming one of the most problematic areas of the merchant experience into a reliable place merchants keep coming back to, trust, and rely on.",
+    metrics: [
+      { value: "-30%", label: "Time spent/sale" },
+      { value: "+5.5x", label: "Flash sales/year" },
+    ],
     subtitle: "A one- or two-line subtitle that frames the problem and the outcome, giving readers context before they dive into the details below.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     sections: [

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
 import { LockIcon } from "@/app/components/LockIcon";
+import { ProjectMetrics } from "@/app/components/ProjectMetrics";
 
 export function SideProjectsSection({ projects }: { projects: Project[] }) {
   return (
@@ -24,6 +25,7 @@ export function SideProjectsSection({ projects }: { projects: Project[] }) {
                 {p.password && <LockIcon className="w-3.5 h-3.5 text-fg-tertiary shrink-0" />}
               </span>
               <p className="text-sm text-fg-tertiary mt-1 leading-relaxed">{p.description}</p>
+              {p.metrics && <ProjectMetrics metrics={p.metrics} />}
             </div>
           </Link>
         ))}
