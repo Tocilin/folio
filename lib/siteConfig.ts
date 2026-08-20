@@ -30,7 +30,7 @@ export const siteConfigs: Record<WorkTrack, SiteConfig> = {
       "I've led teams and helped shape product and design strategy, turning big business goals into something teams can understand, act on, and ship. A lot of my work happens before there's an obvious solution: asking the right questions, connecting the dots, challenging assumptions, setting direction, and getting product, design, and engineering moving toward the same goal.",
       "I care about building strong teams, giving designers enough context and ownership to do their best work, and keeping design connected to the business. Less design theater, more clarity, good decisions, and products that actually make a difference.",
     ],
-    resumeHref: "/resume",
+    resumeHref: "/Eugene_Tochilin_Resume.pdf",
   },
   ic: {
     track: "ic",
@@ -44,7 +44,7 @@ export const siteConfigs: Record<WorkTrack, SiteConfig> = {
       "I love taking messy, complex problems and turning them into products that feel simple and obvious. I obsess over pixels, interactions, flows, edge cases, and all those tiny details most people will never notice, but definitely feel when they're wrong.",
       "And I don't like stopping at design. I prototype, experiment, and build with code, which lets me push ideas further and get closer to the actual product. For me, great product design is equal parts thinking, making, testing, and obsessing over the details until everything clicks.",
     ],
-    resumeHref: "/resume",
+    resumeHref: "/Eugene_Tochilin_Resume.pdf",
   },
   "design-systems": {
     track: "design-systems",
@@ -58,7 +58,7 @@ export const siteConfigs: Record<WorkTrack, SiteConfig> = {
       "I build systems that help designers and engineers move faster, make products more consistent, and bake accessibility into the foundation instead of treating it as an afterthought. I care about everything from the big-picture architecture and governance to components, patterns, documentation, and the tiny details that make a system actually work.",
       "And I don't stop at designing the system. I build with code, collaborate closely with engineers, and ship. To me, a great design system isn't a library of components. It's infrastructure that helps teams build better products, faster.",
     ],
-    resumeHref: "/resume",
+    resumeHref: "/Eugene_Tochilin_Resume.pdf",
   },
   "side-projects": {
     track: "side-projects",
@@ -68,6 +68,6 @@ export const siteConfigs: Record<WorkTrack, SiteConfig> = {
     heroWords: ["Ideas.", "Prototypes.", "Play."],
     subtitle: "A running list of personal projects: things I designed and built just to see if I could.",
     about: defaultAbout,
-    resumeHref: "/resume",
+    resumeHref: "/Eugene_Tochilin_Resume.pdf",
   },
 };
