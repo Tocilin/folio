@@ -9,7 +9,7 @@ export function Footer() {
         <span className="text-fg-tertiary/60">({version.version})</span>
       </div>
       <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-        <a href="/Eugene_Tochilin_Resume.pdf" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">Resume</a>
+        <Link href="/resume" className="underline-dots hover:text-fg-primary transition-colors">Resume</Link>
         <a href="https://www.linkedin.com/in/etochilin/" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">LinkedIn</a>
         <Link href="/design-system" className="underline-dots hover:text-fg-primary transition-colors">Design system</Link>
         <Link href="/templates" className="underline-dots hover:text-fg-primary transition-colors">Templates</Link>

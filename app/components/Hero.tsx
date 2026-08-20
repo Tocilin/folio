@@ -22,7 +22,7 @@ export function Hero({
         <div className="flex flex-col gap-6">
           <p className="text-fg-secondary text-lg leading-relaxed max-w-sm">{subtitle}</p>
           <div className="flex items-center gap-3">
-            <Button variant="primary" href={resumeHref} target="_blank" rel="noopener noreferrer">Resume</Button>
+            <Button variant="primary" href={resumeHref}>Resume</Button>
             <Button variant="secondary" href="https://www.linkedin.com/in/etochilin/" target="_blank" rel="noopener noreferrer">LinkedIn</Button>
           </div>
         </div>

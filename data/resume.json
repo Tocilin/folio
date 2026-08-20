@@ -1,0 +1,61 @@
+{
+  "name": "Eugene Tochilin",
+  "title": "Product Design Leader",
+  "contact": {
+    "website": "tochilin.me",
+    "websiteHref": "https://tochilin.me",
+    "email": "tochilin.e@gmail.com",
+    "phone": "+1 (779) 245-3866"
+  },
+  "linkedinHref": "https://www.linkedin.com/in/etochilin/",
+  "experience": [
+    {
+      "role": "Design Lead",
+      "company": "Adyen",
+      "dates": "Aug 2026 - Present",
+      "description": "Leading design for Reporting & Reconciliation, one of Adyen's most complex product areas. Driving improvements to simplify technically constrained workflows and make financial reporting and reconciliation more intuitive and scalable for global businesses."
+    },
+    {
+      "role": "Head of Design",
+      "company": "Bolt",
+      "dates": "Nov 2025 - Aug 2026 (9 mos)",
+      "description": "Initially led the design team, then transitioned into a hands-on IC role as the company downsized. Owned end-to-end product design for Bolt SuperApp and Checkout, serving 2M+ users. Built experiences across payments, banking, crypto, rewards, and growth, established the design system, and introduced AI-powered design workflows."
+    },
+    {
+      "role": "Design Manager",
+      "company": "JPMorgan Chase",
+      "dates": "Feb 2023 - Nov 2025",
+      "description": "Led design for payment solutions, managing team delivery, improving UX quality, and aligning strategy across engineering and business stakeholders."
+    },
+    {
+      "role": "Staff Designer → Design Manager",
+      "company": "Affirm",
+      "dates": "Mar 2022 - Feb 2023 (1 yr)",
+      "description": "Led the vision, roadmap, and strategy of Affirm's Design System. Mentored team members on design system best practices, contributing, and governance."
+    },
+    {
+      "role": "Design Manager",
+      "company": "Wish",
+      "dates": "Oct 2020 - Mar 2022 (1 yr 7 mos)",
+      "description": "Part of the design leadership team at Wish, helping product teams deliver high-performing eCommerce experiences across platforms and customer journeys."
+    },
+    {
+      "role": "Product Design Lead",
+      "company": "iManage",
+      "dates": "Sep 2016 - Oct 2020 (4 yrs 1 mo)",
+      "description": "Led a small team of designers to deliver UX solutions for multiple projects, including an enhanced security document management system, admin panel, and threat analytics platform, while also creating and maintaining the iManage Design System (ICE)."
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.S. in Information Technology",
+      "school": "Technical University of Moldova",
+      "dates": "2004 – 2005"
+    },
+    {
+      "degree": "B.S. in Information Technology",
+      "school": "Technical University of Moldova",
+      "dates": "1999 – 2004"
+    }
+  ]
+}
