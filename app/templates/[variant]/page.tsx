@@ -31,6 +31,7 @@ export default async function TemplatePreview({ params }: { params: Promise<{ va
       next={null}
       layout={match.id}
       backHref="/templates"
+      backLabel="Templates"
       navLabel={`Template: ${match.name}`}
       linkPrefix="/templates"
     />

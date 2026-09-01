@@ -19,6 +19,7 @@ export function CaseStudyView({
   next,
   layout,
   backHref = "/",
+  backLabel = "Home",
   navLabel = "Eugene Tochilin",
   linkPrefix = "/work",
 }: {
@@ -27,6 +28,7 @@ export function CaseStudyView({
   next: Project | null;
   layout: CaseStudyLayout;
   backHref?: string;
+  backLabel?: string;
   navLabel?: string;
   linkPrefix?: string;
 }) {
@@ -172,7 +174,7 @@ export function CaseStudyView({
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
         <Link href={backHref} className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
-          ← Back
+          ← {backLabel}
         </Link>
         <span className="text-sm font-medium tracking-tight">{navLabel}</span>
         <ThemeToggle />

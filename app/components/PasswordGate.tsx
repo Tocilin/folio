@@ -41,7 +41,7 @@ export function PasswordGate({
     <div className="min-h-screen flex flex-col">
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
         <Link href="/" className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
-          ← Back
+          ← Home
         </Link>
       </nav>
       <form onSubmit={handleSubmit} className="flex-1 flex flex-col items-center justify-center gap-4 w-full max-w-xs mx-auto px-6">
