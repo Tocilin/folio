@@ -336,7 +336,7 @@ export const projects: Project[] = [
       {
         group: "Delivery",
         label: "The work I delivered",
-        body: "In three months, as a team of one, I completed a full product redesign. I rebuilt the entire app around a new modular architecture. I created a completely new onboarding flow. I built the product's first design system from scratch. I refreshed the visual design to feel more premium and polished. I designed and launched three new product features. And I delivered interactive coded prototypes that helped engineering move faster and align on execution with far less back-and-forth.",
+        body: "In three months, as a team of one, I completed a full product redesign. I rebuilt the entire app around a new modular architecture: dashboard plus independent mini-apps. I created a completely new onboarding flow to cut friction and improve the first-time experience. I built the product's first design system from scratch, foundations through components. I refreshed the visual design to feel more premium and trustworthy. I designed and shipped six new features and integrations, crypto, trading, gaming, loans, and credit score among them, double the three originally scoped. And I delivered interactive coded prototypes that helped engineering move faster and align on execution with far less back-and-forth.",
         images: [
           {
             src: "/images/superapp/32-redesign.jpg",
@@ -382,17 +382,40 @@ export const projects: Project[] = [
       {
         group: "Results",
         label: "Results",
-        body: "The redesigned SuperApp launched publicly, a real market-ready product live on iOS and Android. The numbers made the case, but the bigger win was a product the team could finally grow with confidence.",
+        body: "The redesigned SuperApp shipped, live on iOS and Android. But three months in, the numbers told a more complicated story than the growth pitch that got this project greenlit.",
         images: [
           {
             src: "/images/superapp/39-results-intro.jpg",
             alt: "Results title slide",
           },
+        ],
+        stats: [
           {
-            src: "/images/superapp/41-key-product-outcomes.jpg",
-            alt: "Key product outcomes: total registrations, daily active users, App Store rating, and integrations launched after the redesign",
+            value: "~10K",
+            label: "Total registrations",
+            body: "Target was 2M+. Onboarding friction and weak retention kept growth well below the original pitch.",
+          },
+          {
+            value: "~23",
+            label: "Daily active users",
+            body: "Most people arrived through Checkout, explored the app once, and rarely came back.",
+          },
+          {
+            value: "4.6★",
+            label: "App Store rating",
+            body: "Looked strong on paper, but a noticeable share of the reviews came from internal employees, which made the signal less reliable.",
+          },
+          {
+            value: "6",
+            label: "Integrations launched",
+            body: "Crypto, trading, gaming, loans, and credit score all shipped on a foundation that didn't exist three months earlier, double what was originally scoped.",
           },
         ],
+      },
+      {
+        group: "Results",
+        label: "One app. Too many lessons.",
+        body: "The growth numbers weren't the win the original pitch promised. But a chaotic proof of concept became a real, structured product, with its own architecture, onboarding, and design system, that the team could actually keep building on after I moved on.",
       },
     ],
     track: "ic",
@@ -615,6 +638,31 @@ export const projects: Project[] = [
       {
         label: "Outcomes",
         body: "The result is a tool that compresses a process that used to take a spreadsheet and a calculator into a few seconds of input, making it easy to compare multiple properties side by side and move faster on decisions.",
+      },
+    ],
+    track: "side-projects",
+  },
+  {
+    index: "08",
+    slug: "chicken-noise",
+    name: "Chicken Noise",
+    responsibilities: "Product Design, Front-End Development",
+    client: "Personal Project",
+    role: "Product Design & Development",
+    description: "A white noise app that plays continuous, uniform background sound to mask sudden noises, help you sleep, and improve concentration.",
+    hero: { from: "#0a0e1f", via: "#12213a", to: "#1e3a5f" },
+    sections: [
+      {
+        label: "Overview",
+        body: "It's not silence that keeps people up or breaks their focus, it's the unpredictability: a door slamming, traffic outside, a neighbor's footsteps. Chicken Noise is a simple app built around one idea: a steady, uniform layer of sound that masks those sudden spikes, so your brain stops flinching at every noise and settles into sleep or deep work instead.",
+      },
+      {
+        label: "Approach",
+        body: "I kept the product deliberately narrow. One screen, a curated library of sound profiles (white, pink, and brown noise alongside rain, fan, and ambient variants), a play button, and a sleep timer. No accounts, no onboarding, no clutter competing with the one thing the app is actually for. Playback keeps running in the background and from the lock screen, since the moment people need it most is usually after they've put the phone down.",
+      },
+      {
+        label: "Outcomes",
+        body: "The result is a small, focused tool that does one job well: it fades the unpredictable noise of a room into something steady and easy to ignore, whether that's for falling asleep faster or holding concentration through a long stretch of work.",
       },
     ],
     track: "side-projects",
@@ -1066,7 +1114,7 @@ export const projects: Project[] = [
       {
         group: "Delivery",
         label: "The work I delivered",
-        body: "In three months, as a team of one, I completed a full product redesign. I rebuilt the entire app around a new modular architecture. I created a completely new onboarding flow. I built the product's first design system from scratch. I refreshed the visual design to feel more premium and polished. I designed and launched three new product features. And I delivered interactive coded prototypes that helped engineering move faster and align on execution with far less back-and-forth.",
+        body: "In three months, as a team of one, I completed a full product redesign. I rebuilt the entire app around a new modular architecture: dashboard plus independent mini-apps. I created a completely new onboarding flow to cut friction and improve the first-time experience. I built the product's first design system from scratch, foundations through components. I refreshed the visual design to feel more premium and trustworthy. I designed and shipped six new features and integrations, crypto, trading, gaming, loans, and credit score among them, double the three originally scoped. And I delivered interactive coded prototypes that helped engineering move faster and align on execution with far less back-and-forth.",
         images: [
           {
             src: "/images/superapp/32-redesign.jpg",
@@ -1112,17 +1160,40 @@ export const projects: Project[] = [
       {
         group: "Results",
         label: "Results",
-        body: "The redesigned SuperApp launched publicly, a real market-ready product live on iOS and Android. The numbers made the case, but the bigger win was a product the team could finally grow with confidence.",
+        body: "The redesigned SuperApp shipped, live on iOS and Android. But three months in, the numbers told a more complicated story than the growth pitch that got this project greenlit.",
         images: [
           {
             src: "/images/superapp/39-results-intro.jpg",
             alt: "Results title slide",
           },
+        ],
+        stats: [
           {
-            src: "/images/superapp/41-key-product-outcomes.jpg",
-            alt: "Key product outcomes: total registrations, daily active users, App Store rating, and integrations launched after the redesign",
+            value: "~10K",
+            label: "Total registrations",
+            body: "Target was 2M+. Onboarding friction and weak retention kept growth well below the original pitch.",
+          },
+          {
+            value: "~23",
+            label: "Daily active users",
+            body: "Most people arrived through Checkout, explored the app once, and rarely came back.",
+          },
+          {
+            value: "4.6★",
+            label: "App Store rating",
+            body: "Looked strong on paper, but a noticeable share of the reviews came from internal employees, which made the signal less reliable.",
+          },
+          {
+            value: "6",
+            label: "Integrations launched",
+            body: "Crypto, trading, gaming, loans, and credit score all shipped on a foundation that didn't exist three months earlier, double what was originally scoped.",
           },
         ],
+      },
+      {
+        group: "Results",
+        label: "One app. Too many lessons.",
+        body: "The growth numbers weren't the win the original pitch promised. But a chaotic proof of concept became a real, structured product, with its own architecture, onboarding, and design system, that the team could actually keep building on after I moved on.",
       },
     ],
     track: "management",

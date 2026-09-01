@@ -46,10 +46,11 @@ export function TrackSwitcher({ current }: { current: WorkTrack }) {
         </svg>
       </button>
       <div
-        className={`absolute left-0 top-full mt-3 w-56 rounded-xl border border-stroke bg-surface-base py-2 shadow-2xl z-50 transition-all duration-200 ease-out ${
+        className={`absolute left-0 top-full mt-3 w-64 rounded-xl border border-stroke bg-surface-base py-2 shadow-2xl z-50 transition-all duration-200 ease-out ${
           open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
         }`}
       >
+        <p className="px-4 pt-1 pb-2 text-xs text-fg-tertiary uppercase tracking-widest">Explore by role</p>
         {order.map((t) => {
           const cfg = siteConfigs[t];
           const isCurrent = t === current;
