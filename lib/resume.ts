@@ -10,7 +10,6 @@ export type ResumeEntry = {
 export type EducationEntry = {
   degree: string;
   school: string;
-  dates: string;
 };
 
 export type Resume = {

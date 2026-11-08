@@ -24,7 +24,7 @@
     {
       "role": "Design Manager",
       "company": "JPMorgan Chase",
-      "dates": "Feb 2023 - Nov 2025",
+      "dates": "Feb 2023 - Nov 2025 (2 yrs 9 mos)",
       "description": "Led design for payment solutions, managing team delivery, improving UX quality, and aligning strategy across engineering and business stakeholders."
     },
     {
@@ -50,13 +50,11 @@
   "education": [
     {
       "degree": "M.S. in Information Technology",
-      "school": "Technical University of Moldova",
-      "dates": "2004 – 2005"
+      "school": "Technical University of Moldova"
     },
     {
       "degree": "B.S. in Information Technology",
-      "school": "Technical University of Moldova",
-      "dates": "1999 – 2004"
+      "school": "Technical University of Moldova"
     }
   ]
 }

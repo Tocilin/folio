@@ -153,8 +153,7 @@ function ResumeDocument() {
             View,
             { style: styles.educationEntry, key: entry.degree },
             e(Text, { style: styles.degree }, entry.degree),
-            e(Text, { style: styles.school }, entry.school),
-            e(Text, { style: styles.dates }, entry.dates)
+            e(Text, { style: styles.school }, entry.school)
           )
         )
       )

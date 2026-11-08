@@ -80,7 +80,6 @@ export default function Resume() {
                   <p className="text-xl font-medium tracking-tight">{e.degree}</p>
                   <p className="text-sm text-fg-tertiary mt-1">{e.school}</p>
                 </div>
-                <span className="text-sm text-fg-tertiary font-mono shrink-0">{e.dates}</span>
               </div>
             ))}
           </div>
