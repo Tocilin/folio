@@ -4,6 +4,8 @@ export type ResumeEntry = {
   role: string;
   company: string;
   dates: string;
+  // "YYYY-MM". When set, the tenure is calculated live and appended to dates.
+  startDate?: string;
   description: string;
 };
 

@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import React from "react";
 import { Document, Page, Text, View, Link, StyleSheet, renderToFile } from "@react-pdf/renderer";
 import { createRequire } from "module";
+import { entryDates } from "../lib/tenure.mjs";
 
 const require = createRequire(import.meta.url);
 const resume = require("../data/resume.json");
@@ -136,7 +137,7 @@ function ResumeDocument() {
               e(Text, { style: styles.at }, "@ "),
               e(Text, { style: styles.company }, entry.company)
             ),
-            e(Text, { style: styles.dates }, entry.dates),
+            e(Text, { style: styles.dates }, entryDates(entry)),
             e(Text, { style: styles.description }, entry.description)
           )
         ),

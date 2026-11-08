@@ -1,6 +1,6 @@
 {
   "name": "Eugene Tochilin",
-  "title": "Product Design Leader",
+  "title": "Designgineer",
   "contact": {
     "website": "tochilin.me",
     "websiteHref": "https://tochilin.me",
@@ -13,6 +13,7 @@
       "role": "Design Lead",
       "company": "Adyen",
       "dates": "Aug 2026 - Present",
+      "startDate": "2026-08",
       "description": "Leading design for Reporting & Reconciliation, one of Adyen's most complex product areas. Driving improvements to simplify technically constrained workflows and make financial reporting and reconciliation more intuitive and scalable for global businesses."
     },
     {

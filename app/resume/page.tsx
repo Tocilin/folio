@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { resume } from "@/lib/resume";
+import { entryDates } from "@/lib/tenure.mjs";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
 import { Footer } from "@/app/components/Footer";
@@ -7,6 +8,9 @@ import { Footer } from "@/app/components/Footer";
 export const metadata = {
   title: "Resume - Portfolio",
 };
+
+// Re-render hourly so the live tenure on the current role stays up to date.
+export const revalidate = 3600;
 
 export default function Resume() {
   return (
@@ -45,7 +49,7 @@ export default function Resume() {
                   <p className="text-xl font-medium tracking-tight">
                     {e.role} <span className="text-fg-tertiary font-normal">@ {e.company}</span>
                   </p>
-                  <span className="text-sm text-fg-tertiary font-mono shrink-0">{e.dates}</span>
+                  <span className="text-sm text-fg-tertiary font-mono shrink-0">{entryDates(e)}</span>
                 </div>
                 <p className="text-fg-secondary leading-relaxed max-w-2xl">{e.description}</p>
               </div>
