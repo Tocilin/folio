@@ -24,6 +24,7 @@ export type Resume = {
   };
   linkedinHref: string;
   experience: ResumeEntry[];
+  skills: string;
   education: EducationEntry[];
 };
 

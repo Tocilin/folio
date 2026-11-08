@@ -51,19 +51,22 @@ export function TrackSwitcher({ current }: { current: WorkTrack }) {
         }`}
       >
         <p className="px-4 pt-1 pb-2 text-xs text-fg-tertiary uppercase tracking-widest">Explore by role</p>
-        {order.map((t) => {
+        {order.map((t, i) => {
           const cfg = siteConfigs[t];
           const isCurrent = t === current;
           return (
             <a
               key={t}
               href={mounted ? trackHref(t, cfg.domain) : cfg.domain}
-              className={`block px-4 py-2 text-sm transition-colors ${
+              className={`flex items-center px-4 py-2 text-sm transition-colors ${
                 isCurrent ? "text-fg-primary font-medium" : "text-fg-secondary hover:text-fg-primary"
               }`}
             >
+              <span className="text-xs text-fg-tertiary font-mono font-normal w-8 shrink-0">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               {cfg.label}
-              {isCurrent && <span className="ml-2 text-xs text-fg-tertiary">(current)</span>}
+              {isCurrent && <span className="ml-2 text-xs text-fg-tertiary font-normal">(current)</span>}
             </a>
           );
         })}

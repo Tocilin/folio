@@ -61,6 +61,12 @@ export default function Resume() {
           </a>
         </section>
 
+        {/* Skills */}
+        <section id="skills" className="mb-24">
+          <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Skills</p>
+          <p className="text-xl font-medium tracking-tight">{resume.skills}</p>
+        </section>
+
         {/* Education */}
         <section id="education" className="mb-40">
           <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-6">Education</p>

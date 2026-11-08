@@ -88,6 +88,9 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     alignItems: "center",
   },
+  skills: {
+    marginBottom: 18,
+  },
   educationEntry: {
     marginBottom: 8,
   },
@@ -142,6 +145,8 @@ function ResumeDocument() {
           { style: styles.linkedinRow },
           e(Link, { src: resume.linkedinHref, style: styles.link }, "View full work history on LinkedIn ->")
         ),
+        e(Text, { style: styles.sectionHeading }, "Skills"),
+        e(Text, { style: [styles.description, styles.skills] }, resume.skills),
         e(Text, { style: styles.sectionHeading }, "Education"),
         ...resume.education.map((entry) =>
           e(
