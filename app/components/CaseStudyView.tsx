@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { FunText } from "@/app/components/FunText";
+import { FunLink } from "@/app/components/FunLink";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { FadeImage } from "@/app/components/FadeImage";
 import { FramedImage } from "@/app/components/FramedImage";
@@ -150,18 +152,18 @@ export function CaseStudyView({
         {prev ? (
           <Link href={`${linkPrefix}/${prev.slug}`} className="group flex flex-col gap-1">
             <span className="text-xs text-fg-tertiary uppercase tracking-widest">Previous</span>
-            <span className="text-xl font-medium tracking-tight group-hover:text-fg-primary transition-colors">
+            <FunText seed={prev.slug} className="text-xl font-medium tracking-tight">
               ← {prev.name}
-            </span>
+            </FunText>
           </Link>
         ) : <div />}
 
         {next ? (
           <Link href={`${linkPrefix}/${next.slug}`} className="group flex flex-col gap-1 text-right">
             <span className="text-xs text-fg-tertiary uppercase tracking-widest">Next</span>
-            <span className="text-xl font-medium tracking-tight group-hover:text-fg-primary transition-colors">
+            <FunText seed={next.slug} className="text-xl font-medium tracking-tight">
               {next.name} →
-            </span>
+            </FunText>
           </Link>
         ) : <div />}
       </div>
@@ -173,9 +175,9 @@ export function CaseStudyView({
     <div className="min-h-screen flex flex-col">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
-        <Link href={backHref} className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
+        <FunLink href={backHref} className="text-sm text-fg-secondary underline-dots">
           ← {backLabel}
-        </Link>
+        </FunLink>
         <span className="text-sm font-medium tracking-tight">{navLabel}</span>
         <ThemeToggle />
       </nav>

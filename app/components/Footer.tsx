@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { FunLink } from "@/app/components/FunLink";
 import version from "@/version.json";
 
 export function Footer() {
@@ -9,10 +9,10 @@ export function Footer() {
         <span className="text-fg-tertiary/60">({version.version})</span>
       </div>
       <div className="flex items-center gap-6 text-sm text-fg-tertiary">
-        <Link href="/resume" className="underline-dots hover:text-fg-primary transition-colors">Resume</Link>
-        <a href="https://www.linkedin.com/in/etochilin/" target="_blank" rel="noopener noreferrer" className="underline-dots hover:text-fg-primary transition-colors">LinkedIn</a>
-        <Link href="/design-system" className="underline-dots hover:text-fg-primary transition-colors">Design system</Link>
-        <Link href="/templates" className="underline-dots hover:text-fg-primary transition-colors">Templates</Link>
+        <FunLink href="/resume" className="underline-dots">Resume</FunLink>
+        <FunLink href="https://www.linkedin.com/in/etochilin/" target="_blank" rel="noopener noreferrer" className="underline-dots">LinkedIn</FunLink>
+        <FunLink href="/design-system" className="underline-dots">Design system</FunLink>
+        <FunLink href="/templates" className="underline-dots">Templates</FunLink>
       </div>
     </footer>
   );

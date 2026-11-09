@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { FunText } from "@/app/components/FunText";
+import { FunLink } from "@/app/components/FunLink";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Footer } from "@/app/components/Footer";
 
@@ -108,9 +110,9 @@ export default function Templates() {
     <div className="min-h-screen flex flex-col">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
-        <Link href="/" className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
+        <FunLink href="/" className="text-sm text-fg-secondary underline-dots">
           ← Home
-        </Link>
+        </FunLink>
         <span className="text-sm font-medium tracking-tight">Templates</span>
         <ThemeToggle />
       </nav>
@@ -133,8 +135,8 @@ export default function Templates() {
             <Link key={t.id} href={`/templates/${t.id}`} className="group flex flex-col gap-4">
               <PageSchematic variant={t.id} current={t.current} />
               <div className="flex flex-col gap-1.5">
-                <h3 className="text-xl font-semibold tracking-tight group-hover:text-fg-secondary transition-colors">
-                  {t.name}
+                <h3 className="text-xl font-semibold tracking-tight">
+                  <FunText seed={t.id}>{t.name}</FunText>
                 </h3>
                 <p className="text-sm text-fg-tertiary leading-relaxed">{t.description}</p>
               </div>

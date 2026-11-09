@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { FunText } from "@/app/components/FunText";
 import { siteConfigs } from "@/lib/siteConfig";
 import type { WorkTrack } from "@/lib/projects";
 
@@ -58,14 +59,14 @@ export function TrackSwitcher({ current }: { current: WorkTrack }) {
             <a
               key={t}
               href={mounted ? trackHref(t, cfg.domain) : cfg.domain}
-              className={`flex items-center px-4 py-2 text-sm transition-colors ${
+              className={`group flex items-center px-4 py-2 text-sm transition-colors ${
                 isCurrent ? "text-fg-primary font-medium" : "text-fg-secondary hover:text-fg-primary"
               }`}
             >
               <span className="text-xs text-fg-tertiary font-mono font-normal w-8 shrink-0">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="whitespace-nowrap">{cfg.label}</span>
+              <FunText seed={t} className="whitespace-nowrap">{cfg.label}</FunText>
               {isCurrent && (
                 <svg
                   width="14"

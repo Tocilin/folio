@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { FunLink } from "@/app/components/FunLink";
 import { headers } from "next/headers";
 import { projects } from "@/lib/projects";
 import type { WorkTrack } from "@/lib/projects";
@@ -23,9 +23,9 @@ export default async function Home() {
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
         <div className="flex items-center gap-2">
-          <Link href="/" className="text-sm font-medium tracking-tight hover:text-fg-secondary transition-colors">
+          <FunLink href="/" className="text-sm font-medium tracking-tight">
             Eugene Tochilin
-          </Link>
+          </FunLink>
           <TrackSwitcher current={track} />
         </div>
         <ThemeToggle />

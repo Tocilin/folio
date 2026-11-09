@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { FunLink } from "@/app/components/FunLink";
 import { useEffect, useState, type ReactNode } from "react";
 
 function storageKey(slug: string) {
@@ -40,9 +40,9 @@ export function PasswordGate({
   return (
     <div className="min-h-screen flex flex-col">
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
-        <Link href="/" className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
+        <FunLink href="/" className="text-sm text-fg-secondary underline-dots">
           ← Home
-        </Link>
+        </FunLink>
       </nav>
       <form onSubmit={handleSubmit} className="flex-1 flex flex-col items-center justify-center gap-4 w-full max-w-xs mx-auto px-6">
         <p className="text-xs text-fg-tertiary uppercase tracking-widest">This page is password protected</p>

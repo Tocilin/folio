@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { FunLink } from "@/app/components/FunLink";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { Button } from "@/app/components/Button";
 import { FadeImage } from "@/app/components/FadeImage";
@@ -214,9 +214,9 @@ export default function DesignSystem() {
     <div className="min-h-screen flex flex-col">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 border-b border-stroke bg-surface-base/90 backdrop-blur-md">
-        <Link href="/" className="text-sm text-fg-secondary underline-dots hover:text-fg-primary transition-colors">
+        <FunLink href="/" className="text-sm text-fg-secondary underline-dots">
           ← Home
-        </Link>
+        </FunLink>
         <span className="text-sm font-medium tracking-tight">Design system</span>
         <ThemeToggle />
       </nav>
@@ -411,9 +411,9 @@ export default function DesignSystem() {
             {/* Dotted underline link */}
             <div>
               <p className="text-sm text-fg-secondary mb-4">Dotted underline link (.underline-dots)</p>
-              <a href="#" className="text-sm text-fg-tertiary underline-dots hover:text-fg-primary transition-colors">
+              <FunLink href="#" className="text-sm text-fg-tertiary underline-dots">
                 View project →
-              </a>
+              </FunLink>
             </div>
 
             {/* Work list row */}

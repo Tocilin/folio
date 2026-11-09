@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FunText } from "@/app/components/FunText";
 
 export type TocItem = { id: string; label: string };
 
@@ -37,13 +38,13 @@ export function CaseStudyTOC({ items }: { items: TocItem[] }) {
         <a
           key={item.id}
           href={`#${item.id}`}
-          className={`text-sm transition-colors duration-200 ${
+          className={`group text-sm transition-colors duration-200 ${
             activeId === item.id
               ? "text-fg-primary font-medium"
               : "text-fg-tertiary hover:text-fg-secondary"
           }`}
         >
-          {item.label}
+          <FunText seed={item.id}>{item.label}</FunText>
         </a>
       ))}
     </nav>
