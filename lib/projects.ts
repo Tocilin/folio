@@ -24,6 +24,9 @@ export type Section = {
   label: string;
   body: string;
   images?: SectionImage[];
+  // Set to "stack" to show images one under another instead of the default
+  // grid (2 images side by side, 3+ in three columns).
+  imageLayout?: "stack";
   // Optional stat-card grid rendered below the body, e.g. for a Results
   // section: { value: "52%", label: "Search engagement" }.
   stats?: Metric[];
@@ -51,6 +54,9 @@ export type Project = {
   heroFramed?: boolean;
   heroImageWidth?: number;
   heroImageHeight?: number;
+  // Aspect ratio of plain (non-framed) section images. Defaults to 16/10; use
+  // "16/9" for full slides so their edges aren't cropped.
+  imageAspect?: "16/10" | "16/9";
   sections: Section[];
   track: WorkTrack;
   // When set, the case study page is hidden behind a simple client-side
@@ -60,6 +66,309 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    index: "11",
+    slug: "adyen-reporting-reconciliation",
+    password: "adyen",
+    name: "Reporting and reconciliation",
+    responsibilities: "TBD",
+    client: "Adyen",
+    role: "TBD",
+    description: "Transforming one of the most problematic areas of the merchant experience into a reliable place merchants keep coming back to, trust, and rely on.",
+    metrics: [
+      { value: "-30%", label: "Support tickets reduced" },
+      { value: "12 → 40", label: "NPS score" },
+    ],
+    subtitle: "A one- or two-line subtitle that frames the problem and the outcome, giving readers context before they dive into the details below.",
+    hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
+    sections: [
+      {
+        label: "Overview",
+        body: "Placeholder body copy standing in for this project's background, to be replaced with the real context once the details are available.",
+      },
+      {
+        label: "Approach",
+        body: "Placeholder copy describing the approach taken on this project, to be replaced with the real process, research, and design decisions.",
+      },
+      {
+        label: "Outcomes",
+        body: "Placeholder outcomes copy, metrics, launch details, or qualitative impact will go here once the real project details are added.",
+      },
+    ],
+    track: "ic",
+  },
+  {
+    index: "14",
+    slug: "adyen-north-star",
+    password: "adyen",
+    name: "From Data to Answers",
+    responsibilities: "Research, Strategy, Product Vision",
+    client: "Adyen",
+    role: "Design Lead",
+    description: "Where should Adyen's reporting and reconciliation go in 2027? I talked to merchants, studied the competition and mapped a path from raw data to real answers.",
+    metrics: [
+      { value: "20+", label: "Merchant interviews" },
+      { value: "6", label: "Competitors analyzed" },
+    ],
+    subtitle: "Two months into a new job, I got pulled into planning for next year. The question: where should Adyen reporting go next? Here is the research, and the plan that came out of it.",
+    hero: { from: "#0a1f14", via: "#0d2b1e", to: "#0abf53" },
+    heroImage: "/images/adyen-north-star/01-hero.jpg",
+    imageAspect: "16/9",
+    sections: [
+      {
+        group: "Overview",
+        label: "Context",
+        body: "I had been at Adyen for two months when I got invited into annual planning for Reporting & Reconciliation. Next year's projects were taking shape, and user experience was part of the conversation from day one. My job was easy to say and hard to do. Work out what we should build next for reports and reconciliation, and back it up with real research. Who are our merchants? What do they need? Where do we let them down? What is the market doing? At the end, I had to deliver a clear direction and the milestones to get there.",
+        images: [
+          {
+            src: "/images/adyen-north-star/02-context.jpg",
+            alt: "Slide titled 'A new leader, invited to shape what's next', laying out the context, the challenge, my approach and the outcome",
+          },
+        ],
+      },
+      {
+        group: "Overview",
+        label: "Reporting today",
+        body: "Adyen holds a huge amount of merchant data. But there is only one way to get to it. A report. A fixed CSV, XLS or PDF file, built for one time period, with a structure nobody can change. The files are big and hard to read. Merchants download them. Then they are on their own.",
+        images: [
+          {
+            src: "/images/adyen-north-star/03-reporting-today.jpg",
+            alt: "Illustration of Settlements, Payments and Transactions tables being exported into fixed CSV files such as the Settlement Detail Report and Monthly Finance Report",
+          },
+        ],
+      },
+      {
+        group: "Research",
+        label: "Personas",
+        body: "I started with the people who read these reports. I pulled together 20+ merchant interviews, feedback from account managers, surveys and support tickets. Four personas kept showing up. Ivan, the financial controller, owns reconciliation and the financial close. Theo, the data engineer, moves Adyen data into in-house systems. Griffin, the risk officer, leads fraud and risk strategy. Fatima, the payment manager, owns payment performance, conversion and cost. Ivan was our main persona.",
+        images: [
+          {
+            src: "/images/adyen-north-star/04-personas.jpg",
+            alt: "Four personas with illustrations and quotes: Ivan the financial controller, Theo the data engineer, Griffin the risk officer and Fatima the payment manager",
+          },
+        ],
+      },
+      {
+        group: "Research",
+        label: "Goals",
+        body: "Same data. Very different goals. Ivan needs financial integrity, a clear view of cash flow and balances, and readiness for audits. Theo needs to pull data from many places and make it usable for the business, with less time spent maintaining pipelines. Griffin wants fewer fraudulent disputes and refunds, and lower losses. Fatima wants higher authorization rates and lower fees.",
+        images: [
+          {
+            src: "/images/adyen-north-star/05-goals.jpg",
+            alt: "The goals of each persona, listed in four columns for Ivan, Theo, Griffin and Fatima",
+          },
+        ],
+      },
+      {
+        group: "Research",
+        label: "Jobs to be done",
+        body: "Goals are one thing. I also needed to know the actual work. So I ran a 3-week project with account managers and our support team to map each persona's jobs to be done. Ivan reconciles the numbers every day, week and month, plus fees, invoices, receivables and sales. Theo sets up and fixes data pipelines and builds dashboards for stakeholders. Griffin builds a fraud strategy and watches dispute data for trends. Fatima tunes the conversion funnel and shifts traffic between payment methods to cut cost.",
+        images: [
+          {
+            src: "/images/adyen-north-star/06-jtbd.jpg",
+            alt: "Jobs to be done for each persona, listed in four columns",
+          },
+        ],
+      },
+      {
+        group: "Research",
+        label: "Pain points",
+        body: "Then the hard part: what hurts. I read the interviews, and I went through customer support tickets too, using Unwrap.ai to sort and group them. The same pains showed up again and again. Ivan can't find the data and worries about missing transactions. Theo can't serve stakeholders when data is late, wrong or missing, and loses hours cleaning and joining files. Griffin struggles to get chargeback and fraud data at the transaction level. Fatima can't filter by what matters for the job, and our formats don't match other PSPs.",
+        images: [
+          {
+            src: "/images/adyen-north-star/07-pain-points.jpg",
+            alt: "Pain points for each persona, listed in four columns",
+          },
+        ],
+      },
+      {
+        group: "Research",
+        label: "What the data said",
+        body: "I wanted to be sure this wasn't just opinion. So I checked the numbers.",
+        stats: [
+          {
+            value: "#2",
+            label: "In customer support ticket volume",
+            body: "Reporting is the second-largest source of support tickets.",
+          },
+          {
+            value: "12",
+            label: "Reporting & reconciliation NPS",
+            body: "Well below what we call healthy (40+).",
+          },
+        ],
+      },
+      {
+        group: "Research",
+        label: "Where we fall short",
+        body: "When I put it all together, I saw five gaps. Reliability: reports fail or arrive late, and that drives a lot of support cases. Access to data: we turn data into fixed CSV files on a schedule, so merchants download several, stitch them together and do the analysis themselves. Reconciliation: we hand over reports and leave merchants to match the numbers alone. Insights: we give them prepackaged reports and expect them to figure it out. Answers: simple questions, like why fees are higher this month, are very hard to answer from our reports. Most merchants don't even try. They go straight to support.",
+        images: [
+          {
+            src: "/images/adyen-north-star/08-findings.jpg",
+            alt: "Five areas where we fall short: reliability, access to data, reconciliation, actionable insights and answers",
+          },
+        ],
+      },
+      {
+        group: "Competition",
+        label: "Competitive analysis",
+        body: "I wasn't the only one thinking about this. Our competitors are racing to own the whole path from payment to ledger. I looked at six of them: Stripe, Checkout.com, J.P. Morgan Payments, Worldpay, PayPal Braintree and Fiserv (Clover). Stripe stood out the most, so I went deepest there.",
+      },
+      {
+        group: "Competition",
+        label: "Stripe: raw data",
+        body: "Stripe lets merchants get at all of their data. They can query it with SQL and mix it with their own business data. Or they can sync it to the warehouse they already use, like Snowflake, Amazon Redshift or Databricks. No exports to maintain. No stitching files together. No waiting on a schedule.",
+        imageLayout: "stack",
+        images: [
+          {
+            src: "/images/adyen-north-star/09-stripe-raw-data.jpg",
+            alt: "Stripe Data Pipeline slide showing a SQL query running in Databricks on Stripe data",
+          },
+          {
+            src: "/images/adyen-north-star/10-stripe-warehouse.jpg",
+            alt: "Stripe Data Pipeline slide showing the choice of data storage destination, including Snowflake, Amazon Redshift and Databricks",
+          },
+        ],
+      },
+      {
+        group: "Competition",
+        label: "Stripe: reconciliation and insights",
+        body: "Stripe also does the reconciliation for the merchant. Time to reconcile becomes time to accept: the merchant reviews the result and says yes. And instead of plain tables, Stripe shows trends against the last period, plus accounting insights like an income statement, right in the Dashboard.",
+        imageLayout: "stack",
+        images: [
+          {
+            src: "/images/adyen-north-star/11-stripe-reconciliation.jpg",
+            alt: "Stripe automated reconciliation slide matching Stripe payouts against a bank statement into a reconciled summary",
+          },
+          {
+            src: "/images/adyen-north-star/12-stripe-insights.jpg",
+            alt: "Stripe Dashboard showing gross volume trends and an accounting insights income statement",
+          },
+        ],
+      },
+      {
+        group: "Competition",
+        label: "Stripe: AI",
+        body: "Then came the AI. Stripe has an assistant that takes a question in plain language and turns it into a SQL query. It builds the report for you. This is a live product, not a concept. Stripe also has an official MCP server, a way for outside AI assistants to connect to Stripe and work with its APIs. Financial work can happen in a conversation, not only in dashboards.",
+        imageLayout: "stack",
+        images: [
+          {
+            src: "/images/adyen-north-star/13-stripe-sigma.jpg",
+            alt: "Stripe's AI assistant answering a plain-language question about the last payment from a customer",
+          },
+          {
+            src: "/images/adyen-north-star/14-stripe-mcp.jpg",
+            alt: "Stripe's official MCP server listed as an app inside an external AI assistant",
+          },
+        ],
+      },
+      {
+        group: "Direction",
+        label: "Three layers of customer needs",
+        body: "I stepped back and looked at the big picture. Our customers need different things. Some want raw data. Some want insights. Some want answers. I called these the three layers. Layer one is raw data, in their own ERP, warehouse or BI tools, or in custom SQL queries. Layer two is insights: reconciliation, business analytics, forecasting, and cost analysis and optimization. Layer three is answers. Why doesn't this match? Why is this missing? Answered without a support ticket.",
+        images: [
+          {
+            src: "/images/adyen-north-star/15-three-layers.jpg",
+            alt: "Illustration of three layers of customer needs built from toy bricks: raw data at the base, insights on top, and answers above them",
+          },
+        ],
+      },
+      {
+        group: "Direction",
+        label: "Three pillars",
+        body: "Those layers became three pillars. Together they move Adyen from data to answers. Provider of data: raw access, so merchants can pull it into their ERP and slice it themselves. Provider of insights: we turn their data into dashboards, summaries and trends. Provider of answers: AI, so merchants can ask anything and get the answer right away.",
+        images: [
+          {
+            src: "/images/adyen-north-star/16-pillars.jpg",
+            alt: "Three ascending steps labelled provider of data, provider of insights and provider of answers",
+          },
+        ],
+      },
+      {
+        group: "Initiatives",
+        label: "From data to answers, in practice",
+        body: "Next, I made the pillars real. I explored what each one could look like in practice. These are early concepts. A direction to start narrowing into, not final designs.",
+        images: [
+          {
+            src: "/images/adyen-north-star/17-initiatives-intro.jpg",
+            alt: "Slide titled 'From data to answers, in practice', annotated 'A direction to start narrowing into'",
+          },
+        ],
+      },
+      {
+        group: "Initiatives",
+        label: "Provider of data: API and custom queries",
+        body: "Merchants ask only for the data they need, instead of loading full files. It syncs straight into their own warehouse, like Stripe Data Pipeline. This one needs real engineering work: a query API, schemas and scheduled syncs.",
+        images: [
+          {
+            src: "/images/adyen-north-star/18-api-queries.jpg",
+            alt: "Concept of a query editor with saved and scheduled queries and options to send results to Snowflake, BigQuery, Redshift, Databricks or SFTP",
+          },
+        ],
+      },
+      {
+        group: "Initiatives",
+        label: "Provider of data: reports and a custom builder",
+        body: "Standard reports stay in the Customer Area. A report builder lets merchants choose their own columns, filters and grouping. Then they can save, schedule and share their own reports.",
+        images: [
+          {
+            src: "/images/adyen-north-star/19-report-builder.jpg",
+            alt: "Concept of a report builder with column selection, filters and a save and schedule option",
+          },
+        ],
+      },
+      {
+        group: "Initiatives",
+        label: "Provider of insights: every report, readable",
+        body: "Open a report as a table of transactions, not just a CSV. Summary blocks at the top show totals, trends and highlights. Pick any number and drill into the transactions behind it.",
+        images: [
+          {
+            src: "/images/adyen-north-star/20-readable-reports.jpg",
+            alt: "Concept of a readable report with summary cards for gross volume, fees, net payout and refunds above a transaction table",
+          },
+        ],
+      },
+      {
+        group: "Initiatives",
+        label: "Provider of answers: AI·dyen",
+        body: "An assistant that answers questions in plain language. Each answer shows the reports and transactions behind it. And any answer can become a report or a next step.",
+        images: [
+          {
+            src: "/images/adyen-north-star/21-aidyen.jpg",
+            alt: "Concept of an AI assistant answering why a September payout is lower than August, with a breakdown and links to the transactions behind it",
+          },
+        ],
+      },
+      {
+        group: "Initiatives",
+        label: "Provider of answers: bring your own AI",
+        body: "Bring your own AI. Adyen would offer an MCP server for reporting data. Merchants could then ask questions from ChatGPT, Claude, Gemini and other AI tools, with the same access and permissions as in the Customer Area.",
+        images: [
+          {
+            src: "/images/adyen-north-star/22-byoai.jpg",
+            alt: "Diagram of an Adyen MCP server connecting merchants' AI tools to their reports, transactions, payouts and fees",
+          },
+        ],
+      },
+      {
+        group: "Results",
+        label: "Measuring success",
+        body: "How will we know it works? I proposed two main measures. First, fewer support tickets for reporting and reconciliation. Second, higher CSAT and NPS for reporting. Then four smaller ones: how much the new features get used, how long the month-end close takes, how fast and reliable reports are, and how often report generation fails.",
+        images: [
+          {
+            src: "/images/adyen-north-star/23-metrics.jpg",
+            alt: "Primary and secondary metrics: support ticket deflection and user engagement, then adoption, time to reconcile, performance and failure rate",
+          },
+        ],
+      },
+      {
+        group: "Results",
+        label: "Where this stands",
+        body: "This was a strategy project, so there are no shipped results yet. What I do have is a clear picture of where reporting lets merchants down today, a three-pillar direction for what comes next, and the numbers we will use to judge it.",
+      },
+    ],
+    track: "management",
+  },
+  {
     index: "01",
     slug: "superapp",
     name: "Bolt SuperApp",
@@ -67,6 +376,10 @@ export const projects: Project[] = [
     client: "Bolt",
     role: "Lead UX Designer",
     description: "A complete redesign of Bolt's SuperApp, from information architecture to a scalable design system.",
+    metrics: [
+      { value: "3 mo", label: "0 to 1 launch" },
+      { value: "2M+", label: "User target" },
+    ],
     subtitle: "Turning a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     heroImage: "/images/superapp/00-hero-framed.png",
@@ -453,6 +766,10 @@ export const projects: Project[] = [
     client: "J.P. Morgan Chase",
     role: "Design Lead",
     description: "Solo-designing and shipping J.P. Morgan Chase's Checkout, Commerce Center, and Chameleon design system during a company-wide hiring freeze.",
+    metrics: [
+      { value: "6 mo", label: "MVP built" },
+      { value: "2,000", label: "Clients onboarded in 6 mo" },
+    ],
     subtitle: "When a hiring freeze hit right after I joined, the deadlines didn't move. So I became a team of one and shipped the MVP for three products in six months.",
     hero: { from: "#0a0a0a", via: "#1a0533", to: "#2d1b69" },
     sections: [
@@ -807,37 +1124,6 @@ export const projects: Project[] = [
     track: "ic",
   },
   {
-    index: "11",
-    slug: "adyen-reporting-reconciliation",
-    password: "adyen",
-    name: "Reporting and reconciliation",
-    responsibilities: "TBD",
-    client: "Adyen",
-    role: "TBD",
-    description: "Transforming one of the most problematic areas of the merchant experience into a reliable place merchants keep coming back to, trust, and rely on.",
-    metrics: [
-      { value: "-30%", label: "Time spent/sale" },
-      { value: "+5.5x", label: "Flash sales/year" },
-    ],
-    subtitle: "A one- or two-line subtitle that frames the problem and the outcome, giving readers context before they dive into the details below.",
-    hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
-    sections: [
-      {
-        label: "Overview",
-        body: "Placeholder body copy standing in for this project's background, to be replaced with the real context once the details are available.",
-      },
-      {
-        label: "Approach",
-        body: "Placeholder copy describing the approach taken on this project, to be replaced with the real process, research, and design decisions.",
-      },
-      {
-        label: "Outcomes",
-        body: "Placeholder outcomes copy, metrics, launch details, or qualitative impact will go here once the real project details are added.",
-      },
-    ],
-    track: "management",
-  },
-  {
     index: "12",
     slug: "superapp-md",
     name: "SuperApp",
@@ -845,6 +1131,10 @@ export const projects: Project[] = [
     client: "Bolt",
     role: "Lead UX Designer",
     description: "A complete redesign of Bolt's SuperApp, from information architecture to a scalable design system.",
+    metrics: [
+      { value: "3 mo", label: "0 to 1 launch" },
+      { value: "2M+", label: "User target" },
+    ],
     subtitle: "Turning a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
     hero: { from: "#1a1a2e", via: "#16213e", to: "#0f3460" },
     heroImage: "/images/superapp/00-hero-framed.png",
@@ -1206,6 +1496,10 @@ export const projects: Project[] = [
     client: "J.P. Morgan Chase",
     role: "Design Lead",
     description: "Solo-designing and shipping J.P. Morgan Chase's Checkout, Commerce Center, and Chameleon design system during a company-wide hiring freeze.",
+    metrics: [
+      { value: "6 mo", label: "MVP built" },
+      { value: "2,000", label: "Clients onboarded in 6 mo" },
+    ],
     subtitle: "When a hiring freeze hit right after I joined, the deadlines didn't move. So I became a team of one and shipped the MVP for three products in six months.",
     hero: { from: "#0a0a0a", via: "#1a0533", to: "#2d1b69" },
     sections: [

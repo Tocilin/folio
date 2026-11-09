@@ -108,7 +108,7 @@ export function CaseStudyView({
               {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} />}
               {section.images && section.images.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${
-                  section.images.length === 1 ? "grid-cols-1" :
+                  section.imageLayout === "stack" || section.images.length === 1 ? "grid-cols-1" :
                   section.images.length === 2 ? "grid-cols-2" :
                   "grid-cols-3"
                 }`}>
@@ -127,7 +127,7 @@ export function CaseStudyView({
                         key={j}
                         src={image.src}
                         alt={image.alt}
-                        className="rounded-lg w-full aspect-[16/10]"
+                        className={`rounded-lg w-full ${project.imageAspect === "16/9" ? "aspect-video" : "aspect-[16/10]"}`}
                       />
                     )
                   )}

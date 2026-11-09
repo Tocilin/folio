@@ -65,8 +65,19 @@ export function TrackSwitcher({ current }: { current: WorkTrack }) {
               <span className="text-xs text-fg-tertiary font-mono font-normal w-8 shrink-0">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              {cfg.label}
-              {isCurrent && <span className="ml-2 text-xs text-fg-tertiary font-normal">(current)</span>}
+              <span className="whitespace-nowrap">{cfg.label}</span>
+              {isCurrent && (
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  aria-label="Current view"
+                  className="ml-auto shrink-0 text-fg-primary"
+                >
+                  <path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
             </a>
           );
         })}
