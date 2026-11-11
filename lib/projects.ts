@@ -1590,3 +1590,16 @@ export const projects: Project[] = [
     track: "management",
   },
 ];
+
+// TEMPORARY: the Management track lists every case study from all tracks so
+// they can be reviewed in one place. Set to false to restore per-track lists.
+export const SHOW_ALL_IN_MANAGEMENT = true;
+
+const TRACK_ORDER: WorkTrack[] = ["management", "ic", "design-systems", "side-projects"];
+
+export function projectsForTrack(track: WorkTrack): Project[] {
+  if (track === "management" && SHOW_ALL_IN_MANAGEMENT) {
+    return TRACK_ORDER.flatMap((t) => projects.filter((p) => p.track === t));
+  }
+  return projects.filter((p) => p.track === track);
+}
