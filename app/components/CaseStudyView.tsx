@@ -100,7 +100,13 @@ export function CaseStudyView({
             className="flex flex-col gap-10 scroll-mt-28"
           >
             {showGroupHeader && (
-              <h2 className="text-2xl font-semibold tracking-tight">{section.group}</h2>
+              <h2 className="flex items-center gap-4 text-2xl font-semibold tracking-tight">
+                <span>{section.group}</span>
+                <span aria-hidden className="h-px flex-1 bg-stroke" />
+                <span className="text-sm font-mono font-normal text-fg-tertiary">
+                  {String(tocLabels.indexOf(section.group!) + 1).padStart(2, "0")}
+                </span>
+              </h2>
             )}
             <section className="flex flex-col gap-6">
               <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>

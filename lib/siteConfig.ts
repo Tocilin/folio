@@ -28,7 +28,6 @@ export const siteConfigs: Record<WorkTrack, SiteConfig> = {
     about: [
       "I'm a design leader who likes messy problems, unclear paths, and figuring out what the hell we should actually build.",
       "I've led teams and helped shape product and design strategy, turning big business goals into something teams can understand, act on, and ship. A lot of my work happens before there's an obvious solution: asking the right questions, connecting the dots, challenging assumptions, setting direction, and getting product, design, and engineering moving toward the same goal.",
-      "I care about building strong teams, giving designers enough context and ownership to do their best work, and keeping design connected to the business. Less design theater, more clarity, good decisions, and products that actually make a difference.",
     ],
     resumeHref: "/resume",
   },

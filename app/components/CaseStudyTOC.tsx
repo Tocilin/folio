@@ -34,16 +34,17 @@ export function CaseStudyTOC({ items }: { items: TocItem[] }) {
 
   return (
     <nav className="hidden lg:flex flex-col gap-3 sticky top-32 self-start shrink-0 w-40">
-      {items.map((item) => (
+      {items.map((item, i) => (
         <a
           key={item.id}
           href={`#${item.id}`}
-          className={`group text-sm transition-colors duration-200 ${
+          className={`group flex items-baseline text-sm transition-colors duration-200 ${
             activeId === item.id
               ? "text-fg-primary font-medium"
               : "text-fg-tertiary hover:text-fg-secondary"
           }`}
         >
+          <span className="text-xs font-mono font-normal w-7 shrink-0">{String(i + 1).padStart(2, "0")}</span>
           <FunText seed={item.id}>{item.label}</FunText>
         </a>
       ))}
