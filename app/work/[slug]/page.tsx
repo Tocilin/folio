@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
-import { projects, projectsForTrack } from "@/lib/projects";
+import { projects } from "@/lib/projects";
 import { CaseStudyView } from "@/app/components/CaseStudyView";
 import { PasswordGate } from "@/app/components/PasswordGate";
 import { DEFAULT_TRACK } from "@/lib/siteConfig";
@@ -24,8 +24,9 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
   const headersList = await headers();
   const track = (headersList.get("x-track") as WorkTrack) || DEFAULT_TRACK;
-  const trackProjects = projectsForTrack(track);
-  if (!trackProjects.some((p) => p.slug === slug)) notFound();
+  if (project.track !== track) notFound();
+
+  const trackProjects = projects.filter((p) => p.track === track);
   const currentIndex = trackProjects.findIndex((p) => p.slug === slug);
   const prev = trackProjects[currentIndex - 1] ?? null;
   const next = trackProjects[currentIndex + 1] ?? null;

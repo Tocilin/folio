@@ -1,6 +1,6 @@
 import { FunLink } from "@/app/components/FunLink";
 import { headers } from "next/headers";
-import { projectsForTrack } from "@/lib/projects";
+import { projects } from "@/lib/projects";
 import type { WorkTrack } from "@/lib/projects";
 import { siteConfigs, DEFAULT_TRACK } from "@/lib/siteConfig";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
@@ -16,7 +16,7 @@ export default async function Home() {
   const headersList = await headers();
   const track = (headersList.get("x-track") as WorkTrack) || DEFAULT_TRACK;
   const config = siteConfigs[track];
-  const trackProjects = projectsForTrack(track);
+  const trackProjects = projects.filter((p) => p.track === track);
 
   return (
     <div className="min-h-screen flex flex-col">
