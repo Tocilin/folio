@@ -1,4 +1,5 @@
 import { safeNext } from "@/lib/siteGate";
+import { LockIcon } from "@/app/components/LockIcon";
 
 export const dynamic = "force-dynamic";
 
@@ -14,29 +15,28 @@ export default async function UnlockPage({
       <form
         action="/api/unlock"
         method="post"
-        className="flex-1 flex flex-col items-center justify-center gap-4 w-full max-w-xs mx-auto px-6 text-center"
+        className="flex-1 flex flex-col items-center justify-center gap-4 w-full max-w-lg mx-auto px-6 text-center"
       >
         <input type="hidden" name="next" value={safeNext(next)} />
-        <p className="text-sm font-medium tracking-tight">Eugene Tochilin</p>
-        <p className="text-xs text-fg-tertiary uppercase tracking-widest">This portfolio is password protected</p>
-        <p className="text-sm text-fg-secondary leading-relaxed">
-          Enter the password you were given to take a look around.
-        </p>
-        <input
-          type="password"
-          name="password"
-          autoFocus
-          required
-          placeholder="Password"
-          className="w-full px-4 py-2.5 rounded-sm text-sm bg-transparent border border-button-secondary-stroke text-fg-primary placeholder:text-fg-tertiary focus:outline-none focus:border-button-secondary-stroke-hover transition-colors"
-        />
+        <LockIcon className="w-8 h-8 text-fg-primary" />
+        <h1 className="text-2xl md:text-3xl font-light tracking-tight mb-2">Psst...what&apos;s the password?</h1>
+        <div className="flex w-full">
+          <input
+            type="password"
+            name="password"
+            autoFocus
+            required
+            placeholder="Say the magic word..."
+            className="min-w-0 flex-1 px-4 py-2.5 rounded-l-sm text-sm bg-transparent border border-r-0 border-button-secondary-stroke text-fg-primary placeholder:text-fg-tertiary focus:outline-none focus:border-button-secondary-stroke-hover transition-colors"
+          />
+          <button
+            type="submit"
+            className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 rounded-r-sm text-sm font-medium tracking-tight bg-button-primary-fill text-button-primary-label hover:bg-button-primary-fill-hover transition-colors"
+          >
+            Open sesame!
+          </button>
+        </div>
         {error && <p className="text-xs text-red-500">Wrong password, try again.</p>}
-        <button
-          type="submit"
-          className="w-full inline-flex items-center justify-center px-5 py-2.5 rounded-sm text-sm font-medium tracking-tight bg-button-primary-fill text-button-primary-label hover:bg-button-primary-fill-hover transition-colors"
-        >
-          Unlock
-        </button>
       </form>
     </div>
   );
