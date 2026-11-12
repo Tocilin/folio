@@ -6,8 +6,14 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Eugene Tochilin | Design & Management",
+  title: "Eugene Tochilin | I can make it happen",
   description: "Independent designer and developer focused on product, brand, and AI-driven experiences.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: { index: false, follow: false, noimageindex: true },
+  },
 };
 
 export default function RootLayout({

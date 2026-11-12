@@ -4,6 +4,7 @@ import { FunLink } from "@/app/components/FunLink";
 import { ThemeToggle } from "@/app/components/ThemeToggle";
 import { FadeImage } from "@/app/components/FadeImage";
 import { FramedImage } from "@/app/components/FramedImage";
+import { ZoomableImage } from "@/app/components/ZoomableImage";
 import { Footer } from "@/app/components/Footer";
 import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
 import { ResultsCards } from "@/app/components/ResultsCards";
@@ -116,29 +117,29 @@ export function CaseStudyView({
               {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} />}
               {section.images && section.images.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${
-                  section.imageLayout === "stack" || section.images.length === 1 ? "grid-cols-1" :
+                  (section.imageLayout ?? project.imageLayout) === "stack" || section.images.length === 1 ? "grid-cols-1" :
                   section.images.length === 2 ? "grid-cols-2" :
                   "grid-cols-3"
                 }`}>
-                  {section.images.map((image, j) =>
-                    image.framed ? (
-                      <FramedImage
-                        key={j}
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.width ?? 1800}
-                        height={image.height ?? 1012}
-                        className="rounded-lg w-full"
-                      />
-                    ) : (
-                      <FadeImage
-                        key={j}
-                        src={image.src}
-                        alt={image.alt}
-                        className={`rounded-lg w-full ${project.imageAspect === "16/9" ? "aspect-video" : "aspect-[16/10]"}`}
-                      />
-                    )
-                  )}
+                  {section.images.map((image, j) => (
+                    <ZoomableImage key={j} src={image.src} alt={image.alt}>
+                      {image.framed ? (
+                        <FramedImage
+                          src={image.src}
+                          alt={image.alt}
+                          width={image.width ?? 1800}
+                          height={image.height ?? 1012}
+                          className="rounded-lg w-full"
+                        />
+                      ) : (
+                        <FadeImage
+                          src={image.src}
+                          alt={image.alt}
+                          className={`rounded-lg w-full ${project.imageAspect === "16/9" ? "aspect-video" : "aspect-[16/10]"}`}
+                        />
+                      )}
+                    </ZoomableImage>
+                  ))}
                 </div>
               )}
             </section>

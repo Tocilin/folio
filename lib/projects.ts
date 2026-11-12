@@ -57,6 +57,9 @@ export type Project = {
   // Aspect ratio of plain (non-framed) section images. Defaults to 16/10; use
   // "16/9" for full slides so their edges aren't cropped.
   imageAspect?: "16/10" | "16/9";
+  // Default image layout for every section of this project (a section's own
+  // imageLayout wins). "stack" = one full-width image per row.
+  imageLayout?: "stack";
   sections: Section[];
   track: WorkTrack;
   // When set, the case study page is hidden behind a simple client-side
@@ -359,6 +362,7 @@ export const projects: Project[] = [
   {
     index: "01",
     slug: "superapp",
+    imageLayout: "stack",
     name: "Bolt SuperApp",
     responsibilities: "Research, Product Design, Design Systems",
     client: "Bolt",
@@ -1114,6 +1118,7 @@ export const projects: Project[] = [
   {
     index: "12",
     slug: "superapp-md",
+    imageLayout: "stack",
     name: "SuperApp",
     responsibilities: "Research, Product Design, Design Systems",
     client: "Bolt",
