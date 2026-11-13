@@ -19,6 +19,14 @@ export type Metric = {
   body?: string;
 };
 
+export type IconCard = {
+  title: string;
+  body: string;
+  // Optional single-colour SVG shown above the title (painted in the site's
+  // text colour). Leave out to keep an empty slot of the same height.
+  icon?: string;
+};
+
 export type Section = {
   group?: string;
   label: string;
@@ -30,6 +38,8 @@ export type Section = {
   // Optional stat-card grid rendered below the body, e.g. for a Results
   // section: { value: "52%", label: "Search engagement" }.
   stats?: Metric[];
+  // Optional grid of icon cards rendered below the body, e.g. process steps.
+  cards?: IconCard[];
 };
 
 export type WorkTrack = "management" | "ic" | "design-systems" | "side-projects";
@@ -795,8 +805,13 @@ export const projects: Project[] = [
         group: "Process",
         label: "How we worked",
         body: "Our process was structured but adaptable: define and stress-test requirements with product, validate assumptions through internal critique or client testing, choose the right research method for the problem, hand off fully annotated specs covering edge cases and accessibility, iterate with engineering through multiple feedback rounds, and stay involved through post-launch QA. But after 15 years in design, the rule I lean on most with my team is common sense: process is a tool, not a rulebook, and knowing when to skip a step is as important as knowing the framework.",
-        images: [
-          { src: "/images/checkout/03-process.jpg", alt: "The six steps of the design process: requirements, research, design iterations, testing assumptions, design handoff, and post-launch QA", framed: true, width: 1800, height: 904 },
+        cards: [
+          { title: "Requirements", icon: "/images/checkout/process-requirements.svg", body: "We work closely with product to define, refine, and sometimes push back on requirements. The goal is to ensure a clear understanding of the problem and confirm we're solving the right one." },
+          { title: "Research", icon: "/images/checkout/process-research.svg", body: "We choose the best research method based on the project: user interviews, competitive analysis, or desk research, to gather insights and industry best practices." },
+          { title: "Design Iterations", icon: "/images/checkout/process-design-iterations.svg", body: "An iterative process with multiple rounds of feedback from product and engineers. We refine solutions while considering technical constraints to find the best design approach." },
+          { title: "Testing Assumptions", icon: "/images/checkout/process-testing-assumptions.svg", body: "We validate designs through internal critiques or, when possible, external testing with clients. The method depends on time, project complexity, and available resources." },
+          { title: "Design Handoff", icon: "/images/checkout/process-design-handoff.svg", body: "Finalizing specs for engineering, covering edge cases, error states, and accessibility. Every detail is annotated to ensure a smooth and accurate implementation." },
+          { title: "Post-Launch QA", icon: "/images/checkout/process-post-launch-qa.svg", body: "Our work doesn't end at handoff. We review the live product, collaborate with engineers, and ensure the design is implemented correctly." },
         ],
       },
       {
@@ -1552,8 +1567,13 @@ export const projects: Project[] = [
         group: "Process",
         label: "How we worked",
         body: "Our process was structured but adaptable: define and stress-test requirements with product, validate assumptions through internal critique or client testing, choose the right research method for the problem, hand off fully annotated specs covering edge cases and accessibility, iterate with engineering through multiple feedback rounds, and stay involved through post-launch QA. But after 15 years in design, the rule I lean on most with my team is common sense: process is a tool, not a rulebook, and knowing when to skip a step is as important as knowing the framework.",
-        images: [
-          { src: "/images/checkout/03-process.jpg", alt: "The six steps of the design process: requirements, research, design iterations, testing assumptions, design handoff, and post-launch QA", framed: true, width: 1800, height: 904 },
+        cards: [
+          { title: "Requirements", icon: "/images/checkout/process-requirements.svg", body: "We work closely with product to define, refine, and sometimes push back on requirements. The goal is to ensure a clear understanding of the problem and confirm we're solving the right one." },
+          { title: "Research", icon: "/images/checkout/process-research.svg", body: "We choose the best research method based on the project: user interviews, competitive analysis, or desk research, to gather insights and industry best practices." },
+          { title: "Design Iterations", icon: "/images/checkout/process-design-iterations.svg", body: "An iterative process with multiple rounds of feedback from product and engineers. We refine solutions while considering technical constraints to find the best design approach." },
+          { title: "Testing Assumptions", icon: "/images/checkout/process-testing-assumptions.svg", body: "We validate designs through internal critiques or, when possible, external testing with clients. The method depends on time, project complexity, and available resources." },
+          { title: "Design Handoff", icon: "/images/checkout/process-design-handoff.svg", body: "Finalizing specs for engineering, covering edge cases, error states, and accessibility. Every detail is annotated to ensure a smooth and accurate implementation." },
+          { title: "Post-Launch QA", icon: "/images/checkout/process-post-launch-qa.svg", body: "Our work doesn't end at handoff. We review the live product, collaborate with engineers, and ensure the design is implemented correctly." },
         ],
       },
       {

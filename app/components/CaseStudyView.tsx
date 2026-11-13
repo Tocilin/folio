@@ -8,6 +8,7 @@ import { ZoomableImage } from "@/app/components/ZoomableImage";
 import { Footer } from "@/app/components/Footer";
 import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
 import { ResultsCards } from "@/app/components/ResultsCards";
+import { IconCards } from "@/app/components/IconCards";
 import type { Project } from "@/lib/projects";
 
 function slugify(text: string) {
@@ -115,6 +116,7 @@ export function CaseStudyView({
                 <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
               )}
               {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} />}
+              {section.cards && section.cards.length > 0 && <IconCards cards={section.cards} />}
               {section.images && section.images.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${
                   (section.imageLayout ?? project.imageLayout) === "stack" || section.images.length === 1 ? "grid-cols-1" :
