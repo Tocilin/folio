@@ -769,11 +769,17 @@ export const projects: Project[] = [
         group: "Overview",
         label: "Mission: impossible (but actually possible)",
         body: "When I joined J.P. Morgan Chase as a Design Lead, the plan was to build a design team from scratch to create the Checkout Solution. Weeks after I joined, the company announced a hiring freeze, but the deadlines didn't move. So I became a team of one, single-handedly designing and shipping the MVP for three products over the next six months: Checkout, the consumer-facing payment flow; Commerce Center, the merchant admin tool; and Chameleon, the white-label design system tying them together.",
+        images: [
+          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813 },
+        ],
       },
       {
         group: "Overview",
         label: "What is checkout",
         body: "Checkout is J.P. Morgan Chase's solution for merchant clients: a smooth, secure, customizable online shopping experience. Customers enter payment info once, and it's processed through J.P. Morgan's Merchant Services. For merchants, the real benefit is reduced PCI compliance overhead: Checkout integrates directly with JPMC's payment processing, so businesses don't have to build and maintain that infrastructure themselves.",
+        images: [
+          { src: "/images/checkout/02-what-is-checkout.jpg", alt: "Checkout payment method screen showing credit card entry and alternative payment options beside an order summary", framed: true, width: 1800, height: 741 },
+        ],
       },
       {
         group: "Goals",
@@ -789,31 +795,51 @@ export const projects: Project[] = [
         group: "Process",
         label: "How we worked",
         body: "Our process was structured but adaptable: define and stress-test requirements with product, validate assumptions through internal critique or client testing, choose the right research method for the problem, hand off fully annotated specs covering edge cases and accessibility, iterate with engineering through multiple feedback rounds, and stay involved through post-launch QA. But after 15 years in design, the rule I lean on most with my team is common sense: process is a tool, not a rulebook, and knowing when to skip a step is as important as knowing the framework.",
+        images: [
+          { src: "/images/checkout/03-process.jpg", alt: "The six steps of the design process: requirements, research, design iterations, testing assumptions, design handoff, and post-launch QA", framed: true, width: 1800, height: 904 },
+        ],
       },
       {
         group: "Delivery",
         label: "Consumer-facing checkout",
         body: "A best-in-class checkout built for speed and conversion: clear actions, effortless form-filling, and support for multiple payment methods, accessibility, and responsive layouts, adaptable to any merchant's brand.",
+        imageLayout: "stack",
+        images: [
+          { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787 },
+          { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394 },
+        ],
       },
       {
         group: "Delivery",
         label: "Drop-in UI: embedded checkout",
         body: "The consumer checkout is also available as Drop-in UI, an embeddable form that lets merchants host their own checkout page while our secure, PCI-compliant payment form handles the sensitive parts: full control over the flow, none of the compliance burden.",
+        images: [
+          { src: "/images/checkout/06-drop-in-ui.jpg", alt: "Embedded credit card form with card number, name, expiration date, and security code fields", framed: true, width: 1544, height: 1576 },
+        ],
       },
       {
         group: "Delivery",
         label: "Commerce Center: merchant tool",
         body: "Commerce Center puts checkout customization in merchants' hands: brand-matched design, flexible payment method selection, security and fraud settings, and transaction reporting, all without needing engineering support.",
+        images: [
+          { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350 },
+        ],
       },
       {
         group: "Delivery",
         label: "Chameleon: the design system",
         body: "Chameleon is the lightweight, white-label system underneath all of it: flexible enough for merchants to fully customize their UI while staying consistent, scalable, and easy to build on.",
+        images: [
+          { src: "/images/checkout/08-chameleon.jpg", alt: "Chameleon design system building blocks: typography, brand colors, button, checkbox, and radio", framed: true, width: 1570, height: 1562 },
+        ],
       },
       {
         group: "Delivery",
         label: "Accessibility: built-in compliance",
         body: "Every surface was built to be fully WCAG-compliant from the start: proper color contrast, keyboard navigation, screen reader support, and clear, accessible interaction patterns. Accessibility as a default, not a retrofit.",
+        images: [
+          { src: "/images/checkout/25-accessibility.jpg", alt: "Card number field shown failing and passing WCAG AA color contrast", framed: true, width: 1526, height: 1538 },
+        ],
       },
       {
         group: "Results",
@@ -1500,11 +1526,17 @@ export const projects: Project[] = [
         group: "Overview",
         label: "Mission: impossible (but actually possible)",
         body: "When I joined J.P. Morgan Chase as a Design Lead, the plan was to build a design team from scratch to create the Checkout Solution. Weeks after I joined, the company announced a hiring freeze, but the deadlines didn't move. So I became a team of one, single-handedly designing and shipping the MVP for three products over the next six months: Checkout, the consumer-facing payment flow; Commerce Center, the merchant admin tool; and Chameleon, the white-label design system tying them together.",
+        images: [
+          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813 },
+        ],
       },
       {
         group: "Overview",
         label: "What is checkout",
         body: "Checkout is J.P. Morgan Chase's solution for merchant clients: a smooth, secure, customizable online shopping experience. Customers enter payment info once, and it's processed through J.P. Morgan's Merchant Services. For merchants, the real benefit is reduced PCI compliance overhead: Checkout integrates directly with JPMC's payment processing, so businesses don't have to build and maintain that infrastructure themselves.",
+        images: [
+          { src: "/images/checkout/02-what-is-checkout.jpg", alt: "Checkout payment method screen showing credit card entry and alternative payment options beside an order summary", framed: true, width: 1800, height: 741 },
+        ],
       },
       {
         group: "Goals",
@@ -1520,31 +1552,51 @@ export const projects: Project[] = [
         group: "Process",
         label: "How we worked",
         body: "Our process was structured but adaptable: define and stress-test requirements with product, validate assumptions through internal critique or client testing, choose the right research method for the problem, hand off fully annotated specs covering edge cases and accessibility, iterate with engineering through multiple feedback rounds, and stay involved through post-launch QA. But after 15 years in design, the rule I lean on most with my team is common sense: process is a tool, not a rulebook, and knowing when to skip a step is as important as knowing the framework.",
+        images: [
+          { src: "/images/checkout/03-process.jpg", alt: "The six steps of the design process: requirements, research, design iterations, testing assumptions, design handoff, and post-launch QA", framed: true, width: 1800, height: 904 },
+        ],
       },
       {
         group: "Delivery",
         label: "Consumer-facing checkout",
         body: "A best-in-class checkout built for speed and conversion: clear actions, effortless form-filling, and support for multiple payment methods, accessibility, and responsive layouts, adaptable to any merchant's brand.",
+        imageLayout: "stack",
+        images: [
+          { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787 },
+          { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394 },
+        ],
       },
       {
         group: "Delivery",
         label: "Drop-in UI: embedded checkout",
         body: "The consumer checkout is also available as Drop-in UI, an embeddable form that lets merchants host their own checkout page while our secure, PCI-compliant payment form handles the sensitive parts: full control over the flow, none of the compliance burden.",
+        images: [
+          { src: "/images/checkout/06-drop-in-ui.jpg", alt: "Embedded credit card form with card number, name, expiration date, and security code fields", framed: true, width: 1544, height: 1576 },
+        ],
       },
       {
         group: "Delivery",
         label: "Commerce Center: merchant tool",
         body: "Commerce Center puts checkout customization in merchants' hands: brand-matched design, flexible payment method selection, security and fraud settings, and transaction reporting, all without needing engineering support.",
+        images: [
+          { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350 },
+        ],
       },
       {
         group: "Delivery",
         label: "Chameleon: the design system",
         body: "Chameleon is the lightweight, white-label system underneath all of it: flexible enough for merchants to fully customize their UI while staying consistent, scalable, and easy to build on.",
+        images: [
+          { src: "/images/checkout/08-chameleon.jpg", alt: "Chameleon design system building blocks: typography, brand colors, button, checkbox, and radio", framed: true, width: 1570, height: 1562 },
+        ],
       },
       {
         group: "Delivery",
         label: "Accessibility: built-in compliance",
         body: "Every surface was built to be fully WCAG-compliant from the start: proper color contrast, keyboard navigation, screen reader support, and clear, accessible interaction patterns. Accessibility as a default, not a retrofit.",
+        images: [
+          { src: "/images/checkout/25-accessibility.jpg", alt: "Card number field shown failing and passing WCAG AA color contrast", framed: true, width: 1526, height: 1538 },
+        ],
       },
       {
         group: "Results",
