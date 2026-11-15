@@ -133,14 +133,7 @@ const FORM_GRID = "grid gap-4 [@container(min-width:1000px)]:grid-cols-2";
 
 function FormActions({ onCancel }: { onCancel: () => void }) {
   return (
-    <div className="mt-5 flex items-center gap-3">
-      <button
-        type="submit"
-        className="h-10 cursor-pointer rounded-sm px-5 text-sm font-medium text-white outline-none transition-[filter,box-shadow] focus-visible:shadow-[0_0_0_3px_rgba(11,116,234,0.25)] [@media(hover:hover)]:hover:brightness-95"
-        style={{ background: BLUE }}
-      >
-        Save
-      </button>
+    <div className="mt-5 flex items-center justify-end gap-3">
       <button
         type="button"
         onClick={onCancel}
@@ -148,6 +141,13 @@ function FormActions({ onCancel }: { onCancel: () => void }) {
         style={{ border: `1px solid ${LINE}`, color: INK }}
       >
         Cancel
+      </button>
+      <button
+        type="submit"
+        className="h-10 cursor-pointer rounded-sm px-5 text-sm font-medium text-white outline-none transition-[filter,box-shadow] focus-visible:shadow-[0_0_0_3px_rgba(11,116,234,0.25)] [@media(hover:hover)]:hover:brightness-95"
+        style={{ background: BLUE }}
+      >
+        Save
       </button>
     </div>
   );

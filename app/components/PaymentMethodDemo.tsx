@@ -1,5 +1,6 @@
 "use client";
 
+import { DemoLayer, type Demo } from "@/app/components/DemoLayer";
 import { useState, type CSSProperties, type InputHTMLAttributes, type ReactNode } from "react";
 import { JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 
@@ -101,68 +102,22 @@ function formatExpiry(raw: string) {
 
 // ---------- small marks and icons ----------
 
-function Tile({ children, w = 28 }: { children: ReactNode; w?: number }) {
-  return (
-    <span
-      className="inline-flex items-center justify-center bg-white"
-      style={{ width: w, height: 19, border: "1px solid #d8dde6", borderRadius: 3 }}
-    >
-      {children}
-    </span>
-  );
-}
+// Brand badges: 38x24 SVGs from the open-source Shopify payment_icons set (MIT). Not official brand kits.
+type BadgeName = "apple-pay" | "google-pay" | "paypal" | "affirm" | Brand;
+const BRAND_BADGE: Record<Brand, string> = { visa: "visa", mc: "mastercard", jcb: "jcb", amex: "amex", diners: "diners" };
 
-const BRAND_TILES: Record<Brand, ReactNode> = {
-  visa: (
-    <Tile>
-      <span style={{ color: "#1a3a9c", fontWeight: 800, fontStyle: "italic", fontSize: 9, letterSpacing: -0.2 }}>VISA</span>
-    </Tile>
-  ),
-  mc: (
-    <Tile>
-      <svg width="18" height="11" viewBox="0 0 16 10" aria-hidden>
-        <circle cx="5.5" cy="5" r="4.5" fill="#eb001b" />
-        <circle cx="10.5" cy="5" r="4.5" fill="#f79e1b" fillOpacity="0.95" />
-      </svg>
-    </Tile>
-  ),
-  jcb: (
-    <Tile>
-      <span
-        style={{
-          fontWeight: 800, fontSize: 8.5, color: "#fff", padding: "0 3px", borderRadius: 2,
-          background: "linear-gradient(90deg,#0b6fb5,#1f9a47,#d1262d)",
-        }}
-      >
-        JCB
-      </span>
-    </Tile>
-  ),
-  amex: (
-    <Tile>
-      <span style={{ color: "#2a7ac0", fontWeight: 800, fontSize: 7, lineHeight: 0.9, textAlign: "center" }}>
-        AM
-        <br />
-        EX
-      </span>
-    </Tile>
-  ),
-  diners: (
-    <Tile>
-      <svg width="13" height="13" viewBox="0 0 12 12" aria-hidden>
-        <circle cx="6" cy="6" r="5.2" fill="none" stroke="#1a6bb8" strokeWidth="1.1" />
-        <rect x="5.2" y="3" width="1.6" height="6" rx="0.4" fill="#1a6bb8" />
-      </svg>
-    </Tile>
-  ),
-};
+function Badge({ name, alt, h = 20 }: { name: BadgeName; alt: string; h?: number }) {
+  const file = name in BRAND_BADGE ? BRAND_BADGE[name as Brand] : name;
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={`/images/payment/${file}.svg`} alt={alt} width={38} height={24} style={{ height: h, width: "auto", display: "block" }} />;
+}
 
 function CardLogos({ brand }: { brand: Brand | null }) {
   return (
     <span className="flex items-center gap-[3px]">
-      {(Object.keys(BRAND_TILES) as Brand[]).map((b) => (
+      {(Object.keys(BRAND_BADGE) as Brand[]).map((b) => (
         <span key={b} style={{ opacity: brand && brand !== b ? 0.3 : 1, transition: "opacity 200ms", display: "inline-flex" }}>
-          {BRAND_TILES[b]}
+          <Badge name={b} alt="" h={19} />
         </span>
       ))}
     </span>
@@ -199,16 +154,6 @@ function AppleGlyph({ size = 16, color = "currentColor" }: { size?: number; colo
   );
 }
 
-const GoogleG = ({ size = 18 }: { size?: number }) => (
-  <span style={{ color: "#4285f4", fontWeight: 700, fontSize: size, lineHeight: 1 }}>G</span>
-);
-const PayPalP = ({ size = 18 }: { size?: number }) => (
-  <span style={{ color: "#2a6fd6", fontWeight: 800, fontStyle: "italic", fontSize: size, lineHeight: 1 }}>P</span>
-);
-const AffirmMark = ({ size = 12 }: { size?: number }) => (
-  <span style={{ fontWeight: 700, fontSize: size, letterSpacing: -0.4, lineHeight: 1 }}>affirm</span>
-);
-
 // ---------- payment methods ----------
 
 const METHODS: {
@@ -227,7 +172,7 @@ const METHODS: {
     button: "Continue with bank",
   },
   {
-    id: "apple", label: "Apple Pay", icon: <AppleGlyph size={19} />,
+    id: "apple", label: "Apple Pay", icon: <Badge name="apple-pay" alt="" />,
     text: "You will be redirected to Apple Pay to complete this payment. Clicking Check Out with Apple Pay will finalize your transaction.",
     button: (
       <span className="inline-flex items-center gap-1">
@@ -238,7 +183,7 @@ const METHODS: {
     btnBg: "#000", btnFg: "#fff",
   },
   {
-    id: "google", label: "Google Pay", icon: <GoogleG />,
+    id: "google", label: "Google Pay", icon: <Badge name="google-pay" alt="" />,
     text: "You will be redirected to Google Pay to complete this payment. Clicking Check Out with Google Pay will finalize your transaction.",
     button: (
       <span className="inline-flex items-center gap-1">
@@ -249,13 +194,13 @@ const METHODS: {
     btnBg: "#000", btnFg: "#fff",
   },
   {
-    id: "paypal", label: "PayPal", icon: <PayPalP />,
+    id: "paypal", label: "PayPal", icon: <Badge name="paypal" alt="" />,
     text: "You will be redirected to PayPal to log in and complete this payment.",
     button: <span style={{ fontWeight: 700, fontStyle: "italic" }}>PayPal</span>,
     btnBg: "#ffc439", btnFg: "#003087",
   },
   {
-    id: "affirm", label: "Affirm", icon: <AffirmMark />,
+    id: "affirm", label: "Affirm", icon: <Badge name="affirm" alt="" />,
     text: "You will be redirected to Affirm to choose a monthly payment plan and complete this purchase.",
     button: "Continue with Affirm",
     btnBg: "#4a4af4", btnFg: "#fff",
@@ -310,6 +255,17 @@ function validateCard(c: CardState, cvcLen: number): CardErrors {
   return e;
 }
 
+// Small "!" in a circle, in front of an error message; takes the message's colour and sits on its first line.
+function ErrorIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden className="mt-px shrink-0">
+      <circle cx="8" cy="8" r="6.4" />
+      <path d="M8 4.8v3.8" />
+      <circle cx="8" cy="11.1" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 function CardForm({
   t, labels, v, set, brand, cvcLen, errors, showErrors, paid, onPay,
 }: {
@@ -359,7 +315,7 @@ function CardForm({
 
   const brandMark = (
     <span className="shrink-0">
-      {brand ? BRAND_TILES[brand] : <span style={{ color: t.muted, display: "inline-flex" }}><CardIcon size={18} /></span>}
+      {brand ? <Badge name={brand} alt="" h={19} /> : <span style={{ color: t.muted, display: "inline-flex" }}><CardIcon size={18} /></span>}
     </span>
   );
 
@@ -370,7 +326,7 @@ function CardForm({
   if (labels === "top") {
     const top = ({ k, trailing }: { k: keyof CardState; trailing?: ReactNode }) => (
       <label className="flex min-w-0 flex-col gap-1.5">
-        <span style={{ fontSize: 12, color: errOf(k) ? danger : t.muted }}>{fields[k].label}</span>
+        <span style={{ fontSize: 12, color: t.muted }}>{fields[k].label}</span>
         <span
           className="flex items-center gap-2 px-3 transition-[border-color,box-shadow] focus-within:border-[color:var(--accent)] focus-within:shadow-[0_0_0_3px_var(--ring)]"
           style={{ ...frame, height: 42, borderColor: errOf(k) ? danger : t.line }}
@@ -379,7 +335,8 @@ function CardForm({
           {trailing}
         </span>
         {errOf(k) && (
-          <span role="alert" style={{ fontSize: 12, color: danger }}>
+          <span role="alert" className="flex items-start gap-1.5" style={{ fontSize: 12, color: danger }}>
+            <ErrorIcon />
             {errOf(k)}
           </span>
         )}
@@ -485,7 +442,10 @@ function CardForm({
         {messages.length > 0 && (
           <ul role="alert" className="m-0 flex list-none flex-col gap-0.5 p-0" style={{ fontSize: 12, color: danger }}>
             {messages.map((m) => (
-              <li key={m}>{m}</li>
+              <li key={m} className="flex items-start gap-1.5">
+                <ErrorIcon />
+                {m}
+              </li>
             ))}
           </ul>
         )}
@@ -608,11 +568,75 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
+// ---------- auto-play script (the "Demo" mode) ----------
+
+// Clicks around the settings panel (labels, theme, font, corners, layout), fills the card in, then pays.
+// Everything it presses is a real control. (No error scenario on purpose.)
+async function playTour(d: Demo) {
+  const pick = (group: string, text: string) => d.click(d.byText(`[role="group"][aria-label="${group}"] button`, text, true));
+  const pause = () => d.wait(900);
+
+  // 1. label styles
+  await pick("Labels", "Floating"); // Above is the default
+  await pause();
+  await pick("Labels", "Left");
+  await pause();
+
+  // 2. fill the card in
+  await d.type(d.q('input[aria-label="Name on card"]') as HTMLInputElement, "Jenny Rosen");
+  await d.type(d.q('input[aria-label="Card number"]') as HTMLInputElement, "4242 4242 4242 4242");
+  await d.type(d.q('input[aria-label="Expiry date"]') as HTMLInputElement, "08/28");
+  await d.type(d.q('input[aria-label="Security code"]') as HTMLInputElement, "123");
+  await d.wait(600);
+
+  // 3. themes, fonts, corners
+  for (const name of ["Midnight", "Mono", "Sunrise", "Mint", "Paper"]) {
+    await pick("Theme", name);
+    await d.wait(700);
+  }
+  await pick("Font", "Serif");
+  await d.wait(700);
+  await pick("Font", "Mono");
+  await d.wait(700);
+  await pick("Font", "Inter");
+  await pick("Corners", "Sharp");
+  await d.wait(700);
+  await pick("Corners", "Round");
+  await d.wait(700);
+  await pick("Corners", "Soft");
+  await pause();
+
+  // 4. layout, and the other payment methods (Stacked is the default)
+  const method = (name: string) => d.byText('[role="radiogroup"][aria-label="Payment method"] [role="radio"]', name);
+  await pick("Layout", "Tabs");
+  await pause();
+  await d.click(method("Apple Pay"));
+  await d.wait(900);
+  await d.click(method("Bank"));
+  await d.wait(900);
+  await d.click(method("Card"));
+  await pause();
+  await pick("Layout", "Stacked");
+  await d.click(method("Bank"));
+  await d.wait(900);
+  await d.click(method("Credit card")); // named "Card" in Tabs
+  await pause();
+
+  // 5. pay
+  await d.click(d.byText('button[type="submit"]', "Pay with credit card"));
+  await d.wait(3200);
+
+  // 6. back to the defaults, then loop
+  const reset = d.byText("button", "Reset", true);
+  if (d.isLive(reset)) await d.click(reset);
+  await d.wait(1200);
+}
+
 // ---------- the demo ----------
 
 export function PaymentMethodDemo() {
-  const [layout, setLayout] = useState<Layout>("tabs");
-  const [labels, setLabels] = useState<Labels>("inside");
+  const [layout, setLayout] = useState<Layout>("stacked");
+  const [labels, setLabels] = useState<Labels>("top");
   const [fontId, setFontId] = useState<FontId>("inter");
   const [themeId, setThemeId] = useState<ThemeId>("paper");
   const [corners, setCorners] = useState<Corners>("soft");
@@ -620,15 +644,17 @@ export function PaymentMethodDemo() {
   const [card, setCard] = useState<CardState>(EMPTY_CARD);
   const [paid, setPaid] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
+  // Demo: the page plays itself and the mouse is blocked. Try it: you drive.
+  const [mode, setMode] = useState<"demo" | "try">("demo");
 
   const isDefault =
-    layout === "tabs" && labels === "inside" && fontId === "inter" && themeId === "paper" && corners === "soft" &&
+    layout === "stacked" && labels === "top" && fontId === "inter" && themeId === "paper" && corners === "soft" &&
     selected === "card" &&
     !paid && !showErrors && Object.values(card).every((x) => x === "");
 
   function reset() {
-    setLayout("tabs");
-    setLabels("inside");
+    setLayout("stacked");
+    setLabels("top");
     setFontId("inter");
     setThemeId("paper");
     setCorners("soft");
@@ -637,6 +663,12 @@ export function PaymentMethodDemo() {
     setPaid(false);
     setShowErrors(false);
   }
+
+  const changeMode = (m: "demo" | "try") => {
+    if (m === mode) return;
+    reset(); // either way, start from the defaults
+    setMode(m);
+  };
 
   const baseTheme = THEMES.find((x) => x.id === themeId) ?? THEMES[0];
   const t: Theme = { ...baseTheme, radius: CORNER_RADIUS[corners] };
@@ -682,7 +714,7 @@ export function PaymentMethodDemo() {
     const current = METHODS.find((m) => m.id === sel) ?? METHODS[0];
     return (
         <div
-          className={`${serifFont.variable} ${monoFont.variable} w-full max-w-[460px] p-6 transition-colors duration-300 sm:p-7`}
+          className={`${serifFont.variable} ${monoFont.variable} relative w-full max-w-[460px] p-6 transition-colors duration-300 sm:p-7`}
           style={{
             ...cardVars,
             background: t.bg,
@@ -693,6 +725,22 @@ export function PaymentMethodDemo() {
             boxShadow: t.shadow,
           }}
         >
+          {/* a little stickman with a laptop, peeking over the card's top edge (drawn at half size). The
+              box's bottom is 45px below the card's top edge (25px is empty space in the SVG, 20px is
+              the figure tucked behind the card); clip-path cuts everything below the edge, so it
+              looks hidden behind the card on any theme. Painted with a mask so it follows the site's
+              text colour: white on the dark theme. */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute hidden sm:block"
+            style={{
+              width: 120, height: 120, left: -14, bottom: "calc(100% - 45px)", clipPath: "inset(0 0 45px 0)",
+              background: "rgb(var(--fg-primary))",
+              maskImage: "url(/images/checkout/stickman-laptop.svg)", WebkitMaskImage: "url(/images/checkout/stickman-laptop.svg)",
+              maskRepeat: "no-repeat", WebkitMaskRepeat: "no-repeat",
+              maskSize: "contain", WebkitMaskSize: "contain",
+            }}
+          />
           <h4 style={{ margin: 0, fontSize: 16, fontWeight: 600, letterSpacing: -0.1 }}>Payment method</h4>
 
           {layout === "tabs" ? (
@@ -777,7 +825,8 @@ export function PaymentMethodDemo() {
   };
 
   return (
-    <div className="flex w-full flex-col overflow-hidden rounded-lg border border-stroke bg-fill-frame lg:flex-row">
+    <div className="relative flex w-full flex-col overflow-hidden rounded-lg border border-stroke bg-fill-frame lg:flex-row">
+      {mode === "demo" && <DemoLayer play={playTour} onReset={reset} />}
       {/* settings panel */}
       <aside className="flex w-full shrink-0 flex-col border-b border-stroke bg-fill-surface lg:w-[264px] lg:border-b-0 lg:border-r">
         <div className="flex flex-1 flex-col gap-6 p-4">
@@ -811,7 +860,13 @@ export function PaymentMethodDemo() {
                   <span
                     aria-hidden
                     className="h-4 w-4 shrink-0 rounded-full border border-stroke"
-                    style={{ background: `linear-gradient(135deg, ${th.bg} 50%, ${th.accent} 50%)` }}
+                    // clip to the padding box and don't tile: otherwise the gradient repeats under the
+                    // 1px border and leaves slivers of the other colour around the circle
+                    style={{
+                      backgroundImage: `linear-gradient(135deg, ${th.bg} 50%, ${th.accent} 50%)`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundClip: "padding-box",
+                    }}
                   />
                   {th.name}
                 </button>
@@ -861,6 +916,23 @@ export function PaymentMethodDemo() {
           backgroundSize: "20px 20px",
         }}
       >
+      <div className="relative z-40 mb-6 flex justify-center">
+        <div role="group" aria-label="Mode" className="flex rounded-full border border-stroke bg-fill-surface p-0.5 text-xs">
+          {([["demo", "Demo"], ["try", "Try it"]] as const).map(([id, text]) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={mode === id}
+              onClick={() => changeMode(id)}
+              className={`h-8 rounded-full px-3.5 transition-colors ${
+                mode === id ? "bg-fg-primary text-fill-surface" : "text-fg-secondary hover:text-fg-primary"
+              }`}
+            >
+              {text}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="grid w-full grid-cols-1">
         <div className="col-start-1 row-start-1 flex justify-center self-start">{renderCard(selected)}</div>
         {/* Invisible copy of the tallest state (card form open). It reserves the canvas

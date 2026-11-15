@@ -165,6 +165,16 @@ export function DeviceCanvas({
         backgroundSize: "20px 20px",
       }}
     >
+      {/* the scale the page is shown at (it is drawn at full size, then shrunk) */}
+      {avail > 0 && (
+        <span
+          title={`Shown at ${Math.round(scale * 100)}% of the page's real size`}
+          className="absolute left-3 top-3 z-10 hidden h-8 items-center rounded-full border border-stroke bg-fill-surface px-3 text-xs tabular-nums text-fg-secondary sm:flex"
+        >
+          {Math.round(scale * 100)}%
+        </span>
+      )}
+
       <button
         type="button"
         onClick={toggle}
