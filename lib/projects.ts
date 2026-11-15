@@ -38,6 +38,15 @@ export type Section = {
   // Optional stat-card grid rendered below the body, e.g. for a Results
   // section: { value: "52%", label: "Search engagement" }.
   stats?: Metric[];
+  // "compact" renders the stat value at the same size as the label (used for
+  // objectives, where the value is a word more often than a number).
+  statsVariant?: "compact";
+  // Optional live component rendered below the images, built in code instead
+  // of exported from a design tool.
+  demo?: "payment-methods";
+  // Optional live checkout mockup (layout switcher + device switcher) rendered right below the
+  // section paragraph, before any stats, cards or images.
+  pageDemo?: "checkout-page";
   // Optional grid of icon cards rendered below the body, e.g. process steps.
   cards?: IconCard[];
 };
@@ -794,12 +803,28 @@ export const projects: Project[] = [
       {
         group: "Goals",
         label: "Business objectives",
-        body: "The team's OKRs were set around driving adoption (targeting 25% adoption across Commerce Platform clients), scaling Checkout revenue and merchant engagement, strengthening flexibility and security (including integration with J.P. Morgan's in-house fraud detection), and improving usability, accessibility, and customization, with a target of WCAG 2.2 AA compliance and 60%+ payment-method parity with competitors. Exact transaction and revenue figures are confidential.",
+        body: "The team's OKRs focused on four areas. Exact transaction and revenue figures are confidential.",
+        statsVariant: "compact",
+        stats: [
+          { value: "25%", label: "Adoption", body: "Target adoption across Commerce Platform clients." },
+          { value: "", label: "Revenue and engagement", body: "Scale Checkout revenue and merchant engagement." },
+          { value: "", label: "Flexibility and security", body: "Strengthen flexibility and security, including integration with J.P. Morgan's in-house fraud detection." },
+          { value: "60%+", label: "Usability and parity", body: "Improve usability, accessibility, and customization: WCAG 2.2 AA compliance and 60%+ payment-method parity with competitors." },
+        ],
       },
       {
         group: "Goals",
         label: "Design objectives",
-        body: "On the design side, I set OKRs that mirrored the business goals: every design decision backed by research or data, 100% adherence to experience success criteria, full design-system adoption, features delivered at least a quarter ahead of engineering, and 100% of delivered designs meeting WCAG 2.2 AA, with every risk-sensitive deliverable reviewed and approved by compliance.",
+        body: "I set OKRs that mirrored the business goals, so design was held to the same bar as the product.",
+        statsVariant: "compact",
+        stats: [
+          { value: "", label: "Evidence first", body: "Every design decision backed by research or data." },
+          { value: "100%", label: "Experience success criteria", body: "Full adherence to the agreed experience success criteria." },
+          { value: "100%", label: "Design system adoption", body: "Full adoption of the design system across the product." },
+          { value: "", label: "Ahead of engineering", body: "Features delivered at least a quarter ahead of engineering." },
+          { value: "", label: "WCAG 2.2 AA compliance", body: "100% of delivered designs meeting WCAG 2.2 AA." },
+          { value: "", label: "Compliance sign-off", body: "Every risk-sensitive deliverable reviewed and approved by compliance." },
+        ],
       },
       {
         group: "Process",
@@ -819,10 +844,12 @@ export const projects: Project[] = [
         label: "Consumer-facing checkout",
         body: "A best-in-class checkout built for speed and conversion: clear actions, effortless form-filling, and support for multiple payment methods, accessibility, and responsive layouts, adaptable to any merchant's brand.",
         imageLayout: "stack",
+        pageDemo: "checkout-page",
         images: [
           { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787 },
           { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394 },
         ],
+        demo: "payment-methods",
       },
       {
         group: "Delivery",
@@ -1556,12 +1583,28 @@ export const projects: Project[] = [
       {
         group: "Goals",
         label: "Business objectives",
-        body: "The team's OKRs were set around driving adoption (targeting 25% adoption across Commerce Platform clients), scaling Checkout revenue and merchant engagement, strengthening flexibility and security (including integration with J.P. Morgan's in-house fraud detection), and improving usability, accessibility, and customization, with a target of WCAG 2.2 AA compliance and 60%+ payment-method parity with competitors. Exact transaction and revenue figures are confidential.",
+        body: "The team's OKRs focused on four areas. Exact transaction and revenue figures are confidential.",
+        statsVariant: "compact",
+        stats: [
+          { value: "25%", label: "Adoption", body: "Target adoption across Commerce Platform clients." },
+          { value: "", label: "Revenue and engagement", body: "Scale Checkout revenue and merchant engagement." },
+          { value: "", label: "Flexibility and security", body: "Strengthen flexibility and security, including integration with J.P. Morgan's in-house fraud detection." },
+          { value: "60%+", label: "Usability and parity", body: "Improve usability, accessibility, and customization: WCAG 2.2 AA compliance and 60%+ payment-method parity with competitors." },
+        ],
       },
       {
         group: "Goals",
         label: "Design objectives",
-        body: "On the design side, I set OKRs that mirrored the business goals: every design decision backed by research or data, 100% adherence to experience success criteria, full design-system adoption, features delivered at least a quarter ahead of engineering, and 100% of delivered designs meeting WCAG 2.2 AA, with every risk-sensitive deliverable reviewed and approved by compliance.",
+        body: "I set OKRs that mirrored the business goals, so design was held to the same bar as the product.",
+        statsVariant: "compact",
+        stats: [
+          { value: "", label: "Evidence first", body: "Every design decision backed by research or data." },
+          { value: "100%", label: "Experience success criteria", body: "Full adherence to the agreed experience success criteria." },
+          { value: "100%", label: "Design system adoption", body: "Full adoption of the design system across the product." },
+          { value: "", label: "Ahead of engineering", body: "Features delivered at least a quarter ahead of engineering." },
+          { value: "", label: "WCAG 2.2 AA compliance", body: "100% of delivered designs meeting WCAG 2.2 AA." },
+          { value: "", label: "Compliance sign-off", body: "Every risk-sensitive deliverable reviewed and approved by compliance." },
+        ],
       },
       {
         group: "Process",
@@ -1581,10 +1624,12 @@ export const projects: Project[] = [
         label: "Consumer-facing checkout",
         body: "A best-in-class checkout built for speed and conversion: clear actions, effortless form-filling, and support for multiple payment methods, accessibility, and responsive layouts, adaptable to any merchant's brand.",
         imageLayout: "stack",
+        pageDemo: "checkout-page",
         images: [
           { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787 },
           { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394 },
         ],
+        demo: "payment-methods",
       },
       {
         group: "Delivery",

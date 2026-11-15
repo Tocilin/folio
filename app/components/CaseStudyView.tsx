@@ -9,6 +9,8 @@ import { Footer } from "@/app/components/Footer";
 import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
 import { ResultsCards } from "@/app/components/ResultsCards";
 import { IconCards } from "@/app/components/IconCards";
+import { PaymentMethodDemo } from "@/app/components/PaymentMethodDemo";
+import { CheckoutShowcase } from "@/app/components/CheckoutShowcase";
 import type { Project } from "@/lib/projects";
 
 function slugify(text: string) {
@@ -115,7 +117,8 @@ export function CaseStudyView({
               {section.body && (
                 <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
               )}
-              {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} />}
+              {section.pageDemo === "checkout-page" && <CheckoutShowcase />}
+              {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} compact={section.statsVariant === "compact"} />}
               {section.cards && section.cards.length > 0 && <IconCards cards={section.cards} />}
               {section.images && section.images.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${
@@ -142,6 +145,12 @@ export function CaseStudyView({
                       )}
                     </ZoomableImage>
                   ))}
+                </div>
+              )}
+              {section.demo === "payment-methods" && (
+                <div className="flex flex-col gap-3">
+                  <PaymentMethodDemo />
+                  <p className="text-xs text-fg-tertiary">Rebuilt in code. Try the layout, label, font and theme switches, and the card form.</p>
                 </div>
               )}
             </section>
@@ -195,7 +204,7 @@ export function CaseStudyView({
         {layout === "centered" ? (
           content
         ) : (
-          <div className={`lg:grid lg:gap-16 ${layout === "toc-left" ? "lg:grid-cols-[160px_1fr]" : "lg:grid-cols-[1fr_160px]"}`}>
+          <div className={`lg:grid lg:gap-16 ${layout === "toc-left" ? "lg:grid-cols-[160px_minmax(0,1fr)]" : "lg:grid-cols-[minmax(0,1fr)_160px]"}`}>
             {layout === "toc-left" && <CaseStudyTOC items={toc} />}
             {content}
             {layout === "toc-right" && <CaseStudyTOC items={toc} />}
