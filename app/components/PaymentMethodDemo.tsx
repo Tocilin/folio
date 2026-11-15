@@ -1,6 +1,7 @@
 "use client";
 
 import { DemoLayer, type Demo } from "@/app/components/DemoLayer";
+import { FullscreenButton, useFullscreen } from "@/app/components/Fullscreen";
 import { PaymentBadge } from "@/app/components/PaymentBadge";
 import { BRAND_BADGE, detectBrand, formatCardNumber, formatExpiry, type Brand } from "@/app/components/cardNumber";
 import { useState, type CSSProperties, type InputHTMLAttributes, type ReactNode } from "react";
@@ -618,6 +619,8 @@ export function PaymentMethodDemo() {
   const [showErrors, setShowErrors] = useState(false);
   // Demo: the page plays itself and the mouse is blocked. Try it: you drive.
   const [mode, setMode] = useState<"demo" | "try">("demo");
+  // Full screen: the whole demo (settings panel + canvas) fills the window. Esc or the button exits.
+  const fs = useFullscreen();
 
   const isDefault =
     layout === "stacked" && labels === "top" && fontId === "inter" && themeId === "paper" && corners === "soft" &&
@@ -803,8 +806,16 @@ export function PaymentMethodDemo() {
   };
 
   return (
-    <div className="relative flex w-full flex-col overflow-hidden rounded-lg border border-stroke bg-fill-frame lg:flex-row">
+    <>
+    {fs.spacer}
+    <div
+      ref={fs.ref}
+      className={`flex w-full flex-col border-stroke bg-fill-frame lg:flex-row ${
+        fs.expanded ? "fixed inset-0 z-50 overflow-y-auto overflow-x-hidden" : "relative overflow-hidden rounded-lg border"
+      }`}
+    >
       {mode === "demo" && <DemoLayer play={playTour} onReset={reset} />}
+      <FullscreenButton expanded={fs.expanded} onClick={fs.toggle} className="absolute right-3 top-3 z-40" />
       {/* settings panel */}
       <aside className="flex w-full shrink-0 flex-col border-b border-stroke bg-fill-surface lg:w-[264px] lg:border-b-0 lg:border-r">
         <div className="flex flex-1 flex-col gap-6 p-4">
@@ -921,5 +932,6 @@ export function PaymentMethodDemo() {
       </div>
       </div>
     </div>
+    </>
   );
 }

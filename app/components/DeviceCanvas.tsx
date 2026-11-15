@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { FullscreenButton, useFullscreen } from "@/app/components/Fullscreen";
 
 // Dot-grid canvas with a Desktop / Tablet / Mobile switch and a card inside it.
 //
@@ -76,6 +77,9 @@ export function DeviceCanvas({
   controls,
   resetKey,
   overlay,
+  devices = true,
+  fixedWidth,
+  fixedHeight,
 }: {
   children: ReactNode;
   background: string;
@@ -88,6 +92,12 @@ export function DeviceCanvas({
   resetKey?: string;
   // Drawn on top of the page, inside the card (so it scales with it). It can block the mouse.
   overlay?: ReactNode;
+  // false: no Desktop / Tablet / Mobile switch (a desktop-only recreation of a fixed-size screenshot).
+  devices?: boolean;
+  // Lay the page out at exactly this size (px) and shrink it to fit the canvas, instead of the
+  // responsive 70% layout. Used for pixel-faithful recreations of screenshots.
+  fixedWidth?: number;
+  fixedHeight?: number;
 }) {
   const [device, setDevice] = useState<Device>("desktop");
   const areaRef = useRef<HTMLDivElement>(null);
@@ -96,26 +106,7 @@ export function DeviceCanvas({
   const [vh, setVh] = useState(800);
   // Expanded: the canvas fills the whole window at 1x scale (the page lays itself out at the window
   // width, keeping the same margin and column proportions). Esc or the button closes it.
-  const [expanded, setExpanded] = useState(false);
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const [collapsedH, setCollapsedH] = useState(0);
-
-  const toggle = () => {
-    if (!expanded) setCollapsedH(wrapRef.current?.offsetHeight ?? 0);
-    setExpanded(!expanded);
-  };
-
-  useEffect(() => {
-    if (!expanded) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setExpanded(false);
-    window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [expanded]);
+  const { expanded, toggle, ref: wrapRef, spacer } = useFullscreen();
 
   useEffect(() => {
     const area = areaRef.current;
@@ -139,21 +130,22 @@ export function DeviceCanvas({
   }, [device, resetKey]);
 
   const def = DEVICES.find((d) => d.id === device) ?? DEVICES[0];
-  const isDesktop = def.width === null;
-  const proportional = avail >= 700 && !expanded;
-  const desktopW = proportional ? Math.min(DESIGN_WIDTH, avail / TARGET_SCALE) : avail;
-  const scale = proportional ? avail / desktopW : 1;
+  const fixed = fixedWidth !== undefined;
+  const isDesktop = fixed || def.width === null;
+  const proportional = !fixed && avail >= 700 && !expanded;
+  const desktopW = fixed ? fixedWidth : proportional ? Math.min(DESIGN_WIDTH, avail / TARGET_SCALE) : avail;
+  const scale = fixed ? (avail ? Math.min(1, avail / fixedWidth) : 1) : proportional ? avail / desktopW : 1;
   // Layout width of the card in CSS px (before scaling). It never exceeds what fits the canvas.
   const baseH = isDesktop ? (proportional ? Math.round(desktopW * DESKTOP_ASPECT) : PHONE_BROWSER_HEIGHT) : PAGE_HEIGHT[def.id];
   // Expanded: the desktop page fills the window's height; tablet and phone keep their own height
   // unless the window is shorter than that.
   const maxH = Math.max(420, vh - EXPANDED_CHROME);
-  const pageH = expanded ? (isDesktop ? maxH : Math.min(baseH, maxH)) : baseH;
+  const pageH = fixed ? (fixedHeight ?? PAGE_HEIGHT.tablet) : expanded ? (isDesktop ? maxH : Math.min(baseH, maxH)) : baseH;
   const cardWidth = isDesktop ? desktopW : Math.min(def.width as number, avail / scale);
 
   return (
     <>
-    {expanded && <div aria-hidden style={{ height: collapsedH }} />}
+    {spacer}
     <div
       ref={wrapRef}
       className={`flex w-full flex-col items-center gap-6 border border-stroke bg-fill-frame px-4 py-6 sm:px-8 sm:pb-10 sm:pt-6 ${
@@ -175,21 +167,12 @@ export function DeviceCanvas({
         </span>
       )}
 
-      <button
-        type="button"
-        onClick={toggle}
-        title={expanded ? "Exit full width (Esc)" : "Expand to full width"}
-        aria-label={expanded ? "Exit full width" : "Expand to full width"}
-        aria-pressed={expanded}
-        className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-stroke bg-fill-surface text-fg-secondary transition-colors hover:text-fg-primary"
-      >
-        <svg {...ICON} width={16} height={16}>
-          {expanded ? <path d="M10 4v6H4M14 20v-6h6M10 10 3.5 3.5M14 14l6.5 6.5" /> : <path d="M14 4h6v6M10 20H4v-6M20 4l-6.5 6.5M4 20l6.5-6.5" />}
-        </svg>
-      </button>
+      <FullscreenButton expanded={expanded} onClick={toggle} className="absolute right-3 top-3 z-10" />
 
       <div className="flex flex-wrap items-center justify-center gap-3">
       {controls}
+      {!devices && !controls && <div aria-hidden className="h-8" />}
+      {devices && (
       <div role="group" aria-label="Preview size" className="flex rounded-full border border-stroke bg-fill-surface p-0.5">
         {DEVICES.map((d) => (
           <button
@@ -207,6 +190,7 @@ export function DeviceCanvas({
           </button>
         ))}
       </div>
+      )}
       </div>
 
       {/* area: measures the space available; its height follows the scaled card */}

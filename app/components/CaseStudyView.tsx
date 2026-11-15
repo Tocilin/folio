@@ -10,6 +10,7 @@ import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
 import { ResultsCards } from "@/app/components/ResultsCards";
 import { IconCards } from "@/app/components/IconCards";
 import { PaymentMethodDemo } from "@/app/components/PaymentMethodDemo";
+import { CommerceCenterShowcase } from "@/app/components/CommerceCenterShowcase";
 import { CheckoutShowcase } from "@/app/components/CheckoutShowcase";
 import type { Project } from "@/lib/projects";
 
@@ -118,7 +119,12 @@ export function CaseStudyView({
               {section.body && (
                 <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
               )}
-              {section.pageDemo === "checkout-page" && <CheckoutShowcase />}
+              {section.pageDemo === "checkout-page" && (
+                <div className="flex flex-col gap-3">
+                  <CheckoutShowcase />
+                  <p className="text-xs text-fg-tertiary">Consumer-facing checkout demo</p>
+                </div>
+              )}
               {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} compact={section.statsVariant === "compact"} />}
               {section.cards && section.cards.length > 0 && <IconCards cards={section.cards} />}
               {section.demo === "payment-methods" && (
@@ -130,7 +136,7 @@ export function CaseStudyView({
               {visibleImages.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${
                   (section.imageLayout ?? project.imageLayout) === "stack" || visibleImages.length === 1 ? "grid-cols-1" :
-                  visibleImages.length === 2 ? "grid-cols-2" :
+                  section.imageLayout === "two" || visibleImages.length === 2 ? "grid-cols-2" :
                   "grid-cols-3"
                 }`}>
                   {visibleImages.map((image, j) => (
@@ -152,6 +158,12 @@ export function CaseStudyView({
                       )}
                     </ZoomableImage>
                   ))}
+                </div>
+              )}
+              {section.pageDemo === "commerce-center" && (
+                <div className="flex flex-col gap-3">
+                  <CommerceCenterShowcase />
+                  <p className="text-xs text-fg-tertiary">Commerce Center: merchant tool (rebuilt in code)</p>
                 </div>
               )}
             </section>

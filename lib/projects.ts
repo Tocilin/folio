@@ -34,9 +34,9 @@ export type Section = {
   label: string;
   body: string;
   images?: SectionImage[];
-  // Set to "stack" to show images one under another instead of the default
-  // grid (2 images side by side, 3+ in three columns).
-  imageLayout?: "stack";
+  // Set to "stack" to show images one under another, or "two" for two per row, instead of the
+  // default grid (2 images side by side, 3+ in three columns).
+  imageLayout?: "stack" | "two";
   // Optional stat-card grid rendered below the body, e.g. for a Results
   // section: { value: "52%", label: "Search engagement" }.
   stats?: Metric[];
@@ -48,7 +48,7 @@ export type Section = {
   demo?: "payment-methods";
   // Optional live checkout mockup (layout switcher + device switcher) rendered right below the
   // section paragraph, before any stats, cards or images.
-  pageDemo?: "checkout-page";
+  pageDemo?: "checkout-page" | "commerce-center";
   // Optional grid of icon cards rendered below the body, e.g. process steps.
   cards?: IconCard[];
 };
@@ -868,6 +868,7 @@ export const projects: Project[] = [
         images: [
           { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350 },
         ],
+        pageDemo: "commerce-center",
       },
       {
         group: "Delivery",
@@ -894,6 +895,7 @@ export const projects: Project[] = [
         group: "Results",
         label: "The final look",
         body: "A picture is worth a thousand words. Here's the shipped product.",
+        imageLayout: "stack",
         images: [
           { src: "/images/checkout/09-gallery-1.webp", alt: "Checkout product screen" },
           { src: "/images/checkout/10-gallery-2.webp", alt: "Checkout product screen" },
@@ -1648,6 +1650,7 @@ export const projects: Project[] = [
         images: [
           { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350 },
         ],
+        pageDemo: "commerce-center",
       },
       {
         group: "Delivery",
@@ -1674,6 +1677,7 @@ export const projects: Project[] = [
         group: "Results",
         label: "The final look",
         body: "A picture is worth a thousand words. Here's the shipped product.",
+        imageLayout: "stack",
         images: [
           { src: "/images/checkout/09-gallery-1.webp", alt: "Checkout product screen" },
           { src: "/images/checkout/10-gallery-2.webp", alt: "Checkout product screen" },
