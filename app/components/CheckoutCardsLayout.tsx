@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { PaymentBadge } from "@/app/components/PaymentBadge";
 import { useState, type ReactNode } from "react";
 import { CK } from "@/app/components/checkoutTokens";
 import { Field, PaymentMethodFields, type PayChoice, SHIPPING, ShippingMethodOptions } from "@/app/components/CheckoutStepsLayout";
@@ -62,17 +63,6 @@ function Logo() {
       <span className="text-lg font-semibold tracking-tight [@container(min-width:560px)]:text-[22px]" style={{ color: INK }}>
         storelogo
       </span>
-    </span>
-  );
-}
-
-function VisaTile() {
-  return (
-    <span
-      className="inline-flex items-center justify-center bg-white"
-      style={{ width: 28, height: 19, border: "1px solid #d8dde6", borderRadius: 3 }}
-    >
-      <span style={{ color: "#1a3a9c", fontWeight: 800, fontStyle: "italic", fontSize: 9, letterSpacing: -0.2 }}>VISA</span>
     </span>
   );
 }
@@ -290,7 +280,7 @@ export function CheckoutCardsLayout() {
                 <div className="flex items-center gap-2 text-[13px]" style={{ color: BODY }}>
                   {pay === "visa" && (
                     <>
-                      <VisaTile />
+                      <PaymentBadge name="visa" h={22} />
                       <span>Ending in 4242</span>
                     </>
                   )}

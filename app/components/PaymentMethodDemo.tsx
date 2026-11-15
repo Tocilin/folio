@@ -1,6 +1,8 @@
 "use client";
 
 import { DemoLayer, type Demo } from "@/app/components/DemoLayer";
+import { PaymentBadge } from "@/app/components/PaymentBadge";
+import { BRAND_BADGE, detectBrand, formatCardNumber, formatExpiry, type Brand } from "@/app/components/cardNumber";
 import { useState, type CSSProperties, type InputHTMLAttributes, type ReactNode } from "react";
 import { JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 
@@ -18,7 +20,6 @@ type Labels = "top" | "left" | "inside";
 type FontId = "inter" | "serif" | "mono";
 type Corners = "soft" | "sharp" | "round";
 type ThemeId = "paper" | "midnight" | "mono" | "sunrise" | "mint";
-type Brand = "visa" | "mc" | "jcb" | "amex" | "diners";
 
 type Theme = ThemeColors & { radius: number };
 
@@ -77,47 +78,18 @@ const THEMES: (ThemeColors & { id: ThemeId; name: string })[] = [
 
 // ---------- card number helpers ----------
 
-function detectBrand(digits: string): Brand | null {
-  if (/^4/.test(digits)) return "visa";
-  if (/^(5[1-5]|2[2-7])/.test(digits)) return "mc";
-  if (/^35/.test(digits)) return "jcb";
-  if (/^3[47]/.test(digits)) return "amex";
-  if (/^3(0|6|8)/.test(digits)) return "diners";
-  return null;
-}
 
-function formatCardNumber(raw: string) {
-  const digits = raw.replace(/\D/g, "");
-  if (/^3[47]/.test(digits)) {
-    const d = digits.slice(0, 15);
-    return [d.slice(0, 4), d.slice(4, 10), d.slice(10, 15)].filter(Boolean).join(" ");
-  }
-  return (digits.slice(0, 16).match(/.{1,4}/g) ?? []).join(" ");
-}
 
-function formatExpiry(raw: string) {
-  const d = raw.replace(/\D/g, "").slice(0, 4);
-  return d.length > 2 ? `${d.slice(0, 2)}/${d.slice(2)}` : d;
-}
 
 // ---------- small marks and icons ----------
 
-// Brand badges: 38x24 SVGs from the open-source Shopify payment_icons set (MIT). Not official brand kits.
-type BadgeName = "apple-pay" | "google-pay" | "paypal" | "affirm" | Brand;
-const BRAND_BADGE: Record<Brand, string> = { visa: "visa", mc: "mastercard", jcb: "jcb", amex: "amex", diners: "diners" };
-
-function Badge({ name, alt, h = 20 }: { name: BadgeName; alt: string; h?: number }) {
-  const file = name in BRAND_BADGE ? BRAND_BADGE[name as Brand] : name;
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={`/images/payment/${file}.svg`} alt={alt} width={38} height={24} style={{ height: h, width: "auto", display: "block" }} />;
-}
 
 function CardLogos({ brand }: { brand: Brand | null }) {
   return (
     <span className="flex items-center gap-[3px]">
       {(Object.keys(BRAND_BADGE) as Brand[]).map((b) => (
         <span key={b} style={{ opacity: brand && brand !== b ? 0.3 : 1, transition: "opacity 200ms", display: "inline-flex" }}>
-          <Badge name={b} alt="" h={19} />
+          <PaymentBadge name={BRAND_BADGE[b]} h={19} />
         </span>
       ))}
     </span>
@@ -172,7 +144,7 @@ const METHODS: {
     button: "Continue with bank",
   },
   {
-    id: "apple", label: "Apple Pay", icon: <Badge name="apple-pay" alt="" />,
+    id: "apple", label: "Apple Pay", icon: <PaymentBadge name="apple-pay" />,
     text: "You will be redirected to Apple Pay to complete this payment. Clicking Check Out with Apple Pay will finalize your transaction.",
     button: (
       <span className="inline-flex items-center gap-1">
@@ -183,7 +155,7 @@ const METHODS: {
     btnBg: "#000", btnFg: "#fff",
   },
   {
-    id: "google", label: "Google Pay", icon: <Badge name="google-pay" alt="" />,
+    id: "google", label: "Google Pay", icon: <PaymentBadge name="google-pay" />,
     text: "You will be redirected to Google Pay to complete this payment. Clicking Check Out with Google Pay will finalize your transaction.",
     button: (
       <span className="inline-flex items-center gap-1">
@@ -194,13 +166,13 @@ const METHODS: {
     btnBg: "#000", btnFg: "#fff",
   },
   {
-    id: "paypal", label: "PayPal", icon: <Badge name="paypal" alt="" />,
+    id: "paypal", label: "PayPal", icon: <PaymentBadge name="paypal" />,
     text: "You will be redirected to PayPal to log in and complete this payment.",
     button: <span style={{ fontWeight: 700, fontStyle: "italic" }}>PayPal</span>,
     btnBg: "#ffc439", btnFg: "#003087",
   },
   {
-    id: "affirm", label: "Affirm", icon: <Badge name="affirm" alt="" />,
+    id: "affirm", label: "Affirm", icon: <PaymentBadge name="affirm" />,
     text: "You will be redirected to Affirm to choose a monthly payment plan and complete this purchase.",
     button: "Continue with Affirm",
     btnBg: "#4a4af4", btnFg: "#fff",
@@ -315,7 +287,7 @@ function CardForm({
 
   const brandMark = (
     <span className="shrink-0">
-      {brand ? <Badge name={brand} alt="" h={19} /> : <span style={{ color: t.muted, display: "inline-flex" }}><CardIcon size={18} /></span>}
+      {brand ? <PaymentBadge name={BRAND_BADGE[brand]} h={19} /> : <span style={{ color: t.muted, display: "inline-flex" }}><CardIcon size={18} /></span>}
     </span>
   );
 
@@ -725,22 +697,28 @@ export function PaymentMethodDemo() {
             boxShadow: t.shadow,
           }}
         >
-          {/* a little stickman with a laptop, peeking over the card's top edge (drawn at half size). The
-              box's bottom is 45px below the card's top edge (25px is empty space in the SVG, 20px is
-              the figure tucked behind the card); clip-path cuts everything below the edge, so it
-              looks hidden behind the card on any theme. Painted with a mask so it follows the site's
-              text colour: white on the dark theme. */}
-          <span
-            aria-hidden
-            className="pointer-events-none absolute hidden sm:block"
-            style={{
-              width: 120, height: 120, left: -14, bottom: "calc(100% - 45px)", clipPath: "inset(0 0 45px 0)",
-              background: "rgb(var(--fg-primary))",
-              maskImage: "url(/images/checkout/stickman-laptop.svg)", WebkitMaskImage: "url(/images/checkout/stickman-laptop.svg)",
-              maskRepeat: "no-repeat", WebkitMaskRepeat: "no-repeat",
-              maskSize: "contain", WebkitMaskSize: "contain",
-            }}
-          />
+          {/* a little stickman with a laptop, sitting on the card's top edge (drawn at half size) and
+              drawn on top of it, never cut off. The box's bottom is 45px below the card's top edge
+              (25px is empty space in the SVG, 20px is the figure overlapping the card). It is painted
+              as two halves with a mask: above the edge in the site's text colour (white on the dark
+              theme), over the card in the card's own text colour, so it stays visible on any theme. */}
+          {[
+            { clip: "inset(0 0 45px 0)", color: "rgb(var(--fg-primary))" },
+            { clip: "inset(75px 0 0 0)", color: t.ink },
+          ].map((half) => (
+            <span
+              key={half.clip}
+              aria-hidden
+              className="pointer-events-none absolute hidden sm:block"
+              style={{
+                width: 120, height: 120, left: -14, bottom: "calc(100% - 45px)", clipPath: half.clip,
+                background: half.color,
+                maskImage: "url(/images/checkout/stickman-laptop.svg)", WebkitMaskImage: "url(/images/checkout/stickman-laptop.svg)",
+                maskRepeat: "no-repeat", WebkitMaskRepeat: "no-repeat",
+                maskSize: "contain", WebkitMaskSize: "contain",
+              }}
+            />
+          ))}
           <h4 style={{ margin: 0, fontSize: 16, fontWeight: 600, letterSpacing: -0.1 }}>Payment method</h4>
 
           {layout === "tabs" ? (

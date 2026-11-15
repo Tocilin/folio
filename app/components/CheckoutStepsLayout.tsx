@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { PaymentBadge } from "@/app/components/PaymentBadge";
+import { BRAND_BADGE, detectBrand, formatCardNumber } from "@/app/components/cardNumber";
 import { useId, useState, type ReactNode } from "react";
 import { CK } from "@/app/components/checkoutTokens";
 
@@ -104,12 +106,16 @@ function Label({ children }: { children: ReactNode }) {
 // A labelled input (or dropdown, with `options`). Uncontrolled by default; pass value + onChange to
 // control it (the Member page does, so Save can read what you typed).
 export function Field({
-  label, placeholder, options, trailing, value, onChange, autoFocus,
+  label, placeholder, options, trailing, trailingFor, format, maxLength, value, onChange, autoFocus,
 }: {
   label: string; placeholder?: string; options?: string[]; trailing?: ReactNode;
+  // for uncontrolled inputs: reformat what is typed (e.g. group card digits), and/or pick the trailing
+  // icon from what is typed (e.g. the card network)
+  format?: (raw: string) => string; trailingFor?: (typed: string) => ReactNode; maxLength?: number;
   value?: string; onChange?: (v: string) => void; autoFocus?: boolean;
 }) {
   const controlled = value !== undefined;
+  const [typed, setTyped] = useState("");
   const id = useId();
   const inputCls = "h-full min-w-0 flex-1 border-0 bg-transparent p-0 text-sm outline-none placeholder:text-[#6c7686]";
   return (
@@ -134,8 +140,17 @@ export function Field({
           </>
         ) : (
           <>
-            <input id={id} type="text" placeholder={placeholder} autoComplete="off" autoFocus={autoFocus} {...(controlled ? { value, onChange: (e) => onChange?.(e.target.value) } : {})} className={inputCls} style={{ color: INK }} />
-            {trailing && <span className="shrink-0" style={{ color: MUTED }}>{trailing}</span>}
+            <input id={id} type="text" placeholder={placeholder} autoComplete="off" autoFocus={autoFocus} maxLength={maxLength}
+              {...(controlled
+                ? { value, onChange: (e) => onChange?.(e.target.value) }
+                : {
+                    onInput: (e) => {
+                      const el = e.currentTarget;
+                      if (format) el.value = format(el.value);
+                      setTyped(el.value);
+                    },
+                  })} className={inputCls} style={{ color: INK }} />
+            {(trailingFor?.(typed) ?? trailing) && <span className="shrink-0" style={{ color: MUTED }}>{trailingFor?.(typed) ?? trailing}</span>}
           </>
         )}
       </div>
@@ -254,20 +269,6 @@ function SavedMethod({ on, name, mark, last4, onSelect }: { on?: boolean; name: 
   );
 }
 
-function VisaMark() {
-  return (
-    <span style={{ color: "#8793a6", fontWeight: 800, fontStyle: "italic", fontSize: 14, letterSpacing: -0.3 }}>VISA</span>
-  );
-}
-
-function ToggleMark() {
-  return (
-    <span aria-hidden className="relative inline-block h-4 w-7">
-      <span className="absolute left-0 top-0 h-4 w-4 rounded-full" style={{ background: "#8793a6" }} />
-      <span className="absolute right-0 top-0 h-4 w-4 rounded-full" style={{ background: "#d3d8e0" }} />
-    </span>
-  );
-}
 
 function CartItem({ name, price, src }: { name: string; price: string; src: string }) {
   return (
@@ -379,8 +380,8 @@ export function PaymentMethodFields({ choice, onChoose }: { choice: PayChoice; o
   return (
     <div role="radiogroup" aria-label="Payment method" className="flex flex-col gap-8">
       <div className={CARDS2}>
-        <SavedMethod name="Visa" mark={<VisaMark />} last4="**** 4242" on={choice === "visa"} onSelect={() => onChoose("visa")} />
-        <SavedMethod name="Mastercard" mark={<ToggleMark />} last4="**** 9813" on={choice === "mastercard"} onSelect={() => onChoose("mastercard")} />
+        <SavedMethod name="Visa" mark={<PaymentBadge name="visa" />} last4="**** 4242" on={choice === "visa"} onSelect={() => onChoose("visa")} />
+        <SavedMethod name="Mastercard" mark={<PaymentBadge name="mastercard" />} last4="**** 9813" on={choice === "mastercard"} onSelect={() => onChoose("mastercard")} />
         <div
           {...selectable(() => onChoose("new"), newOn)}
           className={`flex min-h-[110px] cursor-pointer flex-col items-center justify-center gap-3 rounded-sm bg-white p-4 outline-none ${HOVER_LIFT}`}
@@ -401,7 +402,16 @@ export function PaymentMethodFields({ choice, onChoose }: { choice: PayChoice; o
       {newOn && (
         <div className="flex flex-col gap-4">
           <div className={FIELDS2}>
-            <Field label="Card Number" placeholder="12345 6789 1011 1213" />
+            <Field
+              label="Card Number"
+              placeholder="12345 6789 1011 1213"
+              format={formatCardNumber}
+              maxLength={19}
+              trailingFor={(typed) => {
+                const brand = detectBrand(typed.replace(/\D/g, ""));
+                return brand ? <PaymentBadge name={BRAND_BADGE[brand]} h={20} /> : null;
+              }}
+            />
             <Field label="Card Holder Name" placeholder="Trevor Jensen" />
           </div>
           {/* expiry and CVC stay on one row at every width */}
@@ -427,12 +437,15 @@ export function orderStyle(_choice: PayChoice, label = "Order Now"): { backgroun
   return { background: ACCENT, color: "#ffffff", content: label };
 }
 
-export function OrderSummaryCard({ className = "" }: { className?: string }) {
-  return (
-    <aside className={`self-start rounded-lg bg-white p-5 ${className}`} style={{ border: `1px solid ${LINE}` }}>
-      <h4 className="m-0 pb-4 text-lg font-semibold tracking-tight" style={{ color: INK, borderBottom: `1px solid ${RAIL}` }}>
-        Order Summary
-      </h4>
+const ORDER_TOTAL = "$150.99";
+
+// The order summary. `collapsible` is the narrow-screen version: a tappable header row with the
+// title and the total, and the full list opening under it.
+export function OrderSummaryCard({ className = "", collapsible = false }: { className?: string; collapsible?: boolean }) {
+  const [open, setOpen] = useState(false);
+
+  const details = (
+    <>
       <div className="flex flex-col gap-5 py-5">
         <CartItem name="Apple AirPods" price="$185.00" src="/images/checkout/product-airpods.png" />
         <CartItem name="Apple iPhone 12" price="$890.00" src="/images/checkout/product-iphone.png" />
@@ -451,9 +464,54 @@ export function OrderSummaryCard({ className = "" }: { className?: string }) {
         <SummaryRow label="Tax (7%)" value="$10.57" />
       </div>
       <div className="pt-4" style={{ borderTop: `1px solid ${RAIL}` }}>
-        <SummaryRow label="Order total" value="$150.99" bold />
+        <SummaryRow label="Order total" value={ORDER_TOTAL} bold />
       </div>
+    </>
+  );
 
+  if (collapsible) {
+    return (
+      <aside className={`rounded-lg bg-white px-5 ${className}`} style={{ border: `1px solid ${LINE}` }}>
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls="ck-order-summary"
+          onClick={() => setOpen(!open)}
+          className="flex h-14 w-full cursor-pointer items-center gap-3 text-left outline-none"
+        >
+          <h4 className="m-0 text-base font-semibold tracking-tight" style={{ color: INK }}>
+            Order Summary
+          </h4>
+          <span
+            className="ml-auto text-[15px] font-semibold transition-opacity duration-200"
+            style={{ color: INK, opacity: open ? 0 : 1 }}
+          >
+            {ORDER_TOTAL}
+          </span>
+          <span className="transition-transform duration-300" style={{ color: MUTED, transform: open ? "rotate(180deg)" : "none" }}>
+            <Chevron />
+          </span>
+        </button>
+        <div
+          id="ck-order-summary"
+          className="grid transition-[grid-template-rows] duration-300 ease-out"
+          style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+          inert={!open}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <div className="pb-5" style={{ borderTop: `1px solid ${RAIL}` }}>{details}</div>
+          </div>
+        </div>
+      </aside>
+    );
+  }
+
+  return (
+    <aside className={`self-start rounded-lg bg-white p-5 ${className}`} style={{ border: `1px solid ${LINE}` }}>
+      <h4 className="m-0 pb-4 text-lg font-semibold tracking-tight" style={{ color: INK, borderBottom: `1px solid ${RAIL}` }}>
+        Order Summary
+      </h4>
+      {details}
     </aside>
   );
 }

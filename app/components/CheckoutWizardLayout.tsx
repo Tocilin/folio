@@ -84,10 +84,10 @@ function Confirmation({ ship, onRestart }: { ship: string; onRestart: () => void
       </span>
       <div className="flex flex-col gap-2">
         <h3 className="m-0 text-2xl font-semibold tracking-tight [@container(min-width:640px)]:text-[30px]" style={{ color: INK }}>
-          Congratulations, your order is placed!
+          Thank you for your order!
         </h3>
         <p className="m-0 text-sm leading-relaxed" style={{ color: MUTED }}>
-          Thank you for your purchase. A confirmation and receipt are on their way to your email.
+          Your order is placed. A confirmation and receipt are on their way to your email.
         </p>
       </div>
       <div className="w-full rounded-md bg-white p-5 text-left text-sm" style={{ border: `1px solid ${LINE}`, boxShadow: "0 1px 2px rgba(20,40,80,0.04)" }}>
@@ -162,6 +162,11 @@ export function CheckoutWizardLayout() {
         <h3 className="m-0 text-2xl font-semibold tracking-tight [@container(min-width:640px)]:text-[30px]" style={{ color: INK }}>
           Checkout
         </h3>
+      </div>
+
+      {/* narrow cards: the order summary sits up here, collapsed to its title and total */}
+      <div className="mt-5 [@container(min-width:640px)]:hidden">
+        <OrderSummaryCard collapsible />
       </div>
 
       <div className="mt-6 grid gap-8 [@container(min-width:640px)]:grid-cols-[minmax(0,1fr)_minmax(0,260px)] [@container(min-width:640px)]:gap-x-10 [@container(min-width:900px)]:!grid-cols-[minmax(0,1fr)_32.3%]">
@@ -241,7 +246,7 @@ export function CheckoutWizardLayout() {
           </div>
         </div>
 
-        <OrderSummaryCard className="[@container(min-width:640px)]:col-start-2 [@container(min-width:640px)]:row-start-1" />
+        <OrderSummaryCard className="hidden [@container(min-width:640px)]:col-start-2 [@container(min-width:640px)]:row-start-1 [@container(min-width:640px)]:block" />
       </div>
       </>
       )}

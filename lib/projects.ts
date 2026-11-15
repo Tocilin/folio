@@ -9,6 +9,8 @@ export type SectionImage = {
   framed?: boolean;
   width?: number;
   height?: number;
+  // Keep the image in the data but don't show it (flip back to false/remove to bring it back).
+  hidden?: boolean;
 };
 
 export type Metric = {
@@ -846,17 +848,17 @@ export const projects: Project[] = [
         imageLayout: "stack",
         pageDemo: "checkout-page",
         images: [
-          { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787 },
-          { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394 },
+          { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787, hidden: true },
+          { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394, hidden: true },
         ],
-        demo: "payment-methods",
       },
       {
         group: "Delivery",
         label: "Drop-in UI: embedded checkout",
         body: "The consumer checkout is also available as Drop-in UI, an embeddable form that lets merchants host their own checkout page while our secure, PCI-compliant payment form handles the sensitive parts: full control over the flow, none of the compliance burden.",
+        demo: "payment-methods",
         images: [
-          { src: "/images/checkout/06-drop-in-ui.jpg", alt: "Embedded credit card form with card number, name, expiration date, and security code fields", framed: true, width: 1544, height: 1576 },
+          { src: "/images/checkout/06-drop-in-ui.jpg", alt: "Embedded credit card form with card number, name, expiration date, and security code fields", framed: true, width: 1544, height: 1576, hidden: true },
         ],
       },
       {
@@ -1626,17 +1628,17 @@ export const projects: Project[] = [
         imageLayout: "stack",
         pageDemo: "checkout-page",
         images: [
-          { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787 },
-          { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394 },
+          { src: "/images/checkout/04-consumer-checkout.jpg", alt: "Consumer checkout shown on desktop and mobile, with contact, shipping, payment, and order summary sections", framed: true, width: 1800, height: 787, hidden: true },
+          { src: "/images/checkout/05-consumer-payment-methods.jpg", alt: "Mobile payment method list with credit card, Apple Pay, Google Pay, PayPal, and Affirm", framed: true, width: 1562, height: 1394, hidden: true },
         ],
-        demo: "payment-methods",
       },
       {
         group: "Delivery",
         label: "Drop-in UI: embedded checkout",
         body: "The consumer checkout is also available as Drop-in UI, an embeddable form that lets merchants host their own checkout page while our secure, PCI-compliant payment form handles the sensitive parts: full control over the flow, none of the compliance burden.",
+        demo: "payment-methods",
         images: [
-          { src: "/images/checkout/06-drop-in-ui.jpg", alt: "Embedded credit card form with card number, name, expiration date, and security code fields", framed: true, width: 1544, height: 1576 },
+          { src: "/images/checkout/06-drop-in-ui.jpg", alt: "Embedded credit card form with card number, name, expiration date, and security code fields", framed: true, width: 1544, height: 1576, hidden: true },
         ],
       },
       {

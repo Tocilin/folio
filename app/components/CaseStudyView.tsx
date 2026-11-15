@@ -97,6 +97,7 @@ export function CaseStudyView({
       {project.sections.map((section, i) => {
         const prevGroup = i > 0 ? project.sections[i - 1].group : undefined;
         const showGroupHeader = section.group && section.group !== prevGroup;
+        const visibleImages = (section.images ?? []).filter((image) => !image.hidden);
         return (
           <div
             key={i}
@@ -120,13 +121,19 @@ export function CaseStudyView({
               {section.pageDemo === "checkout-page" && <CheckoutShowcase />}
               {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} compact={section.statsVariant === "compact"} />}
               {section.cards && section.cards.length > 0 && <IconCards cards={section.cards} />}
-              {section.images && section.images.length > 0 && (
+              {section.demo === "payment-methods" && (
+                <div className="flex flex-col gap-3">
+                  <PaymentMethodDemo />
+                  <p className="text-xs text-fg-tertiary">Drop-in UI: embedded checkout demo</p>
+                </div>
+              )}
+              {visibleImages.length > 0 && (
                 <div className={`grid gap-6 mt-2 ${
-                  (section.imageLayout ?? project.imageLayout) === "stack" || section.images.length === 1 ? "grid-cols-1" :
-                  section.images.length === 2 ? "grid-cols-2" :
+                  (section.imageLayout ?? project.imageLayout) === "stack" || visibleImages.length === 1 ? "grid-cols-1" :
+                  visibleImages.length === 2 ? "grid-cols-2" :
                   "grid-cols-3"
                 }`}>
-                  {section.images.map((image, j) => (
+                  {visibleImages.map((image, j) => (
                     <ZoomableImage key={j} src={image.src} alt={image.alt}>
                       {image.framed ? (
                         <FramedImage
@@ -145,12 +152,6 @@ export function CaseStudyView({
                       )}
                     </ZoomableImage>
                   ))}
-                </div>
-              )}
-              {section.demo === "payment-methods" && (
-                <div className="flex flex-col gap-3">
-                  <PaymentMethodDemo />
-                  <p className="text-xs text-fg-tertiary">Rebuilt in code. Try the layout, label, font and theme switches, and the card form.</p>
                 </div>
               )}
             </section>
