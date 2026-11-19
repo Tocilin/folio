@@ -790,9 +790,6 @@ export const projects: Project[] = [
         group: "Overview",
         label: "Mission: impossible (but actually possible)",
         body: "When I joined J.P. Morgan Chase as a Design Lead, the plan was to build a design team from scratch to create the Checkout Solution. Weeks after I joined, the company announced a hiring freeze, but the deadlines didn't move. So I became a team of one, single-handedly designing and shipping the MVP for three products over the next six months: Checkout, the consumer-facing payment flow; Commerce Center, the merchant admin tool; and Chameleon, the white-label design system tying them together.",
-        images: [
-          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813, hidden: true },
-        ],
         pageDemo: "three-products",
       },
       {
@@ -1573,9 +1570,6 @@ export const projects: Project[] = [
         group: "Overview",
         label: "Mission: impossible (but actually possible)",
         body: "When I joined J.P. Morgan Chase as a Design Lead, the plan was to build a design team from scratch to create the Checkout Solution. Weeks after I joined, the company announced a hiring freeze, but the deadlines didn't move. So I became a team of one, single-handedly designing and shipping the MVP for three products over the next six months: Checkout, the consumer-facing payment flow; Commerce Center, the merchant admin tool; and Chameleon, the white-label design system tying them together.",
-        images: [
-          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813, hidden: true },
-        ],
         pageDemo: "three-products",
       },
       {
