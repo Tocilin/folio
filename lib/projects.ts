@@ -19,6 +19,8 @@ export type Metric = {
   // Optional supporting sentence shown under the label — only used when
   // the metric renders as a full ResultsCards card (Section.stats).
   body?: string;
+  // Optional small tag at the bottom of the card, e.g. "Exact figures are confidential".
+  note?: string;
 };
 
 export type IconCard = {
@@ -48,7 +50,7 @@ export type Section = {
   demo?: "payment-methods";
   // Optional live checkout mockup (layout switcher + device switcher) rendered right below the
   // section paragraph, before any stats, cards or images.
-  pageDemo?: "checkout-page" | "commerce-center" | "three-products";
+  pageDemo?: "checkout-page" | "commerce-center" | "three-products" | "chameleon" | "accessibility";
   // Optional grid of icon cards rendered below the body, e.g. process steps.
   cards?: IconCard[];
 };
@@ -864,7 +866,7 @@ export const projects: Project[] = [
         label: "Commerce Center: merchant tool",
         body: "Commerce Center puts checkout customization in merchants' hands: brand-matched design, flexible payment method selection, security and fraud settings, and transaction reporting, all without needing engineering support.",
         images: [
-          { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350 },
+          { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350, hidden: true },
         ],
         pageDemo: "commerce-center",
       },
@@ -873,21 +875,32 @@ export const projects: Project[] = [
         label: "Chameleon: the design system",
         body: "Chameleon is the lightweight, white-label system underneath all of it: flexible enough for merchants to fully customize their UI while staying consistent, scalable, and easy to build on.",
         images: [
-          { src: "/images/checkout/08-chameleon.jpg", alt: "Chameleon design system building blocks: typography, brand colors, button, checkbox, and radio", framed: true, width: 1570, height: 1562 },
+          { src: "/images/checkout/08-chameleon.jpg", alt: "Chameleon design system building blocks: typography, brand colors, button, checkbox, and radio", framed: true, width: 1570, height: 1562, hidden: true },
         ],
+        pageDemo: "chameleon",
       },
       {
         group: "Delivery",
         label: "Accessibility: built-in compliance",
         body: "Every surface was built to be fully WCAG-compliant from the start: proper color contrast, keyboard navigation, screen reader support, and clear, accessible interaction patterns. Accessibility as a default, not a retrofit.",
         images: [
-          { src: "/images/checkout/25-accessibility.jpg", alt: "Card number field shown failing and passing WCAG AA color contrast", framed: true, width: 1526, height: 1538 },
+          { src: "/images/checkout/25-accessibility.jpg", alt: "Card number field shown failing and passing WCAG AA color contrast", framed: true, width: 1526, height: 1538, hidden: true },
         ],
+        pageDemo: "accessibility",
       },
       {
         group: "Results",
         label: "Measured outcomes",
-        body: "Checkout reached a meaningful share of Commerce Platform clients, hit 100% WCAG 2.2 AA compliance across every experience, closed to 60% payment-method parity with competitors, and held a 4.3 customer satisfaction score through the year. Commerce Center shipped enhanced fraud and security controls, and the platform drove measurable direct and acquiring revenue. Exact figures are confidential.",
+        body: "How the work landed against those goals.",
+        statsVariant: "compact",
+        stats: [
+          { value: "", label: "Adoption", body: "Checkout reached a meaningful share of Commerce Platform clients.", note: "Figures are confidential" },
+          { value: "100%", label: "WCAG 2.2 AA compliance", body: "Across every experience." },
+          { value: "60%", label: "Payment-method parity", body: "Closed the gap with competitors." },
+          { value: "4.6", label: "Customer satisfaction score", body: "Out of 5, held steady through the year." },
+          { value: "", label: "Fraud and security", body: "Commerce Center shipped enhanced fraud and security controls." },
+          { value: "", label: "Revenue", body: "The platform drove measurable direct and acquiring revenue.", note: "Figures are confidential" },
+        ],
       },
       {
         group: "Results",
@@ -1644,7 +1657,7 @@ export const projects: Project[] = [
         label: "Commerce Center: merchant tool",
         body: "Commerce Center puts checkout customization in merchants' hands: brand-matched design, flexible payment method selection, security and fraud settings, and transaction reporting, all without needing engineering support.",
         images: [
-          { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350 },
+          { src: "/images/checkout/07-commerce-center.jpg", alt: "Commerce Center checkout settings with a live preview of the merchant's checkout page", framed: true, width: 1562, height: 1350, hidden: true },
         ],
         pageDemo: "commerce-center",
       },
@@ -1653,21 +1666,32 @@ export const projects: Project[] = [
         label: "Chameleon: the design system",
         body: "Chameleon is the lightweight, white-label system underneath all of it: flexible enough for merchants to fully customize their UI while staying consistent, scalable, and easy to build on.",
         images: [
-          { src: "/images/checkout/08-chameleon.jpg", alt: "Chameleon design system building blocks: typography, brand colors, button, checkbox, and radio", framed: true, width: 1570, height: 1562 },
+          { src: "/images/checkout/08-chameleon.jpg", alt: "Chameleon design system building blocks: typography, brand colors, button, checkbox, and radio", framed: true, width: 1570, height: 1562, hidden: true },
         ],
+        pageDemo: "chameleon",
       },
       {
         group: "Delivery",
         label: "Accessibility: built-in compliance",
         body: "Every surface was built to be fully WCAG-compliant from the start: proper color contrast, keyboard navigation, screen reader support, and clear, accessible interaction patterns. Accessibility as a default, not a retrofit.",
         images: [
-          { src: "/images/checkout/25-accessibility.jpg", alt: "Card number field shown failing and passing WCAG AA color contrast", framed: true, width: 1526, height: 1538 },
+          { src: "/images/checkout/25-accessibility.jpg", alt: "Card number field shown failing and passing WCAG AA color contrast", framed: true, width: 1526, height: 1538, hidden: true },
         ],
+        pageDemo: "accessibility",
       },
       {
         group: "Results",
         label: "Measured outcomes",
-        body: "Checkout reached a meaningful share of Commerce Platform clients, hit 100% WCAG 2.2 AA compliance across every experience, closed to 60% payment-method parity with competitors, and held a 4.3 customer satisfaction score through the year. Commerce Center shipped enhanced fraud and security controls, and the platform drove measurable direct and acquiring revenue. Exact figures are confidential.",
+        body: "How the work landed against those goals.",
+        statsVariant: "compact",
+        stats: [
+          { value: "", label: "Adoption", body: "Checkout reached a meaningful share of Commerce Platform clients.", note: "Figures are confidential" },
+          { value: "100%", label: "WCAG 2.2 AA compliance", body: "Across every experience." },
+          { value: "60%", label: "Payment-method parity", body: "Closed the gap with competitors." },
+          { value: "4.6", label: "Customer satisfaction score", body: "Out of 5, held steady through the year." },
+          { value: "", label: "Fraud and security", body: "Commerce Center shipped enhanced fraud and security controls." },
+          { value: "", label: "Revenue", body: "The platform drove measurable direct and acquiring revenue.", note: "Figures are confidential" },
+        ],
       },
       {
         group: "Results",

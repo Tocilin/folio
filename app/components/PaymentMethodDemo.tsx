@@ -5,10 +5,7 @@ import { FullscreenButton, useFullscreen } from "@/app/components/Fullscreen";
 import { PaymentBadge } from "@/app/components/PaymentBadge";
 import { BRAND_BADGE, detectBrand, formatCardNumber, formatExpiry, type Brand } from "@/app/components/cardNumber";
 import { useState, type CSSProperties, type InputHTMLAttributes, type ReactNode } from "react";
-import { JetBrains_Mono, Source_Serif_4 } from "next/font/google";
-
-const serifFont = Source_Serif_4({ subsets: ["latin"], variable: "--font-demo-serif", display: "swap" });
-const monoFont = JetBrains_Mono({ subsets: ["latin"], variable: "--font-demo-mono", display: "swap" });
+import { monoFont, serifFont } from "@/app/components/demoFonts";
 
 // A from-scratch HTML/CSS checkout card, shown on a dot-grid canvas with three
 // switches: layout (tabs or stacked list), label style (above, floating, or on

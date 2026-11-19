@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { PaymentBadge } from "@/app/components/PaymentBadge";
 
 // The payment method list from the Checkout block's picture, rebuilt in code (static, nothing to click).
-// The block moves the whole picture as one object (parallax); see ParallaxBox.
+// The block grows the whole picture a little on hover (see ThreeProductsBlocks).
 // Drawn on the picture's own 430 x 509 grid; `q()` turns grid px into cqw (a percentage of the root's
 // width), so it scales with its box. Same badges as the payment methods demo.
 

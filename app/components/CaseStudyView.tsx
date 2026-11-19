@@ -10,6 +10,12 @@ import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
 import { ResultsCards } from "@/app/components/ResultsCards";
 import { IconCards } from "@/app/components/IconCards";
 import { PaymentMethodDemo } from "@/app/components/PaymentMethodDemo";
+import { ChameleonAccessibility } from "@/app/components/ChameleonAccessibility";
+import { ChameleonDocs } from "@/app/components/ChameleonDocs";
+import { ChameleonOverview } from "@/app/components/ChameleonOverview";
+import { ChameleonVariants } from "@/app/components/ChameleonVariants";
+import { ChameleonShowcase } from "@/app/components/ChameleonShowcase";
+import { ChameleonTokens } from "@/app/components/ChameleonTokens";
 import { ThreeProductsBlocks } from "@/app/components/ThreeProductsBlocks";
 import { CommerceCenterShowcase } from "@/app/components/CommerceCenterShowcase";
 import { CheckoutShowcase } from "@/app/components/CheckoutShowcase";
@@ -167,6 +173,34 @@ export function CaseStudyView({
                   <p className="text-xs text-fg-tertiary">Checkout, Commerce Center, and Chameleon Design System</p>
                 </div>
               )}
+              {section.pageDemo === "chameleon" && (
+                <div className="flex flex-col gap-3">
+                  <ChameleonOverview />
+                  <p className="text-xs text-fg-tertiary">The design system at a glance: colour, buttons, type and spacing</p>
+                  <div className="mt-6 flex flex-col gap-3">
+                    <ChameleonTokens />
+                    <p className="text-xs text-fg-tertiary">An example of three-tier design tokens, from primitives through semantic tokens to component tokens</p>
+                  </div>
+                  <div className="mt-6 flex flex-col gap-3">
+                    <ChameleonVariants />
+                    <p className="text-xs text-fg-tertiary">Button variants and states</p>
+                  </div>
+                  <div className="mt-6 flex flex-col gap-3">
+                    <ChameleonDocs />
+                    <p className="text-xs text-fg-tertiary">Anatomy, specs and usage guidance documented next to the component</p>
+                  </div>
+                  <div className="mt-6 flex flex-col gap-3">
+                    <ChameleonShowcase />
+                    <p className="text-xs text-fg-tertiary">Chameleon Design System</p>
+                  </div>
+                </div>
+              )}
+              {section.pageDemo === "accessibility" && (
+                <div className="flex flex-col gap-3">
+                  <ChameleonAccessibility />
+                  <p className="text-xs text-fg-tertiary">An example of an inaccessible field failing and passing WCAG 2.2 AA</p>
+                </div>
+              )}
               {section.pageDemo === "commerce-center" && (
                 <div className="flex flex-col gap-3">
                   <CommerceCenterShowcase />
@@ -179,7 +213,17 @@ export function CaseStudyView({
       })}
 
       {/* Closing note */}
-      <section className="border-t border-stroke pt-20 pb-8 text-center">
+      <section className="relative border-t border-stroke pt-20 pb-8 text-center">
+        {/* the little figure stands right on the divider: the drawing has about 19% empty space under its feet
+            (in a 240 box), so it is dropped by that much (27px at this size) to put its feet on the line */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-[6%] top-[27px] hidden h-[140px] w-[140px] -translate-y-full bg-fg-primary sm:block"
+          style={{
+            maskImage: "url(/images/closing-figure.svg)", WebkitMaskImage: "url(/images/closing-figure.svg)",
+            maskSize: "contain", WebkitMaskSize: "contain", maskRepeat: "no-repeat", WebkitMaskRepeat: "no-repeat", maskPosition: "center", WebkitMaskPosition: "center",
+          }}
+        />
         <p className="text-5xl md:text-7xl font-semibold tracking-[-1.44px] leading-[1.05] text-fg-primary">
           Thank you for scrolling all the way!
         </p>

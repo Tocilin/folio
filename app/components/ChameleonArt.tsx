@@ -56,7 +56,7 @@ function Text({ x, cy, s, w = 400, c = "#101418", children, align = "left" }: { 
 
 function Watch() {
   return (
-    <svg className="absolute" style={{ left: q(7), top: q(17), width: q(36), height: q(48) }} viewBox="0 0 36 48" aria-hidden>
+    <svg className="absolute" style={{ left: q(38), top: q(24), width: q(36), height: q(48) }} viewBox="0 0 36 48" aria-hidden>
       <rect x="9" y="0" width="18" height="48" rx="5" fill="#2a2e35" />
       <circle cx="18" cy="24" r="16" fill="#16181d" />
       <circle cx="18" cy="24" r="12.5" fill="#222833" />

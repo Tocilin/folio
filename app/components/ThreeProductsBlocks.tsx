@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { ChameleonArt } from "@/app/components/ChameleonArt";
 import { CheckoutPaymentArt } from "@/app/components/CheckoutPaymentArt";
 import { CommerceArt } from "@/app/components/CommerceArt";
-import { ParallaxBox } from "@/app/components/ParallaxBox";
 
 // The three-product overview (Checkout / Commerce Center / Chameleon), rebuilt in code from the image.
 // Three separate blocks with the image's backgrounds, tags, titles and text. Each block scales as a
@@ -27,7 +26,7 @@ type Block = {
   pillInk: string;
   bodyExtraTop?: number; // the middle block's text starts a little lower in the image
   // placeholder box for the picture, as fractions of the block (px in the original)
-  art: { left: number; top: number; width?: number; height?: number; right?: number; bottom?: number; color: string; radius?: string; clip?: boolean; float?: { depth: number; shadow: string } };
+  art: { left: number; top: number; width?: number; height?: number; right?: number; bottom?: number; color: string; radius?: string; clip?: boolean; zoom?: { origin: string; shadow: string } };
   // a real picture / illustration to show instead of the placeholder box (same left/top/width as `art`)
   artNode?: ReactNode;
   // something drawn outside the block's clipped edge (so it can stick out past the block)
@@ -40,7 +39,7 @@ const BLOCKS: Block[] = [
     title: "Checkout",
     body: "A consumer-facing checkout, which is what shoppers see when they make a purchase.",
     bg: "#ffffff", ink: "#0b0b0f", bodyInk: "#0b0b0f", pillBg: "#2563eb", pillInk: "#ffffff",
-    art: { left: 75, top: 286, width: 430, height: 509, color: "#eceff4", float: { depth: 1.7, shadow: "0 10px 30px rgba(15,25,50,0.14)" } },
+    art: { left: 75, top: 286, width: 430, height: 509, color: "#eceff4", zoom: { origin: "center", shadow: "0 10px 30px rgba(15,25,50,0.14)" } },
     artNode: <CheckoutPaymentArt />,
   },
   {
@@ -50,7 +49,7 @@ const BLOCKS: Block[] = [
     bg: "#2563eb", ink: "#ffffff", bodyInk: "rgba(255,255,255,0.92)", pillBg: "rgba(255,255,255,0.35)", pillInk: "#ffffff",
     bodyExtraTop: 15,
     // runs 20px past the block's right and bottom edges (the block clips it) so it never shows a gap when it moves
-    art: { left: 74, top: 390, right: -20, bottom: -20, color: "#f1f5ff", radius: `${cqw(12)} 0 0 0`, clip: true, float: { depth: 1.7, shadow: "0 14px 36px rgba(6,18,80,0.4)" } },
+    art: { left: 74, top: 390, right: -20, bottom: -20, color: "#f1f5ff", radius: `${cqw(12)} 0 0 0`, clip: true, zoom: { origin: "top left", shadow: "0 14px 36px rgba(6,18,80,0.4)" } },
     artNode: <CommerceArt />,
   },
   {
@@ -84,7 +83,7 @@ export function ThreeProductsBlocks() {
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-[1.78%]" style={{ fontFamily: "var(--font-inter), Inter, system-ui, sans-serif" }}>
       {BLOCKS.map((b) => (
-        <div key={b.title} data-parallax-block className="relative [container-type:inline-size]" style={{ aspectRatio: `${W} / ${H}` }}>
+        <div key={b.title} data-parallax-block className="group relative [container-type:inline-size]" style={{ aspectRatio: `${W} / ${H}` }}>
           <div className="absolute inset-0 overflow-hidden" style={{ background: b.bg, borderRadius: cqw(40), color: b.ink }}>
             <div style={{ padding: `${cqw(75)} ${cqw(75)} 0` }}>
               <span
@@ -104,8 +103,9 @@ export function ThreeProductsBlocks() {
               </p>
             </div>
 
-            {/* the picture: a placeholder box, or a rebuilt illustration. If it has `float`, the whole picture
-                moves as one object with the mouse (parallax) and has a soft shadow behind it. */}
+            {/* the picture: a placeholder box, or a rebuilt illustration. If it has `zoom`, the picture grows a
+                little when the mouse is over the block, and has a soft shadow behind it. (The Chameleon
+                illustration does its own mouse parallax instead.) */}
             {(() => {
               const style = {
                 left: pctX(b.art.left), top: pctY(b.art.top),
@@ -114,13 +114,14 @@ export function ThreeProductsBlocks() {
                 right: b.art.right !== undefined ? pctX(b.art.right) : undefined,
                 bottom: b.art.bottom !== undefined ? pctY(b.art.bottom) : undefined,
                 background: b.artNode ? undefined : b.art.color, borderRadius: b.art.radius, overflow: b.art.clip ? ("hidden" as const) : undefined,
+                ...(b.art.zoom ? { boxShadow: b.art.zoom.shadow, transformOrigin: b.art.zoom.origin } : null),
               };
-              return b.art.float ? (
-                <ParallaxBox depth={b.art.float.depth} shadow={b.art.float.shadow} style={style}>
-                  {b.artNode}
-                </ParallaxBox>
-              ) : (
-                <div aria-hidden={b.artNode ? undefined : true} className="absolute" style={style}>
+              return (
+                <div
+                  aria-hidden={b.artNode ? undefined : true}
+                  className={`absolute ${b.art.zoom ? "transition-transform duration-300 ease-out [@media(hover:hover)]:group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100" : ""}`}
+                  style={style}
+                >
                   {b.artNode}
                 </div>
               );
