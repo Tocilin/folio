@@ -10,6 +10,7 @@ import { CaseStudyTOC, type TocItem } from "@/app/components/CaseStudyTOC";
 import { ResultsCards } from "@/app/components/ResultsCards";
 import { IconCards } from "@/app/components/IconCards";
 import { PaymentMethodDemo } from "@/app/components/PaymentMethodDemo";
+import { ThreeProductsBlocks } from "@/app/components/ThreeProductsBlocks";
 import { CommerceCenterShowcase } from "@/app/components/CommerceCenterShowcase";
 import { CheckoutShowcase } from "@/app/components/CheckoutShowcase";
 import type { Project } from "@/lib/projects";
@@ -160,10 +161,16 @@ export function CaseStudyView({
                   ))}
                 </div>
               )}
+              {section.pageDemo === "three-products" && (
+                <div className="flex flex-col gap-3">
+                  <ThreeProductsBlocks />
+                  <p className="text-xs text-fg-tertiary">Checkout, Commerce Center, and Chameleon Design System</p>
+                </div>
+              )}
               {section.pageDemo === "commerce-center" && (
                 <div className="flex flex-col gap-3">
                   <CommerceCenterShowcase />
-                  <p className="text-xs text-fg-tertiary">Commerce Center: merchant tool (rebuilt in code)</p>
+                  <p className="text-xs text-fg-tertiary">Commerce Center</p>
                 </div>
               )}
             </section>

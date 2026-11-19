@@ -48,7 +48,7 @@ export type Section = {
   demo?: "payment-methods";
   // Optional live checkout mockup (layout switcher + device switcher) rendered right below the
   // section paragraph, before any stats, cards or images.
-  pageDemo?: "checkout-page" | "commerce-center";
+  pageDemo?: "checkout-page" | "commerce-center" | "three-products";
   // Optional grid of icon cards rendered below the body, e.g. process steps.
   cards?: IconCard[];
 };
@@ -791,8 +791,9 @@ export const projects: Project[] = [
         label: "Mission: impossible (but actually possible)",
         body: "When I joined J.P. Morgan Chase as a Design Lead, the plan was to build a design team from scratch to create the Checkout Solution. Weeks after I joined, the company announced a hiring freeze, but the deadlines didn't move. So I became a team of one, single-handedly designing and shipping the MVP for three products over the next six months: Checkout, the consumer-facing payment flow; Commerce Center, the merchant admin tool; and Chameleon, the white-label design system tying them together.",
         images: [
-          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813 },
+          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813, hidden: true },
         ],
+        pageDemo: "three-products",
       },
       {
         group: "Overview",
@@ -1573,8 +1574,9 @@ export const projects: Project[] = [
         label: "Mission: impossible (but actually possible)",
         body: "When I joined J.P. Morgan Chase as a Design Lead, the plan was to build a design team from scratch to create the Checkout Solution. Weeks after I joined, the company announced a hiring freeze, but the deadlines didn't move. So I became a team of one, single-handedly designing and shipping the MVP for three products over the next six months: Checkout, the consumer-facing payment flow; Commerce Center, the merchant admin tool; and Chameleon, the white-label design system tying them together.",
         images: [
-          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813 },
+          { src: "/images/checkout/01-mission-three-products.jpg", alt: "The three products I designed and shipped: Checkout, Commerce Center, and the Chameleon design system", framed: true, width: 1800, height: 813, hidden: true },
         ],
+        pageDemo: "three-products",
       },
       {
         group: "Overview",

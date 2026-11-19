@@ -2,17 +2,16 @@
 // grouping of its digits.
 import type { PaymentBadgeName } from "@/app/components/PaymentBadge";
 
-export type Brand = "visa" | "mc" | "jcb" | "amex" | "diners";
+export type Brand = "visa" | "mc" | "amex" | "discover";
 
 // Which badge file each detected card network uses.
-export const BRAND_BADGE: Record<Brand, PaymentBadgeName> = { visa: "visa", mc: "mastercard", jcb: "jcb", amex: "amex", diners: "diners" };
+export const BRAND_BADGE: Record<Brand, PaymentBadgeName> = { visa: "visa", mc: "mastercard", amex: "amex", discover: "discover" };
 
 export function detectBrand(digits: string): Brand | null {
   if (/^4/.test(digits)) return "visa";
   if (/^(5[1-5]|2[2-7])/.test(digits)) return "mc";
-  if (/^35/.test(digits)) return "jcb";
   if (/^3[47]/.test(digits)) return "amex";
-  if (/^3(0|6|8)/.test(digits)) return "diners";
+  if (/^(6011|65|64[4-9]|622)/.test(digits)) return "discover";
   return null;
 }
 

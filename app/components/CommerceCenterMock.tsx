@@ -19,10 +19,22 @@ const INK = "#161616";
 const MUTED = "#6a6a6a";
 const LINE = "#dcdcdc";
 
-// the embedded page: laid out at 1020px (its desktop width in the first canvas), shrunk into the window
-const PAGE_W = 1020;
-const PAGE_SCALE = 567 / PAGE_W;
-const SHOT_H = 546; // height of the window area under the grey chrome strip
+// the embedded page: the mobile version of the checkout (laid out at 375px wide, like the Mobile view in the
+// first canvas), shown in a phone-shaped frame and shrunk a little. Only the top of the page is visible.
+const PAGE_W = 375;
+// The whole phone is drawn at PHONE_K of its first size (290 x 582 screen, 10px frame, 32px status strip),
+// centred where it was: on x = 1092.5 and y = 770 (the middle of the preview area).
+const PHONE_K = 0.92; // was 0.77; the phone is 602 x PHONE_K tall and the preview area is 656 tall
+const SCREEN_W = Math.round(290 * PHONE_K); // the visible screen, in app px
+const SCREEN_H = Math.round(582 * PHONE_K);
+const BEZEL = Math.round(10 * PHONE_K); // black frame thickness
+const STATUS_H = Math.round(32 * PHONE_K); // strip at the top of the screen that holds the notch; the page starts below it
+const PAGE_SCALE = SCREEN_W / PAGE_W;
+// how far the checkout page is scrolled in the phone, in the page's own px: far enough that the Place Order button
+// (its bottom is at about 1266) shows near the bottom of the screen, with the cards above it.
+const PAGE_SCROLL = 575;
+const PHONE_X = 1092.5 - (SCREEN_W + 2 * BEZEL) / 2;
+const PHONE_Y = 770 - (SCREEN_H + 2 * BEZEL) / 2;
 
 // ---------- placement helpers ----------
 
@@ -179,6 +191,7 @@ export function CommerceCenterMock() {
       <Abs x={432} y={1023} w={290} h={19} style={{ background: "#3f7b9c", color: "#fff", fontSize: 8, fontWeight: 700, letterSpacing: "0.14em", display: "grid", placeItems: "center" }}>SAVE</Abs>
       <Abs x={432} y={1046} w={290} h={18} style={{ background: "#6c6f73", color: "#fff", fontSize: 8, fontWeight: 700, letterSpacing: "0.14em", display: "grid", placeItems: "center" }}>DISCARD CHANGES</Abs>
 
+
       {/* ---------- preview panel ---------- */}
       <Abs x={760} y={407} w={665} h={690} style={{ background: "#f4f5f6", border: "1px solid #bdbdbd" }} />
       <Abs x={761} y={408} w={663} h={33} style={{ background: "#f1f2f3", borderBottom: "1px solid #d6d6d6" }} />
@@ -188,32 +201,34 @@ export function CommerceCenterMock() {
 
       {/* device buttons */}
       <Abs x={1037} y={417} w={83} h={17} style={{ border: "1px solid #8a8a8a", background: "#fff" }} />
-      <Abs x={1078} y={418} w={20} h={15} style={{ background: "#333" }} />
-      <Icon cx={1047} cy={425} size={10}><rect x="4.5" y="1.5" width="7" height="13" rx="1.2" /></Icon>
+      <Abs x={1038} y={418} w={19} h={15} style={{ background: "#333" }} />
+      <Icon cx={1047} cy={425} size={10} color="#fff"><rect x="4.5" y="1.5" width="7" height="13" rx="1.2" /></Icon>
       <Icon cx={1068} cy={425} size={10}><rect x="3" y="1.5" width="10" height="13" rx="1.2" /></Icon>
-      <Icon cx={1088} cy={425} size={11} color="#fff"><rect x="1.5" y="3" width="13" height="9" rx="1" /></Icon>
+      <Icon cx={1088} cy={425} size={11}><rect x="1.5" y="3" width="13" height="9" rx="1" /></Icon>
       <Icon cx={1109} cy={425} size={10}><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" /></Icon>
 
       <SelectLine x={1137} w={56} cy={425} label="USD" chevronX={1185} />
       <SelectLine x={1211} w={93} cy={425} label="Guest User" chevronX={1296} />
       <SelectLine x={1321} w={88} cy={425} label="English US" chevronX={1401} />
 
-      {/* browser window: the real checkout page from the first canvas (the Member page), laid out at
-          1020px wide like its desktop view there and shrunk to fit. Not interactive. */}
-      <Abs x={808} y={489} w={569} h={563} style={{ background: "#fbfbfb", border: "1px solid #dcdcdc" }} />
-      <Abs x={809} y={490} w={567} h={16} style={{ background: "#f2f2f2" }} />
-      {[818, 830, 842].map((x) => (
-        <Abs key={x} x={x - 3} y={493} w={6} h={6} style={{ borderRadius: 999, background: "#d9d9d9" }} />
-      ))}
-      <Abs x={809} y={506} w={567} h={SHOT_H} className="overflow-hidden" style={{ background: CK.page }}>
-        <div
-          aria-hidden
-          // inert + pointer-events: none: it is a picture of the page, not a working one
-          inert
-          className="pointer-events-none origin-top-left [container-type:inline-size]"
-          style={{ width: PAGE_W, height: SHOT_H / PAGE_SCALE, transform: `scale(${PAGE_SCALE})`, background: CK.page, color: CK.body }}
-        >
-          <CheckoutCardsLayout />
+      {/* the preview, as a phone: a black rounded frame around the real checkout page (the Member page from the
+          first canvas) at its mobile width. Not interactive. */}
+      <Abs x={PHONE_X} y={PHONE_Y} w={SCREEN_W + 2 * BEZEL} h={SCREEN_H + 2 * BEZEL} style={{ background: "#0b0b0d", borderRadius: 40 * PHONE_K, boxShadow: "0 8px 24px rgba(20,30,60,0.22)" }} />
+      <Abs x={PHONE_X + BEZEL} y={PHONE_Y + BEZEL} w={SCREEN_W} h={SCREEN_H} className="overflow-hidden" style={{ background: CK.page, borderRadius: 30 * PHONE_K }}>
+        {/* status strip with the notch (a pill, like a dynamic island) */}
+        <div className="absolute inset-x-0 top-0 bg-white" style={{ height: STATUS_H }}>
+          <span className="absolute left-1/2 -translate-x-1/2 rounded-full" style={{ top: 9 * PHONE_K, width: 78 * PHONE_K, height: 21 * PHONE_K, background: "#0b0b0d" }} />
+        </div>
+        <div className="absolute inset-x-0 overflow-hidden" style={{ top: STATUS_H, height: SCREEN_H - STATUS_H }}>
+          <div
+            aria-hidden
+            // inert + pointer-events: none: it is a picture of the page, not a working one
+            inert
+            className="pointer-events-none origin-top-left [container-type:inline-size]"
+            style={{ width: PAGE_W, height: (SCREEN_H - STATUS_H) / PAGE_SCALE, transform: `scale(${PAGE_SCALE}) translateY(${-PAGE_SCROLL}px)`, background: CK.page, color: CK.body }}
+          >
+            <CheckoutCardsLayout />
+          </div>
         </div>
       </Abs>
     </div>
