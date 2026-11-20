@@ -16,6 +16,13 @@ import { ChameleonOverview } from "@/app/components/ChameleonOverview";
 import { ChameleonVariants } from "@/app/components/ChameleonVariants";
 import { ChameleonShowcase } from "@/app/components/ChameleonShowcase";
 import { ChameleonTokens } from "@/app/components/ChameleonTokens";
+import { DesignChallenges } from "@/app/components/DesignChallenges";
+import { FunPart } from "@/app/components/FunPart";
+import { Body, Caption, Label } from "@/app/components/PageBlocks";
+import { ProjectGoals } from "@/app/components/ProjectGoals";
+import { MissionFigure } from "@/app/components/MissionFigure";
+import { InvestorQuote } from "@/app/components/InvestorQuote";
+import { SuperAppPhones } from "@/app/components/SuperAppPhones";
 import { ThreeProductsBlocks } from "@/app/components/ThreeProductsBlocks";
 import { CommerceCenterShowcase } from "@/app/components/CommerceCenterShowcase";
 import { CheckoutShowcase } from "@/app/components/CheckoutShowcase";
@@ -68,15 +75,15 @@ export function CaseStudyView({
         <div className="border-t border-stroke" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-1">Client</p>
+            <Label className="mb-1">Client</Label>
             <p className="text-sm text-fg-secondary">{project.client}</p>
           </div>
           <div>
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-1">Role</p>
+            <Label className="mb-1">Role</Label>
             <p className="text-sm text-fg-secondary">{project.role}</p>
           </div>
           <div>
-            <p className="text-xs text-fg-tertiary uppercase tracking-widest mb-1">Responsibilities</p>
+            <Label className="mb-1">Responsibilities</Label>
             <p className="text-sm text-fg-secondary">{project.responsibilities}</p>
           </div>
         </div>
@@ -99,13 +106,19 @@ export function CaseStudyView({
             />
           )
         )}
+        {project.heroDemo === "superapp-phones" && (
+          <div className="flex flex-col gap-3">
+            <SuperAppPhones />
+            <Caption>The SuperApp dashboard, rebuilt in code</Caption>
+          </div>
+        )}
       </section>
 
       {/* Content sections */}
       {project.sections.map((section, i) => {
         const prevGroup = i > 0 ? project.sections[i - 1].group : undefined;
         const showGroupHeader = section.group && section.group !== prevGroup;
-        const visibleImages = (section.images ?? []).filter((image) => !image.hidden);
+        const visibleImages = (section.images ?? []).filter((image) => !image.hidden || image.demoBelow);
         return (
           <div
             key={i}
@@ -122,14 +135,14 @@ export function CaseStudyView({
               </h2>
             )}
             <section className="flex flex-col gap-6">
-              <p className="text-xs text-fg-tertiary uppercase tracking-widest">{section.label}</p>
+              <Label>{section.label}</Label>
               {section.body && (
-                <p className="text-fg-secondary text-lg leading-relaxed max-w-[560px]">{section.body}</p>
+                <Body>{section.body}</Body>
               )}
               {section.pageDemo === "checkout-page" && (
                 <div className="flex flex-col gap-3">
                   <CheckoutShowcase />
-                  <p className="text-xs text-fg-tertiary">Consumer-facing checkout demo</p>
+                  <Caption>Consumer-facing checkout demo</Caption>
                 </div>
               )}
               {section.stats && section.stats.length > 0 && <ResultsCards stats={section.stats} compact={section.statsVariant === "compact"} />}
@@ -137,7 +150,7 @@ export function CaseStudyView({
               {section.demo === "payment-methods" && (
                 <div className="flex flex-col gap-3">
                   <PaymentMethodDemo />
-                  <p className="text-xs text-fg-tertiary">Drop-in UI: embedded checkout demo</p>
+                  <Caption>Drop-in UI: embedded checkout demo</Caption>
                 </div>
               )}
               {visibleImages.length > 0 && (
@@ -147,7 +160,10 @@ export function CaseStudyView({
                   "grid-cols-3"
                 }`}>
                   {visibleImages.map((image, j) => (
-                    <ZoomableImage key={j} src={image.src} alt={image.alt}>
+                    <div key={j} className="flex flex-col gap-3">
+                    {/* a hidden image still shows the live version built in code that goes with it */}
+                    {!image.hidden && (
+                    <ZoomableImage src={image.src} alt={image.alt}>
                       {image.framed ? (
                         <FramedImage
                           src={image.src}
@@ -164,47 +180,71 @@ export function CaseStudyView({
                         />
                       )}
                     </ZoomableImage>
+                    )}
+                    {image.caption && !image.hidden && <Caption>{image.caption}</Caption>}
+                    {image.demoBelow === "mission-figure" && <MissionFigure />}
+                    {image.demoBelow === "project-goals" && (
+                      <div className={image.hidden ? "" : "mt-3"}>
+                        <ProjectGoals />
+                      </div>
+                    )}
+                    {image.demoBelow === "fun-part" && (
+                      <div className={image.hidden ? "" : "mt-3"}>
+                        <FunPart />
+                      </div>
+                    )}
+                    {image.demoBelow === "design-challenges" && (
+                      <div className={image.hidden ? "" : "mt-3"}>
+                        <DesignChallenges />
+                      </div>
+                    )}
+                    {image.demoBelow === "investor-quote" && (
+                      <div className={image.hidden ? "" : "mt-3"}>
+                        <InvestorQuote />
+                      </div>
+                    )}
+                    </div>
                   ))}
                 </div>
               )}
               {section.pageDemo === "three-products" && (
                 <div className="flex flex-col gap-3">
                   <ThreeProductsBlocks />
-                  <p className="text-xs text-fg-tertiary">Checkout, Commerce Center, and Chameleon Design System</p>
+                  <Caption>Checkout, Commerce Center, and Chameleon Design System</Caption>
                 </div>
               )}
               {section.pageDemo === "chameleon" && (
                 <div className="flex flex-col gap-3">
                   <ChameleonOverview />
-                  <p className="text-xs text-fg-tertiary">The design system at a glance: colour, buttons, type and spacing</p>
+                  <Caption>The design system at a glance: colour, buttons, type and spacing</Caption>
                   <div className="mt-6 flex flex-col gap-3">
                     <ChameleonTokens />
-                    <p className="text-xs text-fg-tertiary">An example of three-tier design tokens, from primitives through semantic tokens to component tokens</p>
+                    <Caption>An example of three-tier design tokens, from primitives through semantic tokens to component tokens</Caption>
                   </div>
                   <div className="mt-6 flex flex-col gap-3">
                     <ChameleonVariants />
-                    <p className="text-xs text-fg-tertiary">Button variants and states</p>
+                    <Caption>Button variants and states</Caption>
                   </div>
                   <div className="mt-6 flex flex-col gap-3">
                     <ChameleonDocs />
-                    <p className="text-xs text-fg-tertiary">Anatomy, specs and usage guidance documented next to the component</p>
+                    <Caption>Anatomy, specs and usage guidance documented next to the component</Caption>
                   </div>
                   <div className="mt-6 flex flex-col gap-3">
                     <ChameleonShowcase />
-                    <p className="text-xs text-fg-tertiary">Chameleon Design System</p>
+                    <Caption>Chameleon Design System</Caption>
                   </div>
                 </div>
               )}
               {section.pageDemo === "accessibility" && (
                 <div className="flex flex-col gap-3">
                   <ChameleonAccessibility />
-                  <p className="text-xs text-fg-tertiary">An example of an inaccessible field failing and passing WCAG 2.2 AA</p>
+                  <Caption>An example of an inaccessible field failing and passing WCAG 2.2 AA</Caption>
                 </div>
               )}
               {section.pageDemo === "commerce-center" && (
                 <div className="flex flex-col gap-3">
                   <CommerceCenterShowcase />
-                  <p className="text-xs text-fg-tertiary">Commerce Center</p>
+                  <Caption>Commerce Center</Caption>
                 </div>
               )}
             </section>

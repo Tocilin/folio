@@ -142,6 +142,10 @@ export function DeviceCanvas({
   const maxH = Math.max(420, vh - EXPANDED_CHROME);
   const pageH = fixed ? (fixedHeight ?? PAGE_HEIGHT.tablet) : expanded ? (isDesktop ? maxH : Math.min(baseH, maxH)) : baseH;
   const cardWidth = isDesktop ? desktopW : Math.min(def.width as number, avail / scale);
+  // A fixed-size canvas is a picture, not a page: its card is the content's size plus the 1px border on each
+  // side (the card is border-box), and it never scrolls. Without the +2 the content was 2px taller than the
+  // room inside the border, which gave a 2px scroll up and down.
+  const frame = fixed ? 2 : 0;
 
   return (
     <>
@@ -194,12 +198,12 @@ export function DeviceCanvas({
       </div>
 
       {/* area: measures the space available; its height follows the scaled card */}
-      <div ref={areaRef} className="relative w-full" style={{ height: pageH * scale }}>
+      <div ref={areaRef} className="relative w-full" style={{ height: (pageH + frame) * scale }}>
         <div
           className="absolute left-1/2 top-0 overflow-hidden rounded-xl transition-[width,height,transform] duration-300 ease-out [container-type:inline-size]"
           style={{
-            width: avail ? cardWidth : "100%",
-            height: pageH,
+            width: avail ? cardWidth + frame : "100%",
+            height: pageH + frame,
             visibility: avail ? "visible" : "hidden",
             transform: `translateX(-50%) scale(${scale})`,
             transformOrigin: "top center",
@@ -209,7 +213,7 @@ export function DeviceCanvas({
             border: `1px solid ${border}`,
           }}
         >
-          <div ref={scrollRef} className="h-full overflow-y-auto overflow-x-hidden [scrollbar-width:thin]">
+          <div ref={scrollRef} className={`h-full overflow-x-hidden ${fixed ? "overflow-y-hidden" : "overflow-y-auto [scrollbar-width:thin]"}`}>
             {children}
           </div>
           {overlay}

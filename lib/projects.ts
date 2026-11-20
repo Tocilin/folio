@@ -11,6 +11,10 @@ export type SectionImage = {
   height?: number;
   // Keep the image in the data but don't show it (flip back to false/remove to bring it back).
   hidden?: boolean;
+  // Optional small description shown under the image.
+  caption?: string;
+  // Optional live component rebuilt in code, shown right below this image (the image stays).
+  demoBelow?: "investor-quote" | "design-challenges" | "fun-part" | "project-goals" | "mission-figure";
 };
 
 export type Metric = {
@@ -77,6 +81,8 @@ export type Project = {
   heroFramed?: boolean;
   heroImageWidth?: number;
   heroImageHeight?: number;
+  // Optional live component rendered right below the hero image, built in code.
+  heroDemo?: "superapp-phones";
   // Aspect ratio of plain (non-framed) section images. Defaults to 16/10; use
   // "16/9" for full slides so their edges aren't cropped.
   imageAspect?: "16/10" | "16/9";
@@ -401,6 +407,7 @@ export const projects: Project[] = [
     heroFramed: true,
     heroImageWidth: 1800,
     heroImageHeight: 1012,
+    heroDemo: "superapp-phones",
     sections: [
       {
         group: "Overview",
@@ -433,6 +440,7 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/04-business-context-framed.png",
             alt: "Four screens from the early app's rewards flow, captioned 'Built by engineers. No designers involved'",
+            caption: "The initial look of the SuperApp",
             framed: true,
             width: 1800,
             height: 1012,
@@ -447,6 +455,8 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/investor-quote-framed.png",
             alt: "Slide quoting a potential investor: 'The app looks like something high school students threw together over a weekend'",
+            demoBelow: "investor-quote",
+            hidden: true,
             framed: true,
             width: 1800,
             height: 1012,
@@ -454,6 +464,8 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/05-core-issues-framed.png",
             alt: "Slide listing six main design challenges: weak information architecture, poor onboarding, confusing navigation, inconsistent visual design, lack of user trust, and accessibility risks",
+            demoBelow: "design-challenges",
+            hidden: true,
             framed: true,
             width: 1800,
             height: 1012,
@@ -468,6 +480,8 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/06-my-role-framed.png",
             alt: "Slide titled 'The \"fun\" part' noting the biggest constraint was time: only 3 months to deliver meaningful change, illustrated with a stressed stick figure beside a fast-moving stopwatch",
+            demoBelow: "fun-part",
+            hidden: true,
             framed: true,
             width: 1800,
             height: 1012,
@@ -482,17 +496,21 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/07-design-goals.webp",
             alt: "Project goals slide organized in three columns: Business (raise funding), Product (user growth, active users, new features, app ratings), and Design (information architecture, visual design, onboarding, product quality)",
+            demoBelow: "project-goals",
+            hidden: true,
           },
         ],
       },
       {
         group: "Goals",
         label: "Mission",
-        body: "Turn a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
+        body: "The mission was simple enough to describe in a single sentence, and it guided every decision I made.",
         images: [
           {
             src: "/images/superapp/08-mission.webp",
             alt: "Mission slide reading 'Turn a chaotic proof of concept into a real product,' next to an illustration of a caped stick figure surrounded by app feature icons",
+            demoBelow: "mission-figure",
+            hidden: true,
           },
         ],
       },
@@ -809,7 +827,7 @@ export const projects: Project[] = [
         statsVariant: "compact",
         stats: [
           { value: "25%", label: "Adoption", body: "Target adoption across Commerce Platform clients." },
-          { value: "", label: "Revenue and engagement", body: "Scale Checkout revenue and merchant engagement." },
+          { value: "", label: "Revenue and engagement", body: "Scale Checkout revenue and merchant engagement.", note: "Figures are confidential" },
           { value: "", label: "Flexibility and security", body: "Strengthen flexibility and security, including integration with J.P. Morgan's in-house fraud detection." },
           { value: "60%+", label: "Usability and parity", body: "Improve usability, accessibility, and customization: WCAG 2.2 AA compliance and 60%+ payment-method parity with competitors." },
         ],
@@ -1217,6 +1235,7 @@ export const projects: Project[] = [
     heroFramed: true,
     heroImageWidth: 1800,
     heroImageHeight: 1012,
+    heroDemo: "superapp-phones",
     sections: [
       {
         group: "Overview",
@@ -1249,6 +1268,7 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/04-business-context-framed.png",
             alt: "Four screens from the early app's rewards flow, captioned 'Built by engineers. No designers involved'",
+            caption: "The initial look of the SuperApp",
             framed: true,
             width: 1800,
             height: 1012,
@@ -1263,6 +1283,8 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/investor-quote-framed.png",
             alt: "Slide quoting a potential investor: 'The app looks like something high school students threw together over a weekend'",
+            demoBelow: "investor-quote",
+            hidden: true,
             framed: true,
             width: 1800,
             height: 1012,
@@ -1270,6 +1292,8 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/05-core-issues-framed.png",
             alt: "Slide listing six main design challenges: weak information architecture, poor onboarding, confusing navigation, inconsistent visual design, lack of user trust, and accessibility risks",
+            demoBelow: "design-challenges",
+            hidden: true,
             framed: true,
             width: 1800,
             height: 1012,
@@ -1284,6 +1308,8 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/06-my-role-framed.png",
             alt: "Slide titled 'The \"fun\" part' noting the biggest constraint was time: only 3 months to deliver meaningful change, illustrated with a stressed stick figure beside a fast-moving stopwatch",
+            demoBelow: "fun-part",
+            hidden: true,
             framed: true,
             width: 1800,
             height: 1012,
@@ -1298,17 +1324,21 @@ export const projects: Project[] = [
           {
             src: "/images/superapp/07-design-goals.webp",
             alt: "Project goals slide organized in three columns: Business (raise funding), Product (user growth, active users, new features, app ratings), and Design (information architecture, visual design, onboarding, product quality)",
+            demoBelow: "project-goals",
+            hidden: true,
           },
         ],
       },
       {
         group: "Goals",
         label: "Mission",
-        body: "Turn a chaotic proof of concept into a real product foundation. Something investors could trust. Something users could understand. Something the company could actually grow.",
+        body: "The mission was simple enough to describe in a single sentence, and it guided every decision I made.",
         images: [
           {
             src: "/images/superapp/08-mission.webp",
             alt: "Mission slide reading 'Turn a chaotic proof of concept into a real product,' next to an illustration of a caped stick figure surrounded by app feature icons",
+            demoBelow: "mission-figure",
+            hidden: true,
           },
         ],
       },
@@ -1600,7 +1630,7 @@ export const projects: Project[] = [
         statsVariant: "compact",
         stats: [
           { value: "25%", label: "Adoption", body: "Target adoption across Commerce Platform clients." },
-          { value: "", label: "Revenue and engagement", body: "Scale Checkout revenue and merchant engagement." },
+          { value: "", label: "Revenue and engagement", body: "Scale Checkout revenue and merchant engagement.", note: "Figures are confidential" },
           { value: "", label: "Flexibility and security", body: "Strengthen flexibility and security, including integration with J.P. Morgan's in-house fraud detection." },
           { value: "60%+", label: "Usability and parity", body: "Improve usability, accessibility, and customization: WCAG 2.2 AA compliance and 60%+ payment-method parity with competitors." },
         ],
